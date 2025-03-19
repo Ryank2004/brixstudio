@@ -10,21 +10,33 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "JetBrains";
+    src: url(/fonts/JetBrainsMono.ttf);
+}
+
 :root {
 	font-family: "Inter", sans-serif;
-    
+    --light-color: #F8FAFC;
+    --medium-color: #E4e6E6;
+    --dark-color: #1C1918;
 }
 
 html {
     overflow-x: hidden;
-    background-color: #F8FAFC;
-    color: #1c1918;
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
-body {
-    /* background-image: url(/images/texture.png); */
-}
-
-h1 {
+h1, h2 {
     font-family: "Midnight", sans-serif;
+}
+
+h3 {
+    font-family: "JetBrains", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-color);
 }

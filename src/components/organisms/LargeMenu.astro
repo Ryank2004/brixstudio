@@ -1,0 +1,30 @@
+---
+import MenuItem from "../molecules/MenuItem.astro";
+
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav>
+  <ul class="large-menu">
+    {pages.map((page) => (
+      <MenuItem href={page.href} label={page.name} isActive={page.href === currentPath} />
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .large-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 24px;
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import Logo from "../atoms/Logo.astro";
+import MenuButton from "../molecules/MenuButton.astro";
+import ContactButton from "../molecules/ContactButton.astro";
+import LargeMenu from "../organisms/LargeMenu.astro"
+---
+
+<nav>
+    <Logo />
+    <div class="small-menu">
+        <ContactButton />
+        <MenuButton />
+    </div>
+    <div class="large-menu">
+        <LargeMenu />
+    </div>
+</nav>
+<style>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 25px;
+    }
+
+    .small-menu {
+        display: flex;
+        align-items: center;
+        background-color: var(--medium-color);
+        padding: 4.4px 16px;
+        gap: 24px;
+        border-radius: 12px;
+    }
+
+    .large-menu {
+        display: none;
+        background-color: var(--medium-color);
+        padding: 10px 12px;
+        border-radius: 16px;
+    }
+
+    @media screen and (min-width: 768px) {
+        .small-menu {
+            display: none;
+        }
+
+        .large-menu {
+            display: block;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+    }
+</style>
