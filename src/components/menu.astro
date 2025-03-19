@@ -1,0 +1,141 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="navbar" class="navbar expanded">
+  <a href="/" class={`nav-item ${currentPath === '/' ? 'current' : ''}`} data-path="/">HOME</a>
+  <a href="/blog" class={`nav-item ${currentPath === '/blog' ? 'current' : ''}`} data-path="/blog">BLOG</a>
+  <a href="/contacts" class={`nav-item ${currentPath === '/contacts' ? 'current' : ''}`} data-path="/contacts">CONTACTS</a>
+  <a href="/it" class={`nav-item ${currentPath === '/it' ? 'current' : ''}`} data-path="/it">IT</a>
+</nav>
+
+<style>
+  /* Basis navbar styling */
+  .navbar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: #ddd;
+    border-radius: 12px;
+    padding: 8px 12px;
+    gap: 16px;
+    z-index: 1000;
+    min-width: fit-content;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Nav item basis */
+  .nav-item {
+    position: relative;
+    font-weight: 500;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Active item in expanded state */
+  .navbar.expanded .nav-item.current {
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Active item in collapsed state -> background weg */
+  .navbar.collapsed .nav-item.current {
+    background-color: transparent;
+    color: #333;
+  }
+
+  /* Indicator (streepje) alleen in collapsed state */
+  .nav-item.current::before {
+    content: "";
+    display: none;
+  }
+
+  .navbar.collapsed .nav-item.current::before {
+    display: block;
+    width: 4px;
+    height: 16px;
+    background: #333;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+
+  .navbar.collapsed {
+    gap: 0;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js" is:inline></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js" is:inline></script>
+<script is:inline type="module">
+  
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navbar = document.getElementById('navbar');
+  const navItems = navbar.querySelectorAll('.nav-item');
+  const currentItem = navbar.querySelector('.nav-item.current');
+
+  // Stel initieel de breedte in zodat GSAP smooth werkt
+  gsap.set(navbar, { width: navbar.offsetWidth });
+
+  ScrollTrigger.create({
+    trigger: document.body,
+    start: 'top -200',
+    onEnter: () => collapseNavbar(),
+    onLeaveBack: () => expandNavbar(),
+  });
+
+  function collapseNavbar() {
+    navItems.forEach(item => {
+      if (!item.classList.contains('current')) {
+        gsap.to(item, {
+          autoAlpha: 0,
+          scale: 0.8,
+          display: 'none',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+    });
+
+    // Bereken nieuwe breedte op basis van currentItem + padding/margin
+    const targetWidth = currentItem.offsetWidth + 32; // padding compensatie
+    gsap.to(navbar, {
+      width: targetWidth,
+      duration: 0.4,
+      ease: 'power2.out'
+    });
+
+    // Toggle CSS state
+    navbar.classList.add('collapsed');
+    navbar.classList.remove('expanded');
+  }
+
+  function expandNavbar() {
+    navItems.forEach(item => {
+      gsap.to(item, {
+        autoAlpha: 1,
+        scale: 1,
+        display: 'flex',
+        duration: .3,
+        ease: 'power2.out'
+      });
+    });
+
+    gsap.to(navbar, {
+      width: 'auto',
+      duration: .3,
+      ease: 'power2.out'
+    });
+
+    navbar.classList.remove('collapsed');
+    navbar.classList.add('expanded');
+  }
+</script>

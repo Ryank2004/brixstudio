@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Midnight";
+    src: url(/fonts/Midnight.ttf);
+    font-display: swap;
+}
+
+:root {
+	font-family: "Inter", sans-serif;
+    
+}
+
+html {
+    overflow-x: hidden;
+    background-color: #F8FAFC;
+    color: #1c1918;
+}
+
+body {
+    /* background-image: url(/images/texture.png); */
+}
+
+h1 {
+    font-family: "Midnight", sans-serif;
+}
