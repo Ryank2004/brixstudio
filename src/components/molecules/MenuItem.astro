@@ -13,8 +13,7 @@ const { href, label, isActive } = Astro.props;
     href={href} 
     class={isActive ? "active" : ""}
     aria-current={isActive ? "page" : undefined}
-    style={isActive ? "view-transition-name: activeLink;" : ""}
-  >
+    >
     {label}
   </a>
 </li>
