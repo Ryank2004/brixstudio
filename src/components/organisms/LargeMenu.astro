@@ -8,7 +8,7 @@ const pages = [
   { name: "Contact", href: "/contact" }
 ];
 
-const currentPath = window.location.pathname;
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="large-menu-nav">
