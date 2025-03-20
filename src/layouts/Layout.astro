@@ -1,5 +1,6 @@
 ---
 import Navigation from "@organisms/Navigation.astro";
+import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 ---
 
 <!doctype html>
@@ -12,6 +13,7 @@ import Navigation from "@organisms/Navigation.astro";
 		<link rel="stylesheet" href="/css/global.css" />
 	</head>
 	<body>
+		<BackgroundTexture />
 		<Navigation />
 		<slot />
 	</body>
