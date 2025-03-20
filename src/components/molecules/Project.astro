@@ -1,0 +1,56 @@
+---
+import ArrowRight from '../atoms/arrow-right.astro'
+---
+<section class="project">
+    <img alt="project" src="/public/images/Zensation mock up.jpg" width="600" height="500">
+    <div class="project-text">
+        <h3>Zensation</h3>
+        <a aria-label="See project" href="/"><span>See project </span><ArrowRight /></a>
+    </div>
+    
+</section>
+
+<style>
+    section {
+        width: 100%;
+        padding: 0 25px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .project-text {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px 8px;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 1.5;
+        text-transform: uppercase;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    a span {
+        display: none;
+    }
+
+    @media screen and (min-width: 1024px) {
+        a span {
+            display: block;
+        }
+    }
+
+</style>
