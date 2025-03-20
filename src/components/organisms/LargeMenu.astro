@@ -11,20 +11,28 @@ const pages = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav>
+<nav class="large-menu-nav">
   <ul class="large-menu">
     {pages.map((page) => (
-      <MenuItem href={page.href} label={page.name} isActive={page.href === currentPath} />
+      <MenuItem
+        href={page.href}
+        label={page.name}
+        isActive={page.href === currentPath}
+      />
     ))}
   </ul>
 </nav>
 
 <style>
+  .large-menu-nav {
+    position: relative;
+  }
+
   .large-menu {
+    display: flex;
+    gap: 24px;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    gap: 24px;
   }
 </style>

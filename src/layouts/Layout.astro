@@ -1,6 +1,8 @@
 ---
-import BackgroundTexture from "../components/atoms/backgroundTexture.astro"
+import BackgroundTexture from "../components/atoms/BackgroundTexture.astro";
+import Navigation from "../components/organisms/Navigation.astro";
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -8,19 +10,20 @@ import BackgroundTexture from "../components/atoms/backgroundTexture.astro"
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Brix Studio</title>
-		<link rel="stylesheet" href="/css/global.css">
+		<link rel="stylesheet" href="/css/global.css" />
 	</head>
 	<body>
 		<BackgroundTexture />
+		<Navigation />
 		<slot />
 	</body>
+	
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+	defer></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+	defer></script>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+

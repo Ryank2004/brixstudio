@@ -1,0 +1,136 @@
+<section class="hero">
+    <div class="content">
+        <h1>
+            We create<br />
+            <span class="rotator-wrapper">
+                <span class="rotator-word">websites</span>
+            </span>
+        </h1>
+
+        <p>
+            Our digital agency specializes in crafting captivating websites that
+            convert and sell. Contact us for a free consultation.
+        </p>
+
+        <a href="/contact" aria-label="go to contact form">Contact</a>
+
+        <small>or <button>scroll down to explore more</button></small>
+    </div>
+</section>
+
+<style>
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+        padding: 0 25px 0;
+        text-align: center;
+        height: 90vh;
+        /* flex: 1 1 0%; */
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 600px; /* Beperkt breedte voor leesbaarheid */
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 48px;
+        text-transform: uppercase;
+        margin-top: clamp(4rem, 16vh, 10rem);
+    }
+
+    p {
+        font-family: "Jetbrains", sans-serif;
+        font-size: 16px;
+        margin-top: clamp(2rem, 20vh, 14rem); 
+    }
+
+    a {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        padding: 12px 24px;
+        border-radius: 8px;
+        width: auto;
+        margin: 24px auto 0;
+        max-width: max-content;
+    }
+
+    small {
+        margin-top: 12px;
+    }
+
+    small button {
+        cursor: pointer;
+        display: inline-block;
+        color: black;
+        text-decoration: none;
+        position: relative;
+        transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        z-index: 1;
+    }
+
+    small button::after {
+        content: "";
+        background: #292524;
+        width: calc(100% + 9px);
+        height: 1px;
+        position: absolute;
+        bottom: -2px;
+        left: -4px;
+        transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    /* Rotator styles */
+    .rotator-wrapper {
+        position: relative;
+        display: flex;
+        height: 1em; /* Houdt dezelfde hoogte als de tekst */
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+    .rotator-word {
+        width: 100%;
+    }
+</style>
+
+<script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+        const words = ["websites", "design", "tools"];
+        const rotatorWord = document.querySelector(".rotator-word");
+
+        let index = 0;
+
+        const animateWords = () => {
+            const nextIndex = (index + 1) % words.length;
+
+            gsap.to(rotatorWord, {
+                y: "-100%",
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.in",
+                onComplete: () => {
+                    rotatorWord.textContent = words[nextIndex];
+                    gsap.set(rotatorWord, { y: "100%" });
+
+                    gsap.to(rotatorWord, {
+                        y: "0%",
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+
+                    index = nextIndex;
+                },
+            });
+        };
+
+        setInterval(animateWords, 3000);
+    });
+</script>
