@@ -1,6 +1,6 @@
 <section class="hero">
     <div class="content">
-        <h1>
+        <h1 class="hero-title">
             We build<br />
             <span class="rotator-wrapper">
                 <span class="rotator-word">websites</span>
@@ -42,10 +42,21 @@
         margin-top: clamp(4rem, 16vh, 10rem);
     }
 
+    /* .line-wrapper-title {
+		position: relative;
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	}
+
+	.line {
+		display: inline-block;
+		transform: translateY(115px);
+		transition: transform 0.5s ease-out;
+	} */
+
     p {
         font-family: "Jetbrains", sans-serif;
         font-size: 16px;
-        margin-top: clamp(2rem, 20vh, 14rem); 
+        margin-top: clamp(2rem, 20vh, 14rem);
     }
 
     a {
@@ -129,5 +140,30 @@
         };
 
         setInterval(animateWords, 3000);
+
+        // const myTitle = new window.SplitType(".hero-title", {
+        //     types: "lines",
+        //     lineClass: "line",
+        // });
+
+        // myTitle.lines.forEach((line) => {
+        //     const wrapper = document.createElement("div");
+        //     wrapper.classList.add("line-wrapper-title");
+
+        //     line.parentNode.insertBefore(wrapper, line);
+        //     wrapper.appendChild(line);
+        // });
+
+        // gsap.fromTo(
+        //     ".line", 
+        //     { y: 115 },
+        //     {
+        //         y: 0,
+        //         stagger: 0.15,
+        //         delay: 0.1,
+        //         duration: 1,
+        //         ease: "power3.out",
+        //     },
+        // );
     });
 </script>
