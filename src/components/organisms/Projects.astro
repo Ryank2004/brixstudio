@@ -2,7 +2,18 @@
 import Project from '@molecules/Project.astro'
 ---
 
+<div class="projects">
 <Project />
 <Project />
 <Project />
 <Project />
+</div>
+
+<style>
+    .projects {
+        display: grid;
+        grid-template-columns: 1;
+        gap: 90px;
+        padding: 80px 25px 25px;
+    }
+</style>

@@ -1,19 +1,48 @@
 ---
-import ArrowRight from '../atoms/arrow-right.astro'
+import ArrowRight from "../atoms/arrow-right.astro";
 ---
+
 <section class="project">
-    <img alt="project" src="/images/Zensation-mock-up.webp" width="600" height="500" loading="lazy">
+    <img
+        class="project-image"
+        alt="project"
+        src="/images/Zensation-mock-up.webp"
+        width="600"
+        height="500"
+        loading="lazy"
+    />
     <div class="project-text">
         <h3>Zensation</h3>
-        <a aria-label="See project" href="/"><span>See project </span><ArrowRight /></a>
+        <a aria-label="See project" href="/"
+            ><span>See project </span><ArrowRight /></a
+        >
     </div>
-    
 </section>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll(".project-image").forEach((img) => {
+            gsap.set(img, { scale: 0.4 });
+            gsap.to(img, {
+                scale: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "-300% center",
+                    end: "10% center",
+                    scrub: true,
+                    markers: false,
+                },
+            });
+        });
+    });
+</script>
 
 <style>
     section {
         width: 100%;
-        padding: 0 25px;
     }
 
     img {
@@ -52,5 +81,4 @@ import ArrowRight from '../atoms/arrow-right.astro'
             display: block;
         }
     }
-
 </style>
