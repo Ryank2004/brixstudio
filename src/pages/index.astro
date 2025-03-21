@@ -1,10 +1,37 @@
 ---
-import Layout from '@layout/Layout.astro';
-import Hero from '@molecules/Hero.astro';
-import Projects from '@organisms/Projects.astro';
+import Layout from "@layout/Layout.astro";
+import Hero from "@molecules/Hero.astro";
+import Projects from "@organisms/Projects.astro";
+import Services from "@organisms/Services.astro";
 ---
 
 <Layout>
 	<Hero />
-	<Projects />
+	<div class="wrapper">
+		<Projects />
+		<Services />
+	</div>
 </Layout>
+
+<script is:inline>
+	document.addEventListener("DOMContentLoaded", () => {
+		gsap.registerPlugin(ScrollTrigger);
+
+		gsap.fromTo(
+			".wrapper",
+			{
+				backgroundColor: gsap.getProperty("html", "--light-color"),
+			},
+			{
+				scrollTrigger: {
+					trigger: ".projects",
+					scrub: true,
+					markers: true,
+					start: "90% center",
+					end: "110% center",
+				},
+				backgroundColor: gsap.getProperty("html", "--dark-color"),
+			},
+		);
+	});
+</script>
