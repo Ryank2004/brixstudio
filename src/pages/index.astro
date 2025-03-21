@@ -33,5 +33,22 @@ import Services from "@organisms/Services.astro";
 				backgroundColor: gsap.getProperty("html", "--dark-color"),
 			},
 		);
+
+		gsap.fromTo(
+			".project-text h3, .project-text a",
+			{
+				color: gsap.getProperty("html", "--dark-color"), // startkleur
+			},
+			{
+				color: gsap.getProperty("html", "--light-color"), // eindkleur
+				scrollTrigger: {
+					trigger: ".projects", // of een andere trigger die je wilt
+					start: "90% center",
+					end: "110% center",
+					scrub: true,
+					markers: true,
+				},
+			},
+		);
 	});
 </script>
