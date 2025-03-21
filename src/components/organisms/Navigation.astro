@@ -24,12 +24,15 @@ import LargeMenu from "@molecules/LargeMenu.astro";
     }
 
     .small-menu {
+        position: fixed;
+        right: 25px;
         display: flex;
         align-items: center;
         background-color: var(--medium-color);
         padding: 4.4px 16px;
         gap: 24px;
         border-radius: 12px;
+        z-index: 100;
     }
 
     .large-menu {
