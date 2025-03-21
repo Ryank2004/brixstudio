@@ -1,0 +1,73 @@
+<section class="cards-wrapper">
+    <ul class="cards">
+        <li class="stack-card"><h2>Heading</h2></li>
+        <li class="stack-card"><h2>Heading</h2></li>
+        <li class="stack-card"><h2>Heading</h2></li>
+        <li class="stack-card"><h2>Heading</h2></li>
+    </ul>
+</section>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        let cards = gsap.utils.toArray(".stack-card");
+
+        let stickDistance = 0;
+
+        let firstCardST = ScrollTrigger.create({
+            trigger: cards[0],
+            start: "center center",
+        });
+
+        let lastCardST = ScrollTrigger.create({
+            trigger: cards[cards.length - 1],
+            start: "center center",
+        });
+
+        cards.forEach((card, index) => {
+            var scale = 1 - (cards.length - index) * 0.025;
+            let scaleDown = gsap.to(card, {
+                scale: scale,
+                "transform-origin":
+                    '"50% ' + (lastCardST.start + stickDistance) + '"',
+            });
+
+            ScrollTrigger.create({
+                trigger: card,
+                start: "center center",
+                end: () => lastCardST.start + stickDistance,
+                pin: true,
+                markers: false,
+                pinSpacing: false,
+                ease: "none",
+                animation: scaleDown,
+                toggleActions: "restart none none reverse",
+            });
+        });
+    });
+</script>
+
+<style>
+    .cards-wrapper {
+        overflow: hidden;
+        margin: 0 25px;
+    }
+    .cards {
+        padding: 300px 0;
+    }
+
+    .stack-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 30px;
+        position: relative;
+        width: 100%;
+        min-height: 450px;
+        padding: 60px 35px;
+        transform-origin: 50% -160%;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+</style>
