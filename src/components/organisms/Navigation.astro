@@ -7,10 +7,14 @@ import LargeMenu from "@molecules/LargeMenu.astro";
 
 <nav>
     <Logo />
-    <div class="small-menu">
-        <ContactButton />
-        <MenuButton />
-    </div>
+      <!-- Hidden checkbox toggle voor mobiele menu -->
+  <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle" />
+
+  <!-- Label fungeert als trigger voor mobiele menu -->
+  <label for="mobile-menu-toggle" class="small-menu">
+    <ContactButton />
+    <MenuButton />
+  </label>
     <div class="large-menu">
         <LargeMenu />
     </div>

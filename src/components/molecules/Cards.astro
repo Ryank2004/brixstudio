@@ -1,9 +1,39 @@
+---
+import WebsiteSvg from "@atoms/WebsiteSVG.astro";
+import ToolsSvg from "@atoms/ToolsSVG.astro";
+import DesignSvg from "@atoms/DesignSVG.astro";
+import ContentSvg from "@atoms/ContentSVG.astro";
+---
 <section class="cards-wrapper">
     <ul class="cards">
-        <li class="stack-card"><h2>Websites</h2></li>
-        <li class="stack-card"><h2>Tools</h2></li>
-        <li class="stack-card"><h2>Designs</h2></li>
-        <li class="stack-card"><h2>Content</h2></li>
+        <li class="stack-card">
+            <div class="card-text">
+                <WebsiteSvg />
+                <h2>Websites</h2>
+                <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
+            </div>
+        </li>
+        <li class="stack-card">
+            <div class="card-text">
+                <ToolsSvg />
+                <h2>Tools</h2>
+                <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
+            </div>
+        </li>
+        <li class="stack-card">
+            <div class="card-text">
+                <DesignSvg />
+                <h2>Designs</h2>
+                <p>Our UI/UX design services are centered on creating user-centric interfaces that are both visually appealing and easy to navigate. We prioritize user experience, ensuring every design element aligns with the users' needs and enhances overall interaction with your digital products.</p>
+            </div>
+        </li>
+        <li class="stack-card">
+            <div class="card-text">
+                <ContentSvg />
+                <h2>Content</h2>
+                <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
+            </div>
+        </li>
     </ul>
 </section>
 
@@ -73,5 +103,16 @@
 
     .stack-card h2 {
         text-transform: uppercase;
+        margin-bottom: 24px;
     }
+
+    .stack-card p {
+        line-height: 1.8;
+    }
+
+    @media screen and (min-width: 1024px) {
+            svg {
+                display: block;
+            }
+        }
 </style>
