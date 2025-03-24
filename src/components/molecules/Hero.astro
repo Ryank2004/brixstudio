@@ -40,18 +40,26 @@
         font-size: 48px;
         text-transform: uppercase;
         margin-top: clamp(4rem, 16vh, 10rem);
+        opacity: 0;
+        animation: fade-in 0.2s 0.1s forwards;
+    }
+    
+    @keyframes fade-in {
+        to {
+            opacity: 1;
+        }
     }
 
-    /* .line-wrapper-title {
+    :global(.line-wrapper-title) {
 		position: relative;
-		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 	}
-
-	.line {
-		display: inline-block;
-		transform: translateY(115px);
-		transition: transform 0.5s ease-out;
-	} */
+    
+	:global(.line) {
+        display: inline-block;
+        transform: translateY(115px);
+        transition: transform 0.5s ease-out;
+	}
 
     p {
         font-family: "Jetbrains", sans-serif;
@@ -141,29 +149,33 @@
 
         setInterval(animateWords, 3000);
 
-        // const myTitle = new window.SplitType(".hero-title", {
-        //     types: "lines",
-        //     lineClass: "line",
-        // });
 
-        // myTitle.lines.forEach((line) => {
-        //     const wrapper = document.createElement("div");
-        //     wrapper.classList.add("line-wrapper-title");
 
-        //     line.parentNode.insertBefore(wrapper, line);
-        //     wrapper.appendChild(line);
-        // });
 
-        // gsap.fromTo(
-        //     ".line", 
-        //     { y: 115 },
-        //     {
-        //         y: 0,
-        //         stagger: 0.15,
-        //         delay: 0.1,
-        //         duration: 1,
-        //         ease: "power3.out",
-        //     },
-        // );
+        const animatingTitle = new window.SplitType(".hero-title", {
+            types: "lines, words",
+            lineClass: "line",
+        });
+
+        animatingTitle.lines.forEach((line) => {
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("line-wrapper-title");
+
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
+
+
+        gsap.fromTo(
+            ".line", 
+            { y: 115 },
+            {
+                y: 0,
+                stagger: 0.15,
+                // delay: 0.1,
+                duration: 0.6,
+                ease: "power3.out",
+            },
+        );
     });
 </script>
