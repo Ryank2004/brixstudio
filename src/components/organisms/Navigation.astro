@@ -6,19 +6,43 @@ import LargeMenu from "@molecules/LargeMenu.astro";
 ---
 
 <nav>
-    <Logo />
-      <!-- Hidden checkbox toggle voor mobiele menu -->
-  <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle" />
+    <a href="/">
+        <Logo />
+    </a>
 
-  <!-- Label fungeert als trigger voor mobiele menu -->
-  <label for="mobile-menu-toggle" class="small-menu">
-    <ContactButton />
-    <MenuButton />
-  </label>
+    <!-- Hidden checkbox voor menu toggle -->
+    <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle" />
+
+    <!-- Buttons voor mobiel menu -->
+    <div class="small-menu">
+        <!-- Contact button is nu een link -->
+        <a href="/contact" class="contact-button">
+            <ContactButton />
+        </a>
+
+        <!-- Menu button opent het menu -->
+        <label for="mobile-menu-toggle" class="menu-button">
+            <MenuButton />
+        </label>
+    </div>
+
+    <!-- Mobiel menu dat opent met menu-button -->
+    <div class="mobile-menu">
+        <LargeMenu />
+        <!-- <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul> -->
+    </div>
+
+    <!-- Large menu blijft gewoon zoals je had -->
     <div class="large-menu">
         <LargeMenu />
     </div>
 </nav>
+
 <style>
     nav {
         display: flex;
@@ -27,6 +51,12 @@ import LargeMenu from "@molecules/LargeMenu.astro";
         padding: 16px 25px;
     }
 
+    /* Verberg de checkbox */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Container voor de buttons rechtsboven */
     .small-menu {
         position: fixed;
         right: 25px;
@@ -39,6 +69,61 @@ import LargeMenu from "@molecules/LargeMenu.astro";
         z-index: 100;
     }
 
+    /* Contact button */
+    .contact-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e4e6e6;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .contact-button svg {
+        width: 60%;
+        height: 60%;
+        pointer-events: none;
+    }
+
+    /* Menu button label (werkt als trigger) */
+    .menu-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e4e6e6;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .menu-button svg {
+        width: 60%;
+        height: 60%;
+        pointer-events: none;
+    }
+
+    /* Mobiele menu standaard verborgen */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        right: 25px;
+        background-color: var(--medium-color);
+        padding: 20px 5.5px;
+        border-radius: 16px;
+        z-index: 1000;
+    }
+
+    /* Toon mobiel menu wanneer checkbox is aangevinkt */
+    .menu-toggle:checked ~ .small-menu + .mobile-menu {
+        display: block;
+    }
+
+    /* Large menu blijft zoals hij is */
     .large-menu {
         display: none;
         background-color: var(--medium-color);
@@ -48,6 +133,10 @@ import LargeMenu from "@molecules/LargeMenu.astro";
 
     @media screen and (min-width: 768px) {
         .small-menu {
+            display: none;
+        }
+
+        .mobile-menu {
             display: none;
         }
 

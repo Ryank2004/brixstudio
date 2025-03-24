@@ -12,7 +12,8 @@ const path = Astro.url.pathname;
       <a href="/blog" class={path === "/blog/" ? "active" : ""}>blog</a>
     </li>
     <li>
-      <a href="/contact" class={path === "/contact/" ? "active" : ""}>contact</a>
+      <a href="/contact" class={path === "/contact/" ? "active" : ""}>contact</a
+      >
     </li>
   </ul>
 </nav>
@@ -24,6 +25,8 @@ const path = Astro.url.pathname;
 
   .large-menu {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 24px;
     list-style: none;
     padding: 0;
@@ -41,5 +44,20 @@ const path = Astro.url.pathname;
   a.active {
     color: var(--light-color);
     background-color: #4f5052;
+  }
+
+  @media screen and (min-width: 768px) {
+    .large-menu-nav {
+      position: relative;
+    }
+
+    .large-menu {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
   }
 </style>
