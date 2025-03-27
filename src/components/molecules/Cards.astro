@@ -5,36 +5,36 @@ import DesignSvg from "@atoms/DesignSVG.astro";
 import ContentSvg from "@atoms/ContentSVG.astro";
 ---
 <section class="cards-wrapper">
-    <ul class="cards">
-        <li class="stack-card">
+    <div class="cards">
+        <div class="stack-card">
             <div class="card-text">
                 <WebsiteSvg />
                 <h2>Websites</h2>
                 <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
             </div>
-        </li>
-        <li class="stack-card">
+        </div>
+        <div class="stack-card">
             <div class="card-text">
                 <ToolsSvg />
                 <h2>Tools</h2>
                 <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
             </div>
-        </li>
-        <li class="stack-card">
+        </div>
+        <div class="stack-card">
             <div class="card-text">
                 <DesignSvg />
                 <h2>Designs</h2>
                 <p>Our UI/UX design services are centered on creating user-centric interfaces that are both visually appealing and easy to navigate. We prioritize user experience, ensuring every design element aligns with the users' needs and enhances overall interaction with your digital products.</p>
             </div>
-        </li>
-        <li class="stack-card">
+        </div>
+        <div class="stack-card">
             <div class="card-text">
                 <ContentSvg />
                 <h2>Content</h2>
                 <p>At Brix Studio, we specialize in crafting bespoke websites tailored to your brand's needs. Our approach combines aesthetic design with technical proficiency, ensuring your site is visually stunning, fast, and responsive across all devices.</p>
             </div>
-        </li>
-    </ul>
+        </div>
+    </div>
 </section>
 
 <script is:inline>
@@ -84,13 +84,11 @@ import ContentSvg from "@atoms/ContentSVG.astro";
         margin: 0 25px;
     }
     .cards {
-        padding: 300px 0;
+        padding-top: 300px;
     }
 
     .stack-card {
         display: flex;
-        /* align-items: center; */
-        /* justify-content: space-between; */
         border-radius: 10px;
         position: relative;
         width: 100%;
