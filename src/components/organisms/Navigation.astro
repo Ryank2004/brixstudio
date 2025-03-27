@@ -25,10 +25,6 @@ import Menu from "@molecules/Menu.astro";
     <div class="mobile-menu">
         <Menu />
     </div>
-
-    <div class="large-menu">
-        <Menu />
-    </div>
 </nav>
 
 <style>
@@ -99,18 +95,10 @@ import Menu from "@molecules/Menu.astro";
         padding: 20px 5.5px;
         border-radius: 16px;
         z-index: 1000;
-        transition: all .2 ease-out;
     }
 
     .menu-toggle:checked ~ .small-menu + .mobile-menu {
         display: block;
-    }
-
-    .large-menu {
-        display: none;
-        background-color: var(--medium-color);
-        padding: 10px 12px;
-        border-radius: 16px;
     }
 
     @media screen and (min-width: 768px) {
@@ -119,11 +107,10 @@ import Menu from "@molecules/Menu.astro";
         }
 
         .mobile-menu {
-            display: none;
-        }
-
-        .large-menu {
             display: block;
+            padding: 10px 12px;
+            border-radius: 16px;
+            position: static;
         }
     }
 
