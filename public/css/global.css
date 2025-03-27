@@ -12,7 +12,7 @@
 
 @font-face {
     font-family: "JetBrains";
-    src: url(/fonts/JetBrainsMono.ttf);
+    src: url(/fonts/JetBrainsMono.woff2);
 }
 
 :root {
