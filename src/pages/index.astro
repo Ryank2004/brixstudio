@@ -11,46 +11,57 @@ import Faq from "@organisms/Faq.astro";
 	<div class="wrapper">
 		<Projects />
 		<Services />
+		<Faq />
 	</div>
-	<Faq />
+	<div class="spacer"></div>
 </Layout>
 
 <script is:inline>
 	document.addEventListener("DOMContentLoaded", () => {
 		gsap.registerPlugin(ScrollTrigger);
 
-		gsap.fromTo(
-			".wrapper",
-			{
-				backgroundColor: gsap.getProperty("html", "--light-color"),
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: ".projects",
+				start: "90% center",
+				end: "110% center",
+				scrub: true,
+				markers: false,
 			},
-			{
-				scrollTrigger: {
-					trigger: ".projects",
-					scrub: true,
-					markers: false,
-					start: "90% center",
-					end: "110% center",
+		})
+			.to(".wrapper", {
+				backgroundColor: gsap.getProperty("html", "--background-color"),
+			})
+			.to(
+				".project-text h3, .project-text a",
+				{
+					color: gsap.getProperty("html", "--light-color"),
 				},
-				backgroundColor: gsap.getProperty("html", "--dark-color"),
-			},
-		);
+				"<",
+			);
 
-		gsap.fromTo(
-			".project-text h3, .project-text a",
-			{
-				color: gsap.getProperty("html", "--dark-color"), // startkleur
+		gsap.timeline({
+			scrollTrigger: {
+				trigger: ".wrapper",
+				start: "bottom center", // Of "bottom center" afhankelijk van gewenst moment
+				end: "bottom+=300 center", // Geeft ruimte aan de animatie
+				scrub: true,
+				markers: false,
 			},
-			{
-				color: gsap.getProperty("html", "--light-color"), // eindkleur
-				scrollTrigger: {
-					trigger: ".projects", // of een andere trigger die je wilt
-					start: "90% center",
-					end: "110% center",
-					scrub: true,
-					markers: false,
-				},
-			},
-		);
+		}).to(".wrapper", {
+			borderRadius: "24px",
+			width: "95vw",
+		});
 	});
 </script>
+<style>
+	.wrapper {
+		width: 100%;
+		/* max-width: 1200px; */
+		margin: 0 auto;
+	}
+
+	.spacer {
+		height: 1000px;
+	}
+</style>

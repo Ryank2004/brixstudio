@@ -8,7 +8,8 @@
       "@atoms/*": ["src/components/atoms/*"],
       "@molecules/*": ["src/components/molecules/*"],
       "@organisms/*": ["src/components/organisms/*"],
-      "@layout/*": ["src/layouts/*"]
+      "@layout/*": ["src/layouts/*"],
+      "@data/*": ["src/data/*"]
     }
   }
 }

@@ -1,8 +1,64 @@
 ---
-import Question from "@molecules/Question.astro";
+import faqs from "@data/faqs.json";
 ---
 
-<Question />
-<Question />
-<Question />
-<Question />
+<section id="faq" class="faq-section">
+        <h2 class="faq-title">FAQ</h2>
+
+        <div class="faq-list">
+            {
+                faqs.map(({ question, answer }) => (
+                    <details class="faq-item">
+                        <summary class="faq-question">{question}</summary>
+                        <p class="faq-answer">{answer}</p>
+                    </details>
+                ))
+            }
+        </div>
+</section>
+
+<style>
+    .faq-section {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 160px 25px;
+        color: var(--light-color);
+    }
+
+    .faq-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .faq-item {
+        background-color: var(--faq-color);
+        color: var(--light-color);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .faq-item[open] {
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-question {
+        cursor: pointer;
+        font-weight: 600;
+        padding: 1.2rem;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+    }
+
+    .faq-answer {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #666;
+    }
+</style>
