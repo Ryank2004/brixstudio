@@ -47,8 +47,9 @@ import ArrowRight from "../atoms/arrow-right.astro";
 
     img {
         width: 100%;
-        height: auto;
+        height: 400px;
         border-radius: 10px;
+        object-fit: cover;
     }
 
     .project-text {
@@ -80,6 +81,10 @@ import ArrowRight from "../atoms/arrow-right.astro";
     @media screen and (min-width: 1024px) {
         a span {
             display: block;
+        }
+
+        h3 {
+            font-size: 20px;
         }
     }
 </style>

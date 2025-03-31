@@ -44,7 +44,7 @@ import faqs from "@data/faqs.json";
     }
 
     .faq-title {
-        font-size: 2.5rem;
+        font-size: 48px;
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -84,5 +84,60 @@ import faqs from "@data/faqs.json";
 
     details[open] .faq-arrow {
         transform: rotate(90deg);
+    }
+
+    @media screen and (min-width: 768px) {
+        .faq-section {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .faq-title {
+            font-size: 60px;
+            height: 100%;
+            line-height: 0.9;
+        }
+
+        .faq-question {
+            font-size: 20px;
+            padding: 40px;
+        }
+
+        .faq-answer {
+            padding: 0 40px 40px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .faq-list {
+            width: 70%;
+        }
+    }
+
+    @media screen and (min-width: 813px) {
+        .faq-section {
+            padding: 200px 60px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .faq-title {
+            font-size: 96px;
+        }
+
+        .faq-list {
+            width: 60%;
+        }
+
+        .faq-question {
+            font-size: 24px;
+            padding: 48px;
+        }
+
+        .faq-answer {
+            padding: 0 48px 48px;
+            font-size: 20px;
+            line-height: 1.5;
+        }
     }
 </style>

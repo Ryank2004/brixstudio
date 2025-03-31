@@ -4,34 +4,56 @@ import ToolsSvg from "@atoms/ToolsSVG.astro";
 import DesignSvg from "@atoms/DesignSVG.astro";
 import ContentSvg from "@atoms/ContentSVG.astro";
 ---
+
 <section class="cards-wrapper">
     <div class="cards">
         <div class="stack-card">
+            <WebsiteSvg />
             <div class="card-text">
-                <WebsiteSvg />
                 <h2>Websites</h2>
-                <p>Wij ontwikkelen op maat gemaakte websites die perfect aansluiten op je merk. Snel, gebruiksvriendelijk en geoptimaliseerd voor elk schermformaat – klaar voor impact. Alles wat je nodig hebt om professioneel online te staan, in één krachtig platform.</p>
+                <p>
+                    Wij ontwikkelen op maat gemaakte websites die perfect
+                    aansluiten op je merk. Snel, gebruiksvriendelijk en
+                    geoptimaliseerd voor elk schermformaat – klaar voor impact.
+                    Alles wat je nodig hebt om professioneel online te staan.
+                </p>
             </div>
         </div>
         <div class="stack-card">
+            <ToolsSvg />
             <div class="card-text">
-                <ToolsSvg />
                 <h2>Tools</h2>
-                <p>Van interactieve modules tot slimme configurators: wij bouwen digitale tools die processen versnellen, conversie verhogen en gebruikers écht verder helpen. Elk hulpmiddel is ontworpen om direct waarde toe te voegen aan jouw organisatie.</p>
+                <p>
+                    Van interactieve modules tot slimme configurators: wij
+                    bouwen digitale tools die processen versnellen, conversie
+                    verhogen en gebruikers écht verder helpen. Elk hulpmiddel is
+                    ontworpen om direct waarde toe te voegen aan jouw
+                    organisatie.
+                </p>
             </div>
         </div>
         <div class="stack-card">
+            <DesignSvg />
             <div class="card-text">
-                <DesignSvg />
                 <h2>Designs</h2>
-                <p>Onze visuele ontwerpen combineren strak design met slimme gebruikerservaring. Van branding tot UI/UX: elk detail is doordacht en doelgericht vormgegeven. Zo zorgen we voor een merkbeleving die blijft hangen én converteert.</p>
+                <p>
+                    Onze visuele ontwerpen combineren strak design met slimme
+                    gebruikerservaring. Van branding tot UI/UX: elk detail is
+                    doordacht en doelgericht vormgegeven. Zo zorgen we voor een
+                    merkbeleving die blijft hangen én converteert.
+                </p>
             </div>
         </div>
         <div class="stack-card">
+            <ContentSvg />
             <div class="card-text">
-                <ContentSvg />
                 <h2>Content</h2>
-                <p>Sterke content versterkt je verhaal. Wij creëren tekst, beeld en visuals die jouw merk laten spreken – helder, overtuigend en perfect afgestemd op je doelgroep. Alles wat je communiceert, moet kloppen én indruk maken.</p>
+                <p>
+                    Sterke content versterkt je verhaal. Wij creëren tekst,
+                    beeld en visuals die jouw merk laten spreken – helder,
+                    overtuigend en perfect afgestemd op je doelgroep. Alles wat
+                    je communiceert, moet kloppen én indruk maken.
+                </p>
             </div>
         </div>
     </div>
@@ -83,6 +105,7 @@ import ContentSvg from "@atoms/ContentSVG.astro";
         overflow: hidden;
         margin: 0 25px;
     }
+
     .cards {
         padding-top: 300px;
     }
@@ -92,26 +115,62 @@ import ContentSvg from "@atoms/ContentSVG.astro";
         border-radius: 10px;
         position: relative;
         width: 100%;
-        min-height: 400px;
-        padding: 60px 35px;
+        height: 400px;
+        padding: 60px 36px;
         transform-origin: 50% -160%;
         background-color: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow:
+            0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
         margin-bottom: 80px;
     }
 
-    .stack-card h2 {
+    .card-text h2 {
         text-transform: uppercase;
-        margin-bottom: 24px;
+        font-size: 36px;
+        margin-bottom: 36px;
     }
 
-    .stack-card p {
+    .card-text p {
         line-height: 1.8;
+        font-size: 18px;
     }
-
-    @media screen and (min-width: 1024px) {
-            svg {
-                display: block;
-            }
+    @media screen and (min-width: 768px) {
+        .card-text h2 {
+            font-size: 48px;
         }
+
+        .card-text p {
+            font-size: 20px;
+            max-width: 90%;
+        }
+    }
+    
+    @media screen and (min-width: 813px) {
+        .cards-wrapper {
+            margin: 0 60px;
+        }
+    }
+    
+    @media screen and (min-width: 1024px) {
+        .stack-card {
+            flex-direction: row;
+            padding: 90px 60px;
+            height: 500px;
+        }
+
+        .card-text {
+            /* width: 50%; */
+            margin-left: 96px;
+        }
+
+        .card-text h2 {
+            font-size: 60px;
+        }
+
+        .card-text p {
+            font-size: 20px;
+            max-width: 100%;
+        }
+    }
 </style>
