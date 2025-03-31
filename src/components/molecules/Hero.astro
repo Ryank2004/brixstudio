@@ -12,9 +12,9 @@
             convert and sell. Contact us for a free consultation.
         </p>
 
-        <a href="/contact" aria-label="go to contact form">Contact</a>
+        <a class="contact-button "href="/contact" aria-label="go to contact form">Contact</a>
 
-        <small>or <button>scroll down to explore more</button></small>
+        <small>or <a href="#projects">scroll down to explore more</a></small>
     </div>
 </section>
 
@@ -68,7 +68,7 @@
         margin-top: clamp(2rem, 20vh, 14rem);
     }
 
-    a {
+    .contact-button {
         background-color: var(--dark-color);
         color: var(--light-color);
         padding: 12px 24px;
@@ -82,7 +82,7 @@
         margin-top: 12px;
     }
 
-    small button {
+    small a {
         cursor: pointer;
         display: inline-block;
         color: black;
@@ -92,7 +92,7 @@
         z-index: 1;
     }
 
-    small button::after {
+    small a::after {
         content: "";
         background: #292524;
         width: calc(100% + 9px);

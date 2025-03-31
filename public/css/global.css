@@ -30,11 +30,11 @@ html {
     color: var(--dark-color);
 }
 
-h1, h2 {
+h1 {
     font-family: "Midnight", sans-serif;
 }
 
-h3 {
+h2 {
     font-family: "JetBrains", sans-serif;
 }
 
