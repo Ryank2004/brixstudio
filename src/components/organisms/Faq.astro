@@ -3,18 +3,35 @@ import faqs from "@data/faqs.json";
 ---
 
 <section id="faq" class="faq-section">
-        <h2 class="faq-title">FAQ</h2>
+    <h2 class="faq-title">FAQ</h2>
 
-        <div class="faq-list">
-            {
-                faqs.map(({ question, answer }) => (
-                    <details class="faq-item">
-                        <summary class="faq-question">{question}</summary>
-                        <p class="faq-answer">{answer}</p>
-                    </details>
-                ))
-            }
-        </div>
+    <div class="faq-list">
+        {
+            faqs.map(({ question, answer }) => (
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        {question}{" "}
+                        <svg
+                            class="faq-arrow"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            class="size-6"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                            />
+                        </svg>
+                    </summary>
+                    <p class="faq-answer">{answer}</p>
+                </details>
+            ))
+        }
+    </div>
 </section>
 
 <style>
@@ -41,24 +58,31 @@ import faqs from "@data/faqs.json";
         transition: all 0.3s ease;
     }
 
-    .faq-item[open] {
-        background-color: #fff;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
     .faq-question {
         cursor: pointer;
-        font-weight: 600;
-        padding: 1.2rem;
+        font-weight: 500;
+        padding: 2rem;
         display: flex;
-        /* justify-content: space-between; */
+        font-size: 18px;
         align-items: center;
+        justify-content: space-between;
+        gap: 20px;
     }
 
     .faq-answer {
-        padding: 1rem 1.2rem;
+        padding: 0 2rem 2rem;
         font-size: 1rem;
         line-height: 1.5;
-        color: #666;
+    }
+
+    .faq-arrow {
+        transition: transform 0.15s ease;
+        min-width: 20px;
+        width: 20px;
+        height: auto;
+    }
+
+    details[open] .faq-arrow {
+        transform: rotate(90deg);
     }
 </style>

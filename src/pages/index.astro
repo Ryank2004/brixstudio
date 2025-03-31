@@ -13,7 +13,6 @@ import Faq from "@organisms/Faq.astro";
 		<Services />
 		<Faq />
 	</div>
-	<div class="spacer"></div>
 </Layout>
 
 <script is:inline>
@@ -43,14 +42,14 @@ import Faq from "@organisms/Faq.astro";
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".wrapper",
-				start: "bottom center", // Of "bottom center" afhankelijk van gewenst moment
-				end: "bottom+=300 center", // Geeft ruimte aan de animatie
+				start: "bottom-=100 center", // Of "bottom center" afhankelijk van gewenst moment
+				end: "bottom+=200 center", // Geeft ruimte aan de animatie
 				scrub: true,
 				markers: false,
 			},
 		}).to(".wrapper", {
-			borderRadius: "24px",
-			width: "95vw",
+			borderRadius: "84px",
+			width: "97vw",
 		});
 	});
 </script>
@@ -59,9 +58,5 @@ import Faq from "@organisms/Faq.astro";
 		width: 100%;
 		/* max-width: 1200px; */
 		margin: 0 auto;
-	}
-
-	.spacer {
-		height: 1000px;
 	}
 </style>

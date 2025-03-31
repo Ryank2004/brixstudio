@@ -1,24 +1,29 @@
 [
   {
-    "question": "What services do you offer?",
-    "answer": "We offer web design, development, and SEO services."
+    "question": "Welke diensten bieden jullie aan?",
+    "answer": "Wij ontwerpen en bouwen op maat gemaakte websites, creëren krachtige visuele identiteiten en ontwikkelen digitale tools en content."
   },
   {
-    "question": "How long does a project take?",
-    "answer": "Projects typically take between 4 and 8 weeks, depending on complexity."
+    "question": "Hoe lang duurt een gemiddeld project?",
+    "answer": "Afhankelijk van de omvang en complexiteit duurt een project meestal tussen de 4 en 8 weken."
   },
   {
-    "question": "Do you provide ongoing support?",
-    "answer": "Yes, we offer maintenance and support packages tailored to your needs."
+    "question": "Bieden jullie ook ondersteuning na oplevering?",
+    "answer": "Ja, we bieden onderhoud en ondersteuning op maat – van kleine updates tot volledige contentbeheer."
   },
   {
-    "question": "What is your pricing model?",
-    "answer": "Our pricing is project-based with transparent quotes. Contact us for a custom proposal."
+    "question": "Hoe zit het met de prijsstelling?",
+    "answer": "Onze prijzen zijn projectgebonden en transparant. Je ontvangt altijd een duidelijke offerte op maat."
   },
   {
-    "question": "How do I get started?",
-    "answer": "You can get started by contacting us through our website’s contact form."
+    "question": "Werken jullie ook met bestaande huisstijlen?",
+    "answer": "Zeker. We kunnen naadloos aansluiten op je bestaande branding of helpen met een volledige rebranding."
+  },
+  {
+    "question": "Hoe kan ik starten met een project?",
+    "answer": "Neem contact met ons op via het contactformulier en we plannen een vrijblijvend gesprek in."
   }
 ]
+
 
   

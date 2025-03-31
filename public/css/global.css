@@ -24,18 +24,20 @@
     --faq-color: #27272A;
 }
 
+@supports (font-variation-settings: normal) {
+	:root {
+		font-family: "Inter var", sans-serif;
+	}
+}
+
 html {
     overflow-x: hidden;
     background-color: var(--light-color);
     color: var(--dark-color);
 }
 
-h1 {
+h1, h2 {
     font-family: "Midnight", sans-serif;
-}
-
-h2 {
-    font-family: "JetBrains", sans-serif;
 }
 
 a {

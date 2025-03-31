@@ -1,20 +1,23 @@
 <section class="hero">
     <div class="content">
         <h1 class="hero-title">
-            We build<br />
+            Wij maken<br />
             <span class="rotator-wrapper">
                 <span class="rotator-word">websites</span>
             </span>
         </h1>
 
         <p>
-            Our digital agency specializes in crafting captivating websites that
-            convert and sell. Contact us for a free consultation.
+            Ons digital agency is gespecialiseerd in het creëren van overtuigende websites die converteren en verkopen. Neem contact met ons op voor een gratis consult.
         </p>
 
-        <a class="contact-button "href="/contact" aria-label="go to contact form">Contact</a>
+        <a
+            class="contact-button"
+            href="/contact"
+            aria-label="go to contact form">Contact</a
+        >
 
-        <small>or <a href="#projects">scroll down to explore more</a></small>
+        <small>of <a href="#projects">scroll naar beneden om meer te ontdekken</a></small>
     </div>
 </section>
 
@@ -52,15 +55,15 @@
     }
 
     :global(.line-wrapper-title) {
-		position: relative;
+        position: relative;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-	}
-    
-	:global(.line) {
+    }
+
+    :global(.line) {
         display: inline-block;
         transform: translateY(115px);
         transition: transform 0.5s ease-out;
-	}
+    }
 
     p {
         font-family: "Jetbrains", sans-serif;
@@ -119,7 +122,7 @@
 
 <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
-        const words = ["websites", "design", "tools"];
+        const words = ["websites", "designs", "tools"];
         const rotatorWord = document.querySelector(".rotator-word");
 
         let index = 0;
@@ -150,9 +153,6 @@
 
         setInterval(animateWords, 3000);
 
-
-
-
         const animatingTitle = new window.SplitType(".hero-title", {
             types: "lines, words",
             lineClass: "line",
@@ -166,9 +166,8 @@
             wrapper.appendChild(line);
         });
 
-
         gsap.fromTo(
-            ".line", 
+            ".line",
             { y: 115 },
             {
                 y: 0,
@@ -178,5 +177,22 @@
                 ease: "power4.out",
             },
         );
+
+        // Voeg smooth scroll functionaliteit toe voor anker-links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute("href");
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: "smooth",
+                    });
+                }
+            });
+        });
     });
 </script>
