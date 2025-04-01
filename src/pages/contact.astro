@@ -4,6 +4,10 @@ import Layout from "@layout/Layout.astro";
 
 <Layout>
     <section class="contact">
+        <!-- <div class="gradient-container" aria-hidden="true">
+            <div class="gradient-element"></div>
+        </div> -->
+
         <h1>Contact</h1>
 
         <form id="contactForm" class="form">
@@ -23,7 +27,11 @@ import Layout from "@layout/Layout.astro";
             </div>
 
             <div>
-                <label class="privacy">Door dit te versturen, ga je akkoord met ons <span>privacybeleid.</span></label>
+                <label class="privacy"
+                    >Door dit te versturen, ga je akkoord met ons <span
+                        >privacybeleid.</span
+                    ></label
+                >
             </div>
 
             <button class="send-button" type="submit">Verstuur</button>
@@ -102,11 +110,63 @@ import Layout from "@layout/Layout.astro";
         cursor: pointer;
     }
 
+    /* .gradient-container {
+        position: absolute;
+        left: -30rem;
+        right: 0;
+        top: -5rem;
+        transform: translateZ(0);
+        overflow: hidden;
+        z-index: -1;
+        filter: blur(34px);
+    }
+
+    .gradient-element {
+        position: relative;
+        left: 50%;
+        z-index: -10;
+        aspect-ratio: 1155/678;
+        width: 36.125rem;
+        max-width: none;
+        transform: translateX(-50%) rotate(30deg);
+        background-image: linear-gradient(to top right, #ff80b5, #9089fc);
+        opacity: 0.3;
+        clip-path: polygon(
+            74.1% 44.1%,
+            100% 61.6%,
+            97.5% 26.9%,
+            85.5% 0.1%,
+            80.7% 2%,
+            72.5% 32.5%,
+            60.2% 62.4%,
+            52.4% 68.1%,
+            47.5% 58.3%,
+            45.2% 34.5%,
+            27.5% 76.7%,
+            0.1% 64.9%,
+            17.9% 100%,
+            27.6% 76.8%,
+            76.1% 97.7%,
+            74.1% 44.1%
+        );
+    } */
+
     @media screen and (min-width: 540px) {
         h1 {
             font-size: 60px;
         }
     }
+
+    /* @media screen and (min-width: 940px) {
+        .gradient-container {
+            top: -20rem;
+        }
+
+        .gradient-element {
+            left: calc(50% - 40rem);
+            width: 72.1875rem;
+        }
+    } */
 
     @media screen and (min-width: 813px) {
         .contact {
