@@ -1,16 +1,17 @@
 ---
 import ArrowRight from "../atoms/arrow-right.astro";
 ---
-
 <section class="project">
-    <img
-        class="project-image"
-        alt="project"
-        src="/images/Zensation-mock-up.webp"
-        width="600"
-        height="500"
-        loading="lazy"
-    />
+    <div class="image-container">
+        <img
+            class="project-image"
+            alt="project"
+            src="/images/Zensation-mock-up.webp"
+            width="600"
+            height="500"
+            loading="lazy"
+        />
+    </div>
     <div class="project-text">
         <h3>Zensation</h3>
         <a aria-label="See project" href="/"
@@ -22,16 +23,16 @@ import ArrowRight from "../atoms/arrow-right.astro";
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
-
-
+        
+        // Selecteer de afbeeldingen in plaats van de container
         document.querySelectorAll(".project-image").forEach((img) => {
-            gsap.set(img, { scale: 0.6 });
+            gsap.set(img, { "--clip": "40%" });
             gsap.to(img, {
-                scale: 1,
+                "--clip": "0%",
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: img,
-                    start: "-200% center",
+                    start: "-100% center",
                     end: "10% center",
                     scrub: true,
                     markers: false,
@@ -45,14 +46,23 @@ import ArrowRight from "../atoms/arrow-right.astro";
     section {
         width: 100%;
     }
-
-    img {
+    
+    .image-container {
+        position: relative;
         width: 100%;
         height: 400px;
         border-radius: 10px;
-        object-fit: cover;
+        overflow: hidden;
     }
-
+    
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        --clip: 30%;  /* Standaardwaarde */
+        clip-path: inset(var(--clip) round 10px);
+    }
+    
     .project-text {
         display: flex;
         flex-direction: row;
@@ -60,7 +70,7 @@ import ArrowRight from "../atoms/arrow-right.astro";
         justify-content: space-between;
         padding: 32px 8px;
     }
-
+    
     h3 {
         font-family: "JetBrains", sans-serif;
         font-size: 18px;
@@ -68,22 +78,22 @@ import ArrowRight from "../atoms/arrow-right.astro";
         letter-spacing: 1.5;
         text-transform: uppercase;
     }
-
+    
     a {
         display: flex;
         align-items: center;
         gap: 12px;
     }
-
+    
     a span {
         display: none;
     }
-
+    
     @media screen and (min-width: 1024px) {
         a span {
             display: block;
         }
-
+        
         h3 {
             font-size: 20px;
         }
