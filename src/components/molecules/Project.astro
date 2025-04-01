@@ -23,6 +23,7 @@ import ArrowRight from "../atoms/arrow-right.astro";
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
+
         document.querySelectorAll(".project-image").forEach((img) => {
             gsap.set(img, { scale: 0.6 });
             gsap.to(img, {
@@ -30,7 +31,7 @@ import ArrowRight from "../atoms/arrow-right.astro";
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: img,
-                    start: "-250% center",
+                    start: "-200% center",
                     end: "10% center",
                     scrub: true,
                     markers: false,

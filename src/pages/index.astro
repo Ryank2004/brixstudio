@@ -19,6 +19,24 @@ import Faq from "@organisms/Faq.astro";
 	document.addEventListener("DOMContentLoaded", () => {
 		gsap.registerPlugin(ScrollTrigger);
 
+		// Give ScrollTrigger access to Lenis scroll position
+		ScrollTrigger.scrollerProxy(document.documentElement, {
+			scrollTop(value) {
+				return arguments.length
+					? window.lenis.scrollTo(value)
+					: window.lenis.scroll;
+			},
+			getBoundingClientRect() {
+				return {
+					top: 0,
+					left: 0,
+					width: window.innerWidth,
+					height: window.innerHeight,
+				};
+			},
+		});
+
+		// Rest of your existing ScrollTrigger animations
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".projects",
@@ -42,8 +60,8 @@ import Faq from "@organisms/Faq.astro";
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".wrapper",
-				start: "bottom-=100 center", // Of "bottom center" afhankelijk van gewenst moment
-				end: "bottom+=200 center", // Geeft ruimte aan de animatie
+				start: "bottom-=100 center",
+				end: "bottom+=200 center",
 				scrub: true,
 				markers: false,
 			},
@@ -51,6 +69,9 @@ import Faq from "@organisms/Faq.astro";
 			borderRadius: "84px",
 			width: "97vw",
 		});
+
+		// Tell ScrollTrigger to update when Lenis scroll happens
+		window.lenis.on("scroll", ScrollTrigger.update);
 	});
 </script>
 <style>
