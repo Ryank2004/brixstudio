@@ -42,7 +42,6 @@ import ArrowRight from "@atoms/arrow-right.astro";
             </ul>
         </div>
     </div>
-    <p class="email">info@brixstudio.nl</p>
     <p class="copyright">
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +93,7 @@ import ArrowRight from "@atoms/arrow-right.astro";
         display: grid;
         grid-template-columns: 1fr 1fr; /* Twee kolommen met gelijke breedte */
         gap: 20px;
-        padding-top: 72px;
+        padding: 72px 0 0 4px;
     }
 
     ul {
@@ -105,14 +104,10 @@ import ArrowRight from "@atoms/arrow-right.astro";
         padding: 8px 0;
     }
 
-    .email {
-        margin: 48px 0;
-    }
-
     .copyright {
         display: flex;
         align-items: center;
-        gap: 12px;
+        margin-top: 96px;
     }
 
     @media screen and (min-width: 813px) {
@@ -132,7 +127,7 @@ import ArrowRight from "@atoms/arrow-right.astro";
         }
 
         .contact-button {
-            margin: 48px 0 0;
+            margin: 24px 0 0;
         }
 
         .footer-links {
@@ -150,7 +145,6 @@ import ArrowRight from "@atoms/arrow-right.astro";
             display: flex;
             align-items: center;
             font-size: 20px;
-            gap: 16px;
         }
     }
 </style>
