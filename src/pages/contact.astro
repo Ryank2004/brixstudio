@@ -1,7 +1,158 @@
 ---
-import Layout from '@layout/Layout.astro';
+import Layout from "@layout/Layout.astro";
 ---
 
 <Layout>
+    <section class="contact">
+        <h1>Contact</h1>
 
+        <form id="contactForm" class="form">
+            <div>
+                <label> Naam* </label>
+                <input type="text" name="name" required />
+            </div>
+
+            <div>
+                <label> E-mail* </label>
+                <input type="email" name="email" required />
+            </div>
+
+            <div>
+                <label> Bericht* </label>
+                <textarea name="message" required></textarea>
+            </div>
+
+            <div>
+                <label class="privacy">Door dit te versturen, ga je akkoord met ons <span>privacybeleid.</span></label>
+            </div>
+
+            <button class="send-button" type="submit">Verstuur</button>
+        </form>
+    </section>
 </Layout>
+
+<style>
+    .contact {
+        padding: 80px 25px;
+    }
+
+    h1 {
+        font-size: 48px;
+        text-transform: uppercase;
+        padding-bottom: 80px;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1;
+        gap: 24px;
+        margin: 0 auto;
+        max-width: 680px;
+    }
+
+    form div {
+        display: grid;
+        grid-template-columns: 1;
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 24px;
+        padding-left: 4px;
+    }
+
+    .privacy {
+        font-weight: 500;
+    }
+
+    .privacy span {
+        font-weight: 600;
+    }
+
+    input,
+    textarea {
+        border: none;
+        background-color: var(--light-area);
+        padding: 8px 20px;
+        border-radius: 8px;
+    }
+
+    input {
+        height: 44px;
+    }
+
+    textarea {
+        height: 128px;
+    }
+
+    .send-button {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        padding: 10px 20px;
+        font-size: 20px;
+        font-weight: 700;
+        border-radius: 8px;
+        width: auto;
+        margin: 24px 0 0 4px;
+        width: max-content;
+    }
+
+    .send-button:hover {
+        cursor: pointer;
+    }
+
+    @media screen and (min-width: 540px) {
+        h1 {
+            font-size: 60px;
+        }
+    }
+
+    @media screen and (min-width: 813px) {
+        .contact {
+            padding: 120px 60px;
+        }
+
+        h1 {
+            font-size: 72px;
+            text-align: center;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .contact {
+            padding: 120px 60px;
+        }
+
+        h1 {
+            font-size: 128px;
+        }
+    }
+</style>
+
+<script type="module">
+    document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const form = e.target;
+
+            const data = {
+                name: form.name.value,
+                email: form.email.value,
+                message: form.message.value,
+            };
+
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            if (res.ok) {
+                window.location.href = "/succes";
+            } else {
+                alert("Fout bij verzenden.");
+            }
+        });
+</script>

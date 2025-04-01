@@ -12,9 +12,11 @@
     "@studio-freight/lenis": "^1.0.42",
     "astro": "^5.5.2",
     "gsap": "^3.12.7",
-    "lenis": "^1.2.3"
+    "lenis": "^1.2.3",
+    "nodemailer": "^6.10.0"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.1.1"
+    "@rollup/plugin-alias": "^5.1.1",
+    "@types/nodemailer": "^6.4.17"
   }
 }
