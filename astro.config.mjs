@@ -1,8 +1,9 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import netlify from "@astrojs/netlify";
 
-// https://astro.build/config
 export default defineConfig({
-    output: 'server', // nodig voor API-routes
-  });
+  output: "server", // mag blijven staan, adapter regelt de rest
+  adapter: netlify(),
+});
+
   
