@@ -1,0 +1,116 @@
+---
+// Je Astro component frontmatter
+// Hier kun je imports, props, etc. definiëren
+---
+
+<div class="firstContainer">
+    <h1>Testing horizontal scrolling w/ three sections</h1>
+    <h2>First Container</h2>
+  </div>
+  
+  <div class="container">
+    <div class="description panel blue">
+      <div>
+        SCROLL DOWN
+        <div class="scroll-down"><div></div></div>
+      </div>
+    </div>
+    <section class="panel red">
+      ONE
+    </section>
+    <section class="panel orange">
+      TWO
+    </section>
+    <section class="panel purple">
+      THREE
+    </section>
+  </div>
+  
+  <div class="lastContainer">
+    Last Container
+  </div>
+  
+  <script is:inline>
+    // Wacht tot de pagina geladen is en GSAP beschikbaar is
+    document.addEventListener("DOMContentLoaded", () => {
+      // Controleer of GSAP en ScrollTrigger beschikbaar zijn
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // Registreer de ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Selecteer alle panelen
+        let sections = gsap.utils.toArray(".panel");
+        
+        // Maak de horizontale scroll animatie
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".container",
+            pin: true,
+            scrub: 1,
+            snap: 1 / (sections.length - 1),
+            end: () => "+=" + document.querySelector(".container").offsetWidth
+          }
+        });
+      } else {
+        console.error("GSAP of ScrollTrigger is niet geladen. Controleer of je ze correct importeert in je Astro-project.");
+      }
+    });
+  </script>
+  
+  <style>
+    html {
+      overflow-y: scroll;
+      height: 100%;
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+    }
+    body {
+      overflow-y: visible;
+      position: relative;
+      height: unset;
+    }
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+    }
+    .container {
+      width: 400%;
+      height: 100vh;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .firstContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: yellow;
+    }
+    .lastContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: yellow;
+    }
+    .panel {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 48px;
+      font-weight: bold;
+    }
+    .blue { background-color: #3498db; color: white; }
+    .red { background-color: #e74c3c; color: white; }
+    .orange { background-color: #e67e22; color: white; }
+    .purple { background-color: #9b59b6; color: white; }
+    
+    .scroll-down {
+      margin-top: 20px;
+    }
+  </style>

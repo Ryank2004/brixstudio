@@ -81,8 +81,8 @@ import ContentSvg from "@atoms/ContentSVG.astro";
             var scale = 1 - (cards.length - index) * 0.025;
             let scaleDown = gsap.to(card, {
                 scale: scale,
-                "transform-origin":
-                    '"50% ' + (lastCardST.start + stickDistance) + '"',
+                transformOrigin: "50% " + lastCardST.start
+,
             });
 
             ScrollTrigger.create({
@@ -94,7 +94,7 @@ import ContentSvg from "@atoms/ContentSVG.astro";
                 pinSpacing: false,
                 ease: "none",
                 animation: scaleDown,
-                toggleActions: "restart none none reverse",
+                toggleActions: "play none none reverse",
             });
         });
     });
