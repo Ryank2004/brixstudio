@@ -1,36 +1,43 @@
 import Lenis from 'lenis'
 
-// Initialize lenis smooth scrolling
+// Detect if we're on mobile
+const isMobile = window.innerWidth < 768;
+
+// Initialize lenis smooth scrolling with mobile optimizations
 const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t * 1.5)), // https://www.desmos.com/calculator/brs54l4xou
-    direction: 'vertical', // vertical, horizontal
-    gestureDirection: 'vertical', // vertical, horizontal, both
-    smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: true,
-    touchMultiplier: 2,
-    infinite: false,
+  duration: isMobile ? 0.8 : 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t * 1.5)), // Keep your original easing
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: isMobile ? false : true, // Disable on mobile only
+  touchMultiplier: isMobile ? 1.5 : 2,
+  infinite: false,
 })
 
-// Integrate with GSAP
-// In your smooth-scroll.js
+// Integrate with GSAP - Keep your original structure since it's working
 function raf(time) {
-    lenis.raf(time)
-    // Don't call requestAnimationFrame here
+  lenis.raf(time)
+  requestAnimationFrame(raf)
 }
 
-// Better approach
-gsap.ticker.add((time) => {
+requestAnimationFrame(raf)
+
+// Optional: Connect lenis to GSAP ScrollTrigger
+if (typeof ScrollTrigger !== 'undefined') {
+  lenis.on('scroll', ScrollTrigger.update)
+  
+  // Keep your original ticker integration
+  gsap.ticker.add((time) => {
     lenis.raf(time * 1000)
-})
+  })
+}
 
-// Only use ScrollTrigger update when needed
-lenis.on('scroll', () => {
-    ScrollTrigger.update()
-})
-
-requestAnimationFrame(raf) // Call it once to start
+// iOS-specific adjustments only
+if (/iPhone|iPad|iPod|iOS/i.test(navigator.userAgent)) {
+  lenis.options.smoothTouch = false;
+}
 
 // Make lenis globally accessible
 window.lenis = lenis
