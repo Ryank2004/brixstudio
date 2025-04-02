@@ -6,13 +6,13 @@ const path = Astro.url.pathname;
   <ul class="large-menu">
     <li><a href="/" class={path === "/" ? "active" : ""}>home</a></li>
     <li>
-      <a href="/team" class={path === "/team/" ? "active" : ""}>team</a>
+      <a href="/team" class={path === "/team" ? "active" : ""}>team</a>
     </li>
     <li>
-      <a href="/blog" class={path === "/blog/" ? "active" : ""}>blog</a>
+      <a href="/blog" class={path === "/blog" ? "active" : ""}>blog</a>
     </li>
     <li>
-      <a href="/contact" class={path === "/contact/" ? "active" : ""}>contact</a
+      <a href="/contact" class={path === "/contact" ? "active" : ""}>contact</a
       >
     </li>
   </ul>
