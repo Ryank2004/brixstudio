@@ -1,29 +1,43 @@
 ---
 import ArrowRight from "../atoms/arrow-right.astro";
+import projects from "@data/projects.json";
+
+// Ontvang de limit als een prop, standaard geen limiet
+const { limit } = Astro.props;
+
+// Beperk de projecten als een limit is opgegeven
+const displayedProjects = limit ? projects.slice(0, limit) : projects;
 ---
-<section class="project">
-    <div class="image-container">
-        <img
-            class="project-image"
-            alt="project"
-            src="/images/Zensation-mock-up.webp"
-            width="600"
-            height="500"
-            loading="lazy"
-        />
-    </div>
-    <div class="project-text">
-        <h3>Zensation</h3>
-        <a aria-label="See project" href="/"
-            ><span>Bekijk project </span><ArrowRight /></a
-        >
-    </div>
-</section>
+
+    {
+        displayedProjects.map(({ name, image }) => (
+            <li>
+                <div class="image-container">
+                    <img
+                        class="project-image"
+                        alt="project"
+                        src={image}
+                        width="600"
+                        height="500"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="project-text">
+                    <h3>{name}</h3>
+                    <a aria-label="See project" href="/">
+                        <>
+                            <span>Bekijk project </span>
+                            <ArrowRight />
+                        </>
+                    </a>
+                </div>
+            </li>
+        ))
+    }
 
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
-        
         // Selecteer de afbeeldingen in plaats van de container
         document.querySelectorAll(".project-image").forEach((img) => {
             gsap.set(img, { "--clip": "40%" });
@@ -41,12 +55,12 @@ import ArrowRight from "../atoms/arrow-right.astro";
         });
     });
 </script>
-
 <style>
     section {
         width: 100%;
+        padding-bottom: 90px;
     }
-    
+
     .image-container {
         position: relative;
         width: 100%;
@@ -54,16 +68,16 @@ import ArrowRight from "../atoms/arrow-right.astro";
         border-radius: 10px;
         overflow: hidden;
     }
-    
+
     .project-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        --clip: 30%;  /* Standaardwaarde */
+        --clip: 30%;
         clip-path: inset(var(--clip) round 10px);
         will-change: auto;
     }
-    
+
     .project-text {
         display: flex;
         flex-direction: row;
@@ -71,7 +85,7 @@ import ArrowRight from "../atoms/arrow-right.astro";
         justify-content: space-between;
         padding: 32px 8px;
     }
-    
+
     h3 {
         font-family: "JetBrains", sans-serif;
         font-size: 18px;
@@ -79,22 +93,56 @@ import ArrowRight from "../atoms/arrow-right.astro";
         letter-spacing: 1.5;
         text-transform: uppercase;
     }
-    
+
     a {
         display: flex;
         align-items: center;
         gap: 12px;
     }
-    
+
     a span {
         display: none;
     }
-    
+
+    @media screen and (min-width: 764px) {
+
+        /* Eerste en derde item in de eerste kolom */
+        li:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        li:nth-child(3) {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        li:nth-child(5) {
+            grid-column: 1;
+            grid-row: 5;
+        }
+
+        /* Tweede en vierde item in de tweede kolom, verschoven */
+        li:nth-child(2) {
+            grid-column: 2;
+            grid-row: 2 / span 2;
+        }
+
+        li:nth-child(4) {
+            grid-column: 2;
+            grid-row: 4 / span 2;
+        }
+
+        li:nth-child(6) {
+            grid-column: 2;
+            grid-row: 6 / span 2;
+        }
+    }
+
     @media screen and (min-width: 1024px) {
         a span {
             display: block;
         }
-        
         h3 {
             font-size: 20px;
         }
