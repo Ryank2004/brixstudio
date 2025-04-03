@@ -65,6 +65,7 @@ html.lenis body {
 h1,
 h2 {
     font-family: "Midnight", sans-serif;
+    text-transform: uppercase;
 }
 
 a {

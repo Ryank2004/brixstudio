@@ -1,0 +1,45 @@
+---
+import projects from '@data/projects.json';
+import Layout from '@layout/Layout.astro';
+
+// Haal de slug parameter uit de URL
+const { slug } = Astro.params;
+
+// Zoek het project dat overeenkomt met de slug
+const project = projects.find(p => p.slug === slug);
+
+// Als er geen project wordt gevonden, geef dan een foutmelding of implementeer een 404-pagina
+if (!project) {
+  throw new Error(`Project met slug '${slug}' niet gevonden.`);
+}
+---
+<Layout>
+    <article>
+        <div class="image-container">
+          <img src={project.image} alt={project.name} width="600" height="500" loading="lazy" />
+        </div>
+        <h1>{project.name}</h1>
+        <p>{project.description}</p>
+        <ul>
+          {project.services.map(service => (
+            <li>{service}</li>
+          ))}
+        </ul>
+        <p>Jaar: {project.date}</p>
+      </article>
+</Layout>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 25px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+</style>
+

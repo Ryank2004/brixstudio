@@ -9,13 +9,14 @@ const { limit } = Astro.props;
 const displayedProjects = limit ? projects.slice(0, limit) : projects;
 ---
 
-    {
-        displayedProjects.map(({ name, image }) => (
-            <li>
+{
+    displayedProjects.map(({ name, image, slug }) => (
+        <li>
+            <a aria-label={`See project ${name}`} href={`/projecten/${slug}`}>
                 <div class="image-container">
                     <img
                         class="project-image"
-                        alt="project"
+                        alt={name}
                         src={image}
                         width="600"
                         height="500"
@@ -24,16 +25,16 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
                 </div>
                 <div class="project-text">
                     <h3>{name}</h3>
-                    <a aria-label="See project" href="/">
-                        <>
-                            <span>Bekijk project </span>
-                            <ArrowRight />
-                        </>
-                    </a>
+                    <div class="see-more">
+                        <span>Bekijk project </span>
+                        <ArrowRight />
+                    </div>
                 </div>
-            </li>
-        ))
-    }
+            </a>
+        </li>
+    ))
+}
+
 
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
@@ -56,9 +57,9 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     });
 </script>
 <style>
-    section {
-        width: 100%;
-        padding-bottom: 90px;
+    a {
+        display: flex;
+        flex-direction: column;
     }
 
     .image-container {
@@ -81,7 +82,6 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     .project-text {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
         padding: 32px 8px;
     }
@@ -94,14 +94,15 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
         text-transform: uppercase;
     }
 
-    a {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
     a span {
         display: none;
+    }
+
+    .see-more {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
     }
 
     @media screen and (min-width: 764px) {
