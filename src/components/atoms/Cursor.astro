@@ -1,0 +1,92 @@
+<div class="cursor"></div>
+
+<style>
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: #edb74d;
+  border-radius: 50%;
+  margin-top: -6px;
+  margin-left: -5px;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: -9999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  transform-origin: 50px 50px;
+  animation: rotate 3.5s ease-in-out infinite;
+  filter: blur(3px);
+}
+
+.cursor::before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  transform-origin: 30px 30px;
+  animation: rotate-reverse 3.5s ease-in-out 2s infinite;
+  filter: blur(3px);
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes rotate-reverse {
+  0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  100% { transform: rotate(-360deg) translateX(20px) rotate(360deg); }
+}
+
+.cursor.active {
+  opacity: 1;
+}
+</style>
+
+<script is:inline>
+// Wacht tot het document volledig is geladen
+document.addEventListener("DOMContentLoaded", function() {
+  // Check of dit een touch device is
+  const isTouchDevice = window.matchMedia("(hover: none)").matches;
+  if (isTouchDevice) return;
+
+  const cursor = document.querySelector('.cursor');
+  
+  if (!cursor) {
+    console.error("Cursor element niet gevonden");
+    return;
+  }
+  
+  // Volg muisbewegingen met een functie
+  function updateCursorPosition(e) {
+    requestAnimationFrame(() => {
+      cursor.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+    });
+  }
+  
+  // Voeg de event listener toe
+  document.addEventListener('mousemove', updateCursorPosition);
+  
+  // Activeer de cursor na een korte vertraging
+  setTimeout(() => {
+    cursor.classList.add('active');
+  }, 500);
+});
+</script>
