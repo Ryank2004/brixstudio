@@ -101,7 +101,28 @@ import Menu from "@molecules/Menu.astro";
         display: block;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 813px) {
+        nav {
+            padding: 32.5px 60px;
+        }
+
+        .small-menu {
+            right: 60px;
+        }
+
+        .mobile-menu {
+            padding: 10px 12px;
+            border-radius: 16px;
+            top: 90px;
+            right: 60px;
+        }
+    }
+    
+    @media screen and (min-width: 928px) {
+        nav {
+            padding: 32.5px 60px;
+        }
+
         .small-menu {
             display: none;
         }
@@ -110,13 +131,8 @@ import Menu from "@molecules/Menu.astro";
             display: block;
             padding: 10px 12px;
             border-radius: 16px;
-            position: static;
-        }
-    }
-
-    @media screen and (min-width: 813px) {
-        nav {
-            padding: 32.5px 60px;
+            top: 35px;
+            right: 60px;
         }
     }
 

@@ -6,6 +6,9 @@ const path = Astro.url.pathname;
   <ul class="large-menu">
     <li><a href="/" class={path === "/" ? "active" : ""}>home</a></li>
     <li>
+      <a href="/projecten" class={path === "/projecten" ? "active" : ""}>projecten</a>
+    </li>
+    <li>
       <a href="/team" class={path === "/team" ? "active" : ""}>team</a>
     </li>
     <li>
@@ -46,7 +49,7 @@ const path = Astro.url.pathname;
     background-color: #4f5052;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 928px) {
     .large-menu-nav {
       position: relative;
     }

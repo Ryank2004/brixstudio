@@ -1,0 +1,73 @@
+---
+import Layout from "@layout/Layout.astro";
+import Projects from "@organisms/Projects.astro";
+---
+
+<Layout>
+    <section class="projecten">
+        <div class="projecten-text">
+            <h1>Projecten</h1>
+            <p>
+                Onze projecten weerspiegelen waar we voor staan: doordacht
+                design en technische excellentie. Elk project vertelt een uniek
+                verhaal van samenwerking met merken die net als wij streven naar
+                impact. Bekijk hieronder ons meest recente werk.
+            </p>
+        </div>
+        <Projects />
+    </section>
+</Layout>
+
+<style>
+
+    .projecten-text {
+        padding: 80px 25px 0px;
+    }
+
+    h1 {
+        font-size: 40px;
+        text-transform: uppercase;
+    }
+
+    p {
+        padding-top: 24px;
+        line-height: 1.8;
+    }
+
+    @media screen and (min-width: 380px) {
+        h1 {
+            font-size: 48px;
+        }
+    }
+
+    @media screen and (min-width: 813px) {
+        .projecten-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 120px 60px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 72px;
+            text-align: center;
+        }
+
+        p {
+            width: 90%;
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        h1 {
+            font-size: 128px;
+        }
+
+        p {
+            width: 90%;
+            font-size: 20px;
+        }
+    }
+</style>
