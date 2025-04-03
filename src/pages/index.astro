@@ -66,8 +66,8 @@ import Faq from "@organisms/Faq.astro";
 				markers: false,
 			},
 		}).to(".wrapper", {
-			borderRadius: "84px",
-			width: "97vw",
+			"--faq-clip": "2vw",
+            "--faq-radius": "5rem",
 		});
 
 		// Tell ScrollTrigger to update when Lenis scroll happens
@@ -79,5 +79,14 @@ import Faq from "@organisms/Faq.astro";
 		width: 100%;
 		/* max-width: 1200px; */
 		margin: 0 auto;
+	}
+</style>
+
+<style is:global>
+	.wrapper {
+		--faq-clip: 0;
+		--faq-radius: 0;
+		clip-path: inset(var(--faq-clip) round var(--faq-radius));
+		margin-top: -1px; /* Fix weird clip path behavior */
 	}
 </style>
