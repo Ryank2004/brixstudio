@@ -40,7 +40,7 @@ import Faq from "@organisms/Faq.astro";
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".projects",
-				start: "90% center",
+				start: "60% center",
 				end: "110% center",
 				scrub: true,
 				markers: false,
@@ -50,7 +50,7 @@ import Faq from "@organisms/Faq.astro";
 				backgroundColor: gsap.getProperty("html", "--background-color"),
 			})
 			.to(
-				".project-text h3, .project-text a",
+				".project-text h3, .project-text .see-more",
 				{
 					color: gsap.getProperty("html", "--light-color"),
 				},
