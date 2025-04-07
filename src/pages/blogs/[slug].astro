@@ -1,0 +1,87 @@
+---
+import blogs from "@data/blogs.json";
+import Layout from "@layout/Layout.astro";
+
+// Haal de slug parameter uit de URL
+const { slug } = Astro.params;
+
+// Zoek het blog dat overeenkomt met de slug
+const blog = blogs.find((p) => p.slug === slug);
+
+// Als er geen blog wordt gevonden, geef dan een foutmelding of implementeer een 404-pagina
+if (!blog) {
+    throw new Error(`Blog met slug '${slug}' niet gevonden.`);
+}
+---
+
+<Layout>
+    <article>
+        <div class="image-container">
+            <img
+                src={blog.image}
+                alt={blog.title}
+                width="600"
+                height="500"
+                loading="lazy"
+            />
+        </div>
+        <div class="blog-content">
+            <p class="date">Geplaatst op <span>{blog.published}</span></p>
+            <h1>{blog.title}</h1>
+            <p class="blog-content-text">{blog.content}</p>
+        </div>
+    </article>
+</Layout>
+
+<style>
+    article {
+        display: flex;
+        flex-direction: column;
+        padding: 80px 25px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .blog-content {
+        padding: 24px 4px;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .blog-content-text {
+        padding-top: 24px;
+        line-height: 1.6;
+    }
+
+    .date {
+        padding: 0 0 24px;
+    }
+
+    .date span {
+        font-weight: bold;
+    }
+
+    @media screen and (min-width: 813px) {
+        article {
+            padding: 120px 60px 25px;
+            flex-direction: row;
+        }
+
+        .image-container {
+            /* max-width: 413px; */
+        }
+
+        h1 {
+            /* font-size: 72px; */
+            text-align: center;
+        }
+    }
+</style>

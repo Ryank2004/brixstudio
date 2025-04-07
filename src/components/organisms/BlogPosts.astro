@@ -1,0 +1,90 @@
+---
+import blogs from "@data/blogs.json";
+import ArrowRight from "../atoms/arrow-right.astro";
+
+const Blogs = blogs
+---
+
+{
+    Blogs.map(({ title, slug, image }) => (
+        <li>
+            <a aria-label={`See blog ${title}`} href={`/blogs/${slug}`}>
+                <div class="image-container">
+                    <img
+                        class="project-image"
+                        alt={title}
+                        src={image}
+                        width="600"
+                        height="500"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="project-text">
+                    <h3>{title}</h3>
+                    <div class="see-more">
+                        <span>Lees meer</span>
+                        <ArrowRight />
+                    </div>
+                </div>
+            </a>
+        </li>
+    ))
+}
+
+<style>
+    a {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .project-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 32px 8px;
+    }
+
+    h3 {
+        font-family: "JetBrains", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 1.5;
+        text-transform: uppercase;
+        padding-bottom: 16px;
+    }
+
+    .see-more {
+        display: flex;
+        margin-left: auto;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .see-more:hover {
+        color: var(--hover);
+    }
+
+    @media screen and (min-width: 764px) {
+    }
+
+    @media screen and (min-width: 1024px) {
+        h3 {
+            font-size: 20px;
+        }
+    }
+</style>

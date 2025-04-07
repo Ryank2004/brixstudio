@@ -24,6 +24,7 @@
     --background-color: #18181B;
     --faq-color: #27272A;
     --light-area: #E2E8F0;
+    --hover: #FACC15;
 }
 
 @supports (font-variation-settings: normal) {

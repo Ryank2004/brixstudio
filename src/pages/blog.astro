@@ -1,16 +1,22 @@
 ---
 import Layout from "@layout/Layout.astro";
+// import BlogPosts from "@organisms/BlogPosts.astro";
 ---
 
 <Layout>
     <section class="blog">
-        <h1>Coming soon</h1>
+        <h1>Blog</h1>
+        
+        <h2>Geen blogs gevonden</h2>
+        <!-- <ul>
+            <BlogPosts />
+        </ul> -->
     </section>
 </Layout>
 
 <style>
     .blog {
-        padding: 80px 25px 400px;
+        padding: 80px 25px 600px;
     }
 
     h1 {
@@ -18,9 +24,35 @@ import Layout from "@layout/Layout.astro";
         padding-bottom: 80px;
     }
 
+    h2 {
+        font-family: "JetBrains", sans-serif;
+    }
+
+    ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1;
+        gap: 30px;
+    }
+
+    @media screen and (min-width: 764px) {
+        ul {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
     @media screen and (min-width: 813px) {
+        .blog {
+            padding: 120px 60px 25px;
+        }
+
         h1 {
             font-size: 72px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
             text-align: center;
         }
     }
@@ -28,6 +60,20 @@ import Layout from "@layout/Layout.astro";
     @media screen and (min-width: 1024px) {
         h1 {
             font-size: 128px;
+        }
+
+        h2 {
+            font-size: 64px;
+        }
+
+        ul {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (min-width: 1224px) {
+        ul {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 </style>
