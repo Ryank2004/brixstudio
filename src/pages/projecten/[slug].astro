@@ -14,32 +14,84 @@ if (!project) {
 }
 ---
 <Layout>
-    <article>
-        <div class="image-container">
-          <img src={project.image} alt={project.name} width="600" height="500" loading="lazy" />
-        </div>
+  <article>
+    <div class="image-container">
+        <img
+            src={project.image}
+            alt={project.name}
+            width="600"
+            height="500"
+            loading="lazy"
+        />
+    </div>
+    <div class="project-content">
         <h1>{project.name}</h1>
-        <p>{project.description}</p>
-        <ul>
-          {project.services.map(service => (
-            <li>{service}</li>
-          ))}
-        </ul>
-        <p>Jaar: {project.date}</p>
-      </article>
+        <p class="project-content-text">{project.description}</p>
+
+        <h2>Live website</h2>
+        <p>{project.url}</p>
+    </div>
+</article>
 </Layout>
 
 <style>
-    article {
-        display: flex;
-        flex-direction: column;
-        padding: 60px 25px;
-    }
+  article {
+      display: flex;
+      flex-direction: column;
+      padding: 80px 25px 200px;
+  }
 
-    .image-container img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
+  .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+  }
+
+  .project-content {
+      padding: 24px 4px;
+  }
+
+  h1 {
+      text-transform: uppercase;
+      font-size: 28px;
+      line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 20px;
+    padding: 32px 0 16px;
+  }
+
+  .project-content-text {
+      padding-top: 16px;
+      line-height: 1.6;
+  }
+
+  @media screen and (min-width: 813px) {
+      article {
+          justify-content: center;
+          padding: 120px 60px 25px;
+          flex-direction: row;
+          gap: 100px;
+      }
+
+      .project-content {
+        padding: 0;
+        max-width: 35%;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .project-content-text {
+        font-size: 20px;
+      }
+  }
 </style>
+
 

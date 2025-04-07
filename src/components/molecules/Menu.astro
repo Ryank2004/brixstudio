@@ -16,13 +16,16 @@ const isActive = (basePath: string): boolean => {
   <ul class="large-menu">
     <li><a href="/" class={isActive("/") ? "active" : ""}>home</a></li>
     <li>
-      <a href="/projecten" class={isActive("/projecten") ? "active" : ""}>projecten</a>
+      <a href="/projecten" class={isActive("/projecten") ? "active" : ""}
+        >projecten</a
+      >
     </li>
     <li>
       <a href="/blog" class={isActive("/blog") ? "active" : ""}>blog</a>
     </li>
     <li>
-      <a href="/contact" class={isActive("/contact") ? "active" : ""}>contact</a>
+      <a href="/contact" class={isActive("/contact") ? "active" : ""}>contact</a
+      >
     </li>
   </ul>
 </nav>
@@ -43,7 +46,6 @@ const isActive = (basePath: string): boolean => {
   }
 
   li {
-    /* display: flex; */
     align-items: center;
   }
 
@@ -59,6 +61,18 @@ const isActive = (basePath: string): boolean => {
     color: var(--light-color);
     background-color: #4f5052;
   }
+
+  a:hover {
+    color: var(--light-color);
+    background-color: #727274;
+  }
+  
+  a.active:hover {
+    color: var(--light-color);
+    background-color: #4f5052;
+  }
+
+  
 
   @media screen and (min-width: 928px) {
     .large-menu-nav {

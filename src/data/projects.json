@@ -5,7 +5,7 @@
         "image": "/images/Zensation-mock-up.webp",
         "description": "Een premium wellness platform met een moderne, minimalistische uitstraling die rust en luxe uitstraalt.",
         "services": ["Website Design", "UI/UX", "Development"],
-        "date": "2025"
+        "url": "https://zensation.vercel.app/"
     },
     {
         "name": "Social tool",
@@ -13,7 +13,7 @@
         "image": "/images/coming-soon.webp",
         "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
         "services": ["Web Application", "UI Design", "Frontend Development"],
-        "date": "2025"
+        "url": "coming-soon"
     },
     {
         "name": "Coming soon",
@@ -21,7 +21,7 @@
         "image": "/images/coming-soon.webp",
         "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
         "services": ["Under Development"],
-        "date": "2025"
+        "url": "coming-soon"
     },
     {
         "name": "Coming soon",
@@ -29,7 +29,7 @@
         "image": "/images/coming-soon.webp",
         "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
         "services": ["Under Development"],
-        "date": "2025"
+        "url": "coming-soon"
     },
     {
         "name": "Coming soon",
@@ -37,7 +37,7 @@
         "image": "/images/coming-soon.webp",
         "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
         "services": ["Under Development"],
-        "date": "2025"
+        "url": "coming-soon"
     },
     {
         "name": "Coming soon",
@@ -45,6 +45,6 @@
         "image": "/images/coming-soon.webp",
         "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
         "services": ["Under Development"],
-        "date": "2025"
+        "url": "coming-soon"
     }
 ]
