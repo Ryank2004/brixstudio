@@ -3,6 +3,18 @@ import Navigation from "@organisms/Navigation.astro";
 import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 import Footer from "@organisms/Footer.astro";
 import Cursor from "@atoms/Cursor.astro";
+import { ClientRouter } from "astro:transitions";
+
+// Voeg een title property toe met een standaardwaarde
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Brix Studio",
+	description = "Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk.",
+ } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,8 +22,8 @@ import Cursor from "@atoms/Cursor.astro";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Brix Studio</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
 		<link rel="stylesheet" href="/css/global.css" />
 		<link
 			rel="preload"
@@ -33,12 +45,15 @@ import Cursor from "@atoms/Cursor.astro";
 			sizes="64x64"
 			href="/images/BrixIcon.jpg"
 		/>
+		<ClientRouter />
 	</head>
 	<body>
 		<BackgroundTexture />
 		<Cursor />
 		<Navigation />
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 	</body>
 

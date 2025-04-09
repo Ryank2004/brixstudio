@@ -60,7 +60,7 @@ import ContentSvg from "@atoms/ContentSVG.astro";
 </section>
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         gsap.registerPlugin(ScrollTrigger);
 
         let cards = gsap.utils.toArray(".stack-card");

@@ -37,7 +37,7 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         gsap.registerPlugin(ScrollTrigger);
         // Selecteer de afbeeldingen in plaats van de container
         document.querySelectorAll(".project-image").forEach((img) => {
@@ -57,6 +57,17 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     });
 </script>
 <style>
+    li {
+        opacity: 0;
+        animation: fade-in 0.2s 0.1s forwards;
+    }
+
+    @keyframes fade-in {
+        to {
+            opacity: 1;
+        }
+    }
+
     a {
         display: flex;
         flex-direction: column;

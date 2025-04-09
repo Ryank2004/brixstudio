@@ -6,7 +6,10 @@ import Services from "@organisms/Services.astro";
 import Faq from "@organisms/Faq.astro";
 ---
 
-<Layout>
+<Layout 
+	title="Brix Studio | Websites, Designs, Tools & Content"
+	description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk."
+	>
 	<Hero />
 	<div class="wrapper">
 		<ProjectsHome />
@@ -16,7 +19,7 @@ import Faq from "@organisms/Faq.astro";
 </Layout>
 
 <script is:inline>
-	document.addEventListener("DOMContentLoaded", () => {
+	document.addEventListener("astro:page-load", () => {
 		gsap.registerPlugin(ScrollTrigger);
 
 		// Give ScrollTrigger access to Lenis scroll position

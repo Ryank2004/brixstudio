@@ -157,7 +157,7 @@
 </style>
 
 <script is:inline>
-    window.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         const words = ["websites", "designs", "tools", "agents"];
         const rotatorWord = document.querySelector(".rotator-word");
 

@@ -45,6 +45,16 @@ html.lenis body {
   height: auto;
 }
 
+html.is-changing .transition-fade {
+    transition: opacity 0.25s;
+    opacity: 1;
+}
+
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+    opacity: 0;
+}
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
