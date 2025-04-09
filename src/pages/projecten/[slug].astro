@@ -12,8 +12,12 @@ const project = projects.find(p => p.slug === slug);
 if (!project) {
   throw new Error(`Project met slug '${slug}' niet gevonden.`);
 }
+
+const pageTitle = `${project.name} | Projecten | Brix Studio`;
+const projectDescription = `${project.name}: ontdek hoe Brix Studio deze case heeft aangepakt met innovatieve oplossingen en resultaatgericht design. Bekijk ons werk en resultaten.`;
 ---
-<Layout>
+
+<Layout title={pageTitle} description={projectDescription}>
   <article>
     <div class="image-container">
         <img

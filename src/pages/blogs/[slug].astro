@@ -12,9 +12,12 @@ const blog = blogs.find((p) => p.slug === slug);
 if (!blog) {
     throw new Error(`Blog met slug '${slug}' niet gevonden.`);
 }
+
+const pageTitle = `${blog.title} | Blog | Brix Studio`;
+const projectDescription = `${blog.title}: lees meer over de nieuwste ontwikkelingen in web, design en AI. Brix Studio deelt kennis en inzichten voor digitale vooruitgang.`;
 ---
 
-<Layout>
+<Layout title={pageTitle} description={projectDescription}>
     <article>
         <div class="image-container">
             <img
