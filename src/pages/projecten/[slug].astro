@@ -15,9 +15,54 @@ if (!project) {
 
 const pageTitle = `${project.name} | Projecten | Brix Studio`;
 const projectDescription = `${project.name}: ontdek hoe Brix Studio deze case heeft aangepakt met innovatieve oplossingen en resultaatgericht design. Bekijk ons werk en resultaten.`;
+
+const projectStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": project.name,
+  "description": project.description,
+  "image": `https://www.brixstudio.nl${project.image}`,
+  "url": `https://www.brixstudio.nl/projecten/${project.slug}`,
+  "datePublished": "2025-01-01", // Vervang met de werkelijke publicatiedatum
+  "creator": {
+    "@type": "Organization",
+    "name": "Brix Studio",
+    "url": "https://www.brixstudio.nl"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "url": `https://www.brixstudio.nl/contact`
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.brixstudio.nl"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projecten",
+        "item": "https://www.brixstudio.nl/projecten"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": project.name,
+        "item": `https://www.brixstudio.nl/projecten/${project.slug}`
+      }
+    ]
+  }
+};
 ---
 
-<Layout title={pageTitle} description={projectDescription}>
+<Layout title={pageTitle} description={projectDescription} structuredData={projectStructuredData}>
   <article>
     <div class="image-container">
         <img

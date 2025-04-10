@@ -4,10 +4,23 @@ import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 import Footer from "@organisms/Footer.astro";
 import Cursor from "@atoms/Cursor.astro";
 
-const { 
+const {
 	title = "Brix Studio",
 	description = "Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk.",
- } = Astro.props;
+	structuredData = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Brix Studio",
+		url: "https://www.brixstudio.nl",
+		description:
+			"Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken.",
+	},
+} = Astro.props;
+
+// Converteer structuredData naar een string
+const structuredDataString = JSON.stringify(
+	typeof structuredData === "function" ? structuredData() : structuredData,
+);
 ---
 
 <!doctype html>
@@ -17,6 +30,10 @@ const {
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+
+		<!-- JSON-LD voor gestructureerde data -->
+		<script type="application/ld+json" set:html={structuredDataString} />
+
 		<link rel="stylesheet" href="/css/global.css" />
 		<link
 			rel="preload"
@@ -34,9 +51,9 @@ const {
 		/>
 		<link
 			rel="icon"
-			type="image/jpg"
+			type="image/svg+xml"
 			sizes="64x64"
-			href="/images/BrixIcon.jpg"
+			href="images/BrixStudioIcon.svg"
 		/>
 	</head>
 	<body>
@@ -54,7 +71,6 @@ const {
 		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
 		defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/split-type@latest" defer></script>
-
 	<script>
 		import "../scripts/smooth-scroll";
 	</script>

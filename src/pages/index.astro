@@ -4,9 +4,22 @@ import Hero from "@molecules/Hero.astro";
 import ProjectsHome from "@organisms/ProjectsHome.astro";
 import Services from "@organisms/Services.astro";
 import Faq from "@organisms/Faq.astro";
+
+const homeStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Brix Studio",
+  "url": "https://www.brixstudio.nl",
+  "description": "Brix Studio maakt creatieve websites, tools, designs en content die converteren en verkopen. Neem contact op voor een gratis consult.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.brixstudio.nl/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
 ---
 
-<Layout title="Brix Studio | Websites, Designs, Tools & Content" description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk.">
+<Layout title="Brix Studio | Websites, Designs, Tools & Content" description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk." structuredData={homeStructuredData}>
 	<Hero />
 	<div class="wrapper">
 		<ProjectsHome />

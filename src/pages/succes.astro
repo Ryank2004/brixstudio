@@ -1,8 +1,21 @@
 ---
 import Layout from "@layout/Layout.astro";
+
+const succesStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Bericht verzonden | Brix Studio",
+  "description": "Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken.",
+  "url": "https://www.brixstudio.nl/succes",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Brix Studio",
+    "url": "https://www.brixstudio.nl"
+  }
+};
 ---
 
-<Layout title="Bericht verzonden | Brix Studio" description="Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken. Tot snel!">
+<Layout title="Bericht verzonden | Brix Studio" description="Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken. Tot snel!" structuredData={succesStructuredData}>
     <h1>Het is gelukt!</h1>
 </Layout>
 

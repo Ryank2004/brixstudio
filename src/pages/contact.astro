@@ -1,8 +1,43 @@
 ---
 import Layout from "@layout/Layout.astro";
+
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Brix Studio",
+  "description": "Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen.",
+  "url": "https://www.brixstudio.nl/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Brix Studio",
+    "email": "info@brixstudio.nl",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Amsterdam",
+      "addressCountry": "NL"
+    }
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.brixstudio.nl"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://www.brixstudio.nl/contact"
+      }
+    ]
+  }
+};
 ---
 
-<Layout title="Contact | Brix Studio" description="Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen.">
+<Layout title="Contact | Brix Studio" description="Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen." structuredData={contactStructuredData}>
     <section class="contact">
         <!-- <div class="gradient-container" aria-hidden="true">
             <div class="gradient-element"></div>

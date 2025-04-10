@@ -15,9 +15,60 @@ if (!blog) {
 
 const pageTitle = `${blog.title} | Blog | Brix Studio`;
 const projectDescription = `${blog.title}: lees meer over de nieuwste ontwikkelingen in web, design en AI. Brix Studio deelt kennis en inzichten voor digitale vooruitgang.`;
+
+const blogStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://www.brixstudio.nl/blogs/${blog.slug}`
+  },
+  "headline": blog.title,
+  "description": blog.excerpt,
+  "image": `https://www.brixstudio.nl${blog.image}`,
+  "author": {
+    "@type": "Person",
+    "name": blog.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Brix Studio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.brixstudio.nl/images/BrixIcon.jpg" // Pas dit aan naar je logo URL
+    }
+  },
+  "datePublished": blog.published,
+  "dateModified": blog.published, // Als je geen 'modified' veld hebt, gebruik dan published
+  "wordCount": blog.content.split(' ').length,
+  "articleBody": blog.content,
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.brixstudio.nl"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://www.brixstudio.nl/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": blog.title,
+        "item": `https://www.brixstudio.nl/blogs/${blog.slug}`
+      }
+    ]
+  }
+};
 ---
 
-<Layout title={pageTitle} description={projectDescription}>
+<Layout title={pageTitle} description={projectDescription} structuredData={blogStructuredData}>
     <article>
         <div class="image-container">
             <img

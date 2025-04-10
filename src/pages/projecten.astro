@@ -1,9 +1,39 @@
 ---
 import Layout from "@layout/Layout.astro";
 import Project from "@molecules/Project.astro";
+
+const projectsStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Projecten | Brix Studio",
+  "description": "Ontdek ons portfolio van innovatieve websites, designs en AI-oplossingen bij Brix Studio. Doordacht design en technische excellentie voor impactvolle resultaten.",
+  "url": "https://www.brixstudio.nl/projecten",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Brix Studio",
+    "url": "https://www.brixstudio.nl"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.brixstudio.nl"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projecten",
+        "item": "https://www.brixstudio.nl/projecten"
+      }
+    ]
+  }
+};
 ---
 
-<Layout title="Projecten | Brix Studio" description="Ontdek ons portfolio van innovatieve websites, designs en AI-oplossingen bij Brix Studio. Doordacht design en technische excellentie voor impactvolle resultaten.">
+<Layout title="Projecten | Brix Studio" description="Ontdek ons portfolio van innovatieve websites, designs en AI-oplossingen bij Brix Studio. Doordacht design en technische excellentie voor impactvolle resultaten." structuredData={projectsStructuredData}>
     <section class="projecten">
         <div class="projecten-text">
             <h1>Projecten</h1>
