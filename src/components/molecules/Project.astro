@@ -35,24 +35,43 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     ))
 }
 
-
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
-        // Selecteer de afbeeldingen in plaats van de container
+
+        // Selecteer de afbeeldingen
         document.querySelectorAll(".project-image").forEach((img) => {
             gsap.set(img, { "--clip": "40%" });
-            gsap.to(img, {
-                "--clip": "0%",
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: img,
-                    start: "-100% center",
-                    end: "100% center",
-                    scrub: true,
-                    markers: false,
-                },
-            });
+
+            // Check voor desktop (> 1024px)
+            if (window.innerWidth > 1024) {
+                // Desktop versie met timeline (scrub)
+                gsap.to(img, {
+                    "--clip": "0%",
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "-100% center",
+                        end: "100% center",
+                        scrub: 1.2,
+                        markers: false,
+                    },
+                });
+            } else {
+                // Mobiele versie met toggleActions (geen scrub)
+                gsap.to(img, {
+                    "--clip": "0%",
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: img,
+                        duration: 3, 
+                        start: "-40% center",
+                        scrub: false,
+                        markers: true,
+                        toggleActions: "play none play reverse",
+                    },
+                });
+            }
         });
     });
 </script>
@@ -110,7 +129,6 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     }
 
     @media screen and (min-width: 764px) {
-
         /* Eerste en derde item in de eerste kolom */
         li:nth-child(1) {
             grid-column: 1;
