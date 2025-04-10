@@ -8,8 +8,8 @@
         "url": "https://zensation.vercel.app/"
     },
     {
-        "name": "Social tool",
-        "slug": "social-tool",
+        "name": "Bnb apartement",
+        "slug": "bnb-apartment",
         "image": "/images/coming-soon.webp",
         "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
         "services": ["Web Application", "UI Design", "Frontend Development"],
