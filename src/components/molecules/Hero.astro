@@ -157,95 +157,77 @@
 </style>
 
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Set initial state - keep elements hidden until page is fully loaded
-        gsap.set(".hero-title", { opacity: 0 });
-        gsap.set(".line", { y: 115 });
-        
-        // Wait for the page load event to fire animations
-        window.addEventListener("load", function() {
-            const words = ["websites", "designs", " ai agents", "content"];
-            const rotatorWord = document.querySelector(".rotator-word");
+    window.addEventListener("DOMContentLoaded", () => {
+        const words = ["websites", "designs", " ai agents", "content"];
+        const rotatorWord = document.querySelector(".rotator-word");
 
-            let index = 0;
+        let index = 0;
 
-            const animateWords = () => {
-                const nextIndex = (index + 1) % words.length;
+        const animateWords = () => {
+            const nextIndex = (index + 1) % words.length;
 
-                gsap.to(rotatorWord, {
-                    y: "-100%",
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "power2.in",
-                    onComplete: () => {
-                        rotatorWord.textContent = words[nextIndex];
-                        gsap.set(rotatorWord, { y: "100%" });
-
-                        gsap.to(rotatorWord, {
-                            y: "0%",
-                            opacity: 1,
-                            duration: 0.5,
-                            ease: "power2.out",
-                        });
-
-                        index = nextIndex;
-                    },
-                });
-            };
-
-            // Delay initial word rotation to allow the fade-in animation to complete first
-            setTimeout(() => {
-                setInterval(animateWords, 2000);
-            }, 1000);
-
-            // Create SplitType instance when the page is loaded
-            const animatingTitle = new window.SplitType(".hero-title", {
-                types: "lines, words",
-                lineClass: "line",
-            });
-
-            animatingTitle.lines.forEach((line) => {
-                const wrapper = document.createElement("div");
-                wrapper.classList.add("line-wrapper-title");
-
-                line.parentNode.insertBefore(wrapper, line);
-                wrapper.appendChild(line);
-            });
-
-            // Animate title in after page load
-            gsap.to(".hero-title", { 
-                opacity: 1, 
-                duration: 0.2,
+            gsap.to(rotatorWord, {
+                y: "-100%",
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.in",
                 onComplete: () => {
-                    // Animate lines after opacity transition
-                    gsap.fromTo(
-                        ".line",
-                        { y: 115 },
-                        {
-                            y: 0,
-                            stagger: 0.1,
-                            duration: 0.3,
-                            ease: "power4.out",
-                        }
-                    );
-                }
+                    rotatorWord.textContent = words[nextIndex];
+                    gsap.set(rotatorWord, { y: "100%" });
+
+                    gsap.to(rotatorWord, {
+                        y: "0%",
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+
+                    index = nextIndex;
+                },
             });
+        };
 
-            // Voeg smooth scroll functionaliteit toe voor anker-links
-            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                anchor.addEventListener("click", function (e) {
-                    e.preventDefault();
+        setInterval(animateWords, 2000);
 
-                    const targetId = this.getAttribute("href");
-                    const targetElement = document.querySelector(targetId);
+        const animatingTitle = new window.SplitType(".hero-title", {
+            types: "lines, words",
+            lineClass: "line",
+        });
 
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop,
-                            behavior: "smooth",
-                        });
-                    }
-                });
+        animatingTitle.lines.forEach((line) => {
+            const wrapper = document.createElement("div");
+            wrapper.classList.add("line-wrapper-title");
+
+            line.parentNode.insertBefore(wrapper, line);
+            wrapper.appendChild(line);
+        });
+
+        gsap.fromTo(
+            ".line",
+            { y: 115 },
+            {
+                y: 0,
+                stagger: 0.1,
+                // delay: 0.1,
+                duration: 0.3,
+                ease: "power4.out",
+            },
+        );
+
+        // Voeg smooth scroll functionaliteit toe voor anker-links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute("href");
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: "smooth",
+                    });
+                }
             });
         });
     });
