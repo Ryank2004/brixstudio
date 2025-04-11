@@ -99,3 +99,7 @@ button {
     outline-offset: 3px;
     transition: outline-offset 0.2s ease;
 }
+
+.line {
+    will-change: transform;
+}

@@ -55,23 +55,45 @@ const structuredDataString = JSON.stringify(
 			sizes="64x64"
 			href="images/BrixStudioIcon.svg"
 		/>
+
+		<!-- Preload critical JavaScript -->
+		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script" />
+		<link rel="preload" href="https://cdn.jsdelivr.net/npm/split-type@latest" as="script" />
 	</head>
 	<body>
+		<!-- Preloader -->
+		<div id="preloader">
+			<div class="loader"></div>
+		</div>
+
 		<BackgroundTexture />
 		<Cursor />
 		<Navigation />
 		<slot />
 		<Footer />
-	</body>
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-		defer></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-		defer></script>
-	<script src="https://cdn.jsdelivr.net/npm/split-type@latest" defer></script>
-	<script>
-		import "../scripts/smooth-scroll";
-	</script>
+		<!-- Load scripts -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+			></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+			></script>
+		<script src="https://cdn.jsdelivr.net/npm/split-type@latest"></script>
+		
+		<script>
+			import "../scripts/smooth-scroll";
+		</script>
+
+		<!-- Preloader script -->
+		<script is:inline>
+			// Wait for both DOM content and all resources to load
+			window.addEventListener('load', function() {
+				// Small delay to ensure animations are ready to run
+				setTimeout(function() {
+					document.body.classList.add('loaded');
+				}, 100);
+			});
+		</script>
+	</body>
 </html>
