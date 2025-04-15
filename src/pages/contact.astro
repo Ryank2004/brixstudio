@@ -44,6 +44,7 @@ const contactStructuredData = {
         </div> -->
 
         <h1>Contact</h1>
+        <p>Heb je een vraag, wil je sparren of wil je weten hoe we jouw bedrijf kunnen helpen met AI-agents of een nieuwe website? Vul het formulier in en we nemen snel contact met je op. Een gratis analyse aanvragen mag natuurlijk ook.</p>
 
         <form id="contactForm" class="form">
             <div>
@@ -73,7 +74,12 @@ const contactStructuredData = {
 
     h1 {
         font-size: 48px;
-        padding-bottom: 80px;
+    }
+
+    p {
+        padding-top: 24px;
+        line-height: 1.8;
+        padding-bottom: 40px;
     }
 
     form {
@@ -195,6 +201,14 @@ const contactStructuredData = {
             font-size: 72px;
             text-align: center;
         }
+
+        p {
+            width: 90%;
+            font-size: 18px;
+            text-align: center;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
     }
 
     @media screen and (min-width: 1024px) {
@@ -204,6 +218,11 @@ const contactStructuredData = {
 
         h1 {
             font-size: 128px;
+        }
+
+        p {
+            max-width: 1000px;
+            font-size: 20px;
         }
     }
 </style>

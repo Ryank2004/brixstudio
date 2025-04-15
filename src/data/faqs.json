@@ -1,27 +1,27 @@
 [
   {
-    "question": "Welke diensten bieden jullie aan?",
-    "answer": "Wij ontwerpen en bouwen op maat gemaakte websites, creëren krachtige visuele identiteiten en ontwikkelen digitale tools en content."
+    "question": "Wat is Brix Studio?",
+    "answer": "Brix Studio is een jong en innovatief bedrijf dat maatwerk AI agents ontwikkelt en implementeert. Wij helpen bedrijven vooral in e-commerce en marketing om contentcreatie en bedrijfsprocessen, zoals social media, e-mails en SEO‑blogs, te automatiseren zonder de eigen merkidentiteit te verliezen"
   },
   {
-    "question": "Hoe lang duurt een gemiddeld project?",
-    "answer": "Afhankelijk van de omvang en complexiteit duurt een project meestal tussen de 4 en 8 weken."
+    "question": "Kunnen wij zelf de website aanpassen na oplevering?",
+    "answer": "Ja, dat kan zeker. Wij bieden de mogelijkheid om een gebruiksvriendelijk Content Management Systeem (CMS) te implementeren. Hiermee kunt u eenvoudig zelf teksten, afbeeldingen en andere inhoud wijzigen nadat de website aan u is opgeleverd. Voor grotere aanpassingen of extra functies staan wij natuurlijk altijd klaar om u verder te helpen."
   },
   {
-    "question": "Bieden jullie ook ondersteuning na oplevering?",
-    "answer": "Ja, we bieden onderhoud en ondersteuning op maat – van kleine updates tot volledige contentbeheer."
-  },
-  {
-    "question": "Hoe zit het met de prijsstelling?",
-    "answer": "Onze prijzen zijn projectgebonden en transparant. Je ontvangt altijd een duidelijke offerte op maat."
+    "question": "Wat kost een website?",
+    "answer": "De kosten voor een website zijn afhankelijk van uw specifieke wensen en behoeften. Aspecten zoals het aantal pagina's, gewenste functionaliteiten en speciale animaties spelen hierbij een rol. Neem vrijblijvend contact op voor een gratis consult, waarin wij uw wensen bespreken en op basis daarvan een passende prijsopgave maken."
   },
   {
     "question": "Werken jullie ook met bestaande huisstijlen?",
     "answer": "Zeker. We kunnen naadloos aansluiten op je bestaande branding of helpen met een volledige rebranding."
   },
   {
-    "question": "Hoe kan ik starten met een project?",
-    "answer": "Neem contact met ons op via het contactformulier en we plannen een vrijblijvend gesprek in."
+    "question": "Wat doet een AI-agent precies?",
+    "answer": "Een AI-agent is slimme software die taken kan automatiseren en ondersteunen door gebruik te maken van kunstmatige intelligentie. Denk hierbij aan taken zoals automatische contentgeneratie, optimalisatie van teksten voor SEO, beheer en planning van social media berichten, of het afhandelen van routine e-mails. Een AI-agent zorgt ervoor dat u efficiënter kunt werken, meer tijd bespaart en uw digitale aanwezigheid versterkt."
+  },
+  {
+    "question": "Hoe uniek is de door de agents gegenereerde content?",
+    "answer": "De content wordt specifiek gecreëerd op basis van jouw input en bestaande content, wat resulteert in authentieke en unieke output die perfect aansluit bij jouw merkidentiteit."
   }
 ]
 
