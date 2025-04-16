@@ -2,39 +2,82 @@
 import Layout from "@layout/Layout.astro";
 
 const succesStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Bericht verzonden | Brix Studio",
-  "description": "Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken.",
-  "url": "https://www.brixstudio.nl/succes",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Brix Studio",
-    "url": "https://www.brixstudio.nl"
-  }
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Bericht verzonden | Brix Studio",
+    description:
+        "Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken.",
+    url: "https://www.brixstudio.nl/succes",
+    isPartOf: {
+        "@type": "WebSite",
+        name: "Brix Studio",
+        url: "https://www.brixstudio.nl",
+    },
 };
 ---
 
-<Layout title="Bericht verzonden | Brix Studio" description="Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken. Tot snel!" structuredData={succesStructuredData}>
-    <h1>Het is gelukt!</h1>
+<Layout
+    title="Bericht verzonden | Brix Studio"
+    description="Bedankt voor je bericht aan Brix Studio. We nemen zo snel mogelijk contact met je op om je digitale project te bespreken. Tot snel!"
+    structuredData={succesStructuredData}
+>
+    <section class="succes">
+        <div class="succes-text">
+            <h1>Verzonden!</h1>
+            <p>We nemen zo snel mogelijk contact met je op</p>
+        </div>
+    </section>
 </Layout>
 
 <style>
-    h1 {
-        font-size: 48px;
+    .succes {
+        padding: 80px 25px 300px;
+    }
+
+    .succes-text {
         padding-bottom: 80px;
     }
 
+    h1 {
+        font-size: 40px;
+    }
+
+    p {
+        padding-top: 24px;
+        line-height: 1.4;
+        font-family: "Jetbrains", sans-serif;
+    }
+
     @media screen and (min-width: 813px) {
+        .succes {
+            padding: 80px 60px 300px;
+        }
+
+        .succes-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         h1 {
             font-size: 72px;
             text-align: center;
+        }
+
+        p {
+            width: 90%;
         }
     }
 
     @media screen and (min-width: 1024px) {
         h1 {
             font-size: 128px;
+        }
+
+        p {
+            max-width: 1000px;
+            font-size: 18px;
         }
     }
 </style>

@@ -24,7 +24,11 @@
     --background-color: #18181B;
     --faq-color: #27272A;
     --light-area: #E2E8F0;
-    --hover: #FACC15;
+    --primary-color: #FACC15;
+    --secundairy-color: #60A5FA;
+    --tertiary-color: #3A6CAA;
+    --quarternary: #1E426D;
+
 }
 
 @supports (font-variation-settings: normal) {
@@ -61,12 +65,20 @@ body {
     opacity: 0;
     line-height: 1;
     animation: fade-in 0.3s 0.2s forwards;
+    overflow: hidden;
+    scrollbar-width: none;
+    /* Verbergt de scrollbar */
 }
 
 @keyframes fade-in {
     to {
         opacity: 1;
     }
+}
+
+/* Voor WebKit (Safari, Chrome) */
+body::-webkit-scrollbar {
+    display: none;
 }
 
 

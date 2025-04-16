@@ -4,7 +4,14 @@ import Layout from "@layout/Layout.astro";
 
 <Layout>
     <section class="ai-agents">
-        <h1>AI agents</h1>
+        <div class="ai-agents-text">
+            <h1>AI agents</h1>
+            <p>
+                Automatiseer content, SEO en communicatie processen met AI,
+                zonder je merkidentiteit te verliezen met AI-agents die jouw
+                bedrijf écht begrijpen.
+            </p>
+        </div>
     </section>
 </Layout>
 
@@ -13,9 +20,18 @@ import Layout from "@layout/Layout.astro";
         padding: 80px 25px 600px;
     }
 
+    .ai-agents-text {
+        padding-bottom: 80px;
+    }
+
     h1 {
         font-size: 48px;
-        padding-bottom: 80px;
+    }
+
+    p {
+        padding-top: 24px;
+        line-height: 1.4;
+        font-family: "Jetbrains", sans-serif;
     }
 
     @media screen and (min-width: 813px) {
@@ -23,15 +39,31 @@ import Layout from "@layout/Layout.astro";
             padding: 120px 60px 25px;
         }
 
+        .ai-agents-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         h1 {
             font-size: 72px;
             text-align: center;
+        }
+
+        p {
+            width: 90%;
         }
     }
 
     @media screen and (min-width: 1024px) {
         h1 {
             font-size: 128px;
+        }
+
+        p {
+            max-width: 1000px;
+            font-size: 18px;
         }
     }
 </style>
