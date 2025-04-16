@@ -11,17 +11,59 @@ const homeStructuredData = {
 	name: "Brix Studio",
 	url: "https://www.brixstudio.nl",
 	description:
-		"Brix Studio maakt creatieve websites, tools, designs en content die converteren en verkopen. Neem contact op voor een gratis consult.",
+		"Brix Studio maakt creatieve websites, AI-agents, designs en content die converteren en verkopen. Neem contact op voor een gratis consult.",
 	potentialAction: {
 		"@type": "SearchAction",
 		target: "https://www.brixstudio.nl/search?q={search_term_string}",
 		"query-input": "required name=search_term_string",
 	},
+	publisher: {
+		"@type": "Organization",
+		name: "Brix Studio",
+		url: "https://www.brixstudio.nl",
+		logo: {
+			"@type": "ImageObject",
+			url: "https://www.brixstudio.nl/images/BrixIconlogoBig.png",
+			width: "800",
+			height: "800",
+		},
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Amsterdam",
+			addressCountry: "NL",
+		},
+		contactPoint: {
+			"@type": "ContactPoint",
+			telephone: "+31642333495",
+			contactType: "customer service",
+			email: "info@brixstudio.nl",
+			availableLanguage: ["Dutch", "English"],
+		},
+		sameAs: [
+			"https://www.instagram.com/brixstudio.nl",
+			"https://www.linkedin.com/company/brixstudio",
+		],
+		knowsAbout: ["Webdesign", "AI-agents", "Content Creation", "Websites"],
+		openingHoursSpecification: [
+			{
+				"@type": "OpeningHoursSpecification",
+				dayOfWeek: [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+				],
+				opens: "09:00",
+				closes: "17:00",
+			},
+		],
+	},
 };
 ---
 
 <Layout
-	title="Brix Studio | Websites, Designs, Tools & Content"
+	title="Brix Studio | Websites, Designs, AI-agents & Content"
 	description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk."
 	structuredData={homeStructuredData}
 >
