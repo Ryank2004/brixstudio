@@ -17,7 +17,12 @@ const isActive = (basePath: string): boolean => {
     <li><a href="/" class={isActive("/") ? "active" : ""}>home</a></li>
     <li>
       <a href="/projecten" class={isActive("/projecten") ? "active" : ""}
-        >projecten</a
+        >Projecten</a
+      >
+    </li>
+    <li>
+      <a href="/ai-agents" class={isActive("/ai-agents") ? "active" : ""}
+        >AI agents</a
       >
     </li>
     <li>
@@ -66,13 +71,11 @@ const isActive = (basePath: string): boolean => {
     color: var(--light-color);
     background-color: #727274;
   }
-  
+
   a.active:hover {
     color: var(--light-color);
     background-color: #4f5052;
   }
-
-  
 
   @media screen and (min-width: 928px) {
     .large-menu-nav {
