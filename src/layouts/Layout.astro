@@ -30,12 +30,17 @@ const structuredDataString = JSON.stringify(
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0D50BVJZ9"></script>
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-M0D50BVJZ9"
+		></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-M0D50BVJZ9');
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-M0D50BVJZ9");
 		</script>
 		<!-- JSON-LD voor gestructureerde data -->
 		<script type="application/ld+json" set:html={structuredDataString} />
@@ -59,7 +64,12 @@ const structuredDataString = JSON.stringify(
 			rel="icon"
 			type="image/svg+xml"
 			sizes="64x64"
-			href="/images/LogoBrixSmall.png"
+			href="images/LogoBrixSmall.png"
+		/>
+		<link
+			rel="mask-icon"
+			href="{{ base_path }}/images/LogoBrixSmall.png"
+			color="#000000"
 		/>
 	</head>
 
