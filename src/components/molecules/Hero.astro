@@ -1,14 +1,15 @@
 <section class="hero">
     <div class="content">
         <h1 class="hero-title">
-            Wij maken<br />
+            <div class="hero-title-static">Wij maken</div><br />
             <span class="rotator-wrapper">
                 <span class="rotator-word">websites</span>
             </span>
         </h1>
 
         <p>
-            Samen bouwen we aan jouw online succes. Klik hieronder voor een gratis consult en ontdek wat wij voor jouw bedrijf kunnen betekenen.
+            Samen bouwen we aan jouw online succes. Klik hieronder voor een
+            gratis consult en ontdek wat wij voor jouw bedrijf kunnen betekenen.
         </p>
 
         <a
@@ -17,7 +18,10 @@
             aria-label="go to contact form">Contact</a
         >
 
-        <small>of <a href="#projects">scroll naar beneden om meer te ontdekken</a></small>
+        <small
+            >of <a href="#projects">scroll naar beneden om meer te ontdekken</a
+            ></small
+        >
     </div>
 </section>
 
@@ -45,6 +49,18 @@
         line-height: 1;
     }
 
+    /* .hero-title-static {
+        background: linear-gradient(
+            90deg,
+            var(--quarternary-color) 0%,
+            var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    } */
+
     :global(.line-wrapper-title) {
         position: relative;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -64,7 +80,7 @@
     }
 
     .contact-button {
-        background-color: var(--dark-color);
+        /* background-color: var(--tertiary-color); */
         color: var(--light-color);
         padding: 10px 20px;
         font-size: 20px;
@@ -73,6 +89,14 @@
         width: auto;
         margin: 24px auto 0;
         max-width: max-content;
+        background-size: 300%;
+        transition: background-position 0.6s;
+        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
+    }
+
+    .contact-button:hover {
+        color: #fff;
+        background-position: 100%;
     }
 
     small {
@@ -111,6 +135,15 @@
 
     .rotator-word {
         width: 100%;
+        /* background: linear-gradient(
+            90deg,
+            var(--quarternary-color),
+            var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent; */
     }
 
     @media screen and (min-width: 540px) {
@@ -118,7 +151,7 @@
             font-size: 72px;
         }
     }
-    
+
     @media screen and (min-width: 768px) {
         h1 {
             font-size: 96px;
@@ -142,10 +175,10 @@
         }
 
         p {
-        width: 70%;
-        font-size: 18px;
-        margin-top: clamp(2rem, 10vh, 14rem);
-    }
+            width: 70%;
+            font-size: 18px;
+            margin-top: clamp(2rem, 10vh, 14rem);
+        }
     }
 </style>
 
@@ -222,6 +255,16 @@
                     });
                 }
             });
+        });
+
+        // Stagger the entrance of the other elements
+        gsap.from("p, .content .contact-button, small", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.3,
         });
     });
 </script>
