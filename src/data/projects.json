@@ -14,37 +14,5 @@
         "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
         "services": ["Web Application", "UI Design", "Frontend Development"],
         "url": "coming-soon"
-    },
-    {
-        "name": "Coming soon",
-        "slug": "coming-soon-1",
-        "image": "/images/coming-soon.webp",
-        "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
-        "services": ["Under Development"],
-        "url": "coming-soon"
-    },
-    {
-        "name": "Coming soon",
-        "slug": "coming-soon-2",
-        "image": "/images/coming-soon.webp",
-        "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
-        "services": ["Under Development"],
-        "url": "coming-soon"
-    },
-    {
-        "name": "Coming soon",
-        "slug": "coming-soon-3",
-        "image": "/images/coming-soon.webp",
-        "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
-        "services": ["Under Development"],
-        "url": "coming-soon"
-    },
-    {
-        "name": "Coming soon",
-        "slug": "coming-soon-4",
-        "image": "/images/coming-soon.webp",
-        "description": "Een spannend nieuw project dat binnenkort wordt onthuld.",
-        "services": ["Under Development"],
-        "url": "coming-soon"
     }
 ]

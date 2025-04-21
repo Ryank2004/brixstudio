@@ -1,6 +1,7 @@
 ---
 import MenuButton from "@molecules/MenuButton.astro";
 import ContactButton from "@molecules/ContactButton.astro";
+import CloseIcon from "@atoms/CloseIcon.astro"
 import Logo from "@atoms/Logo.astro";
 import Menu from "@molecules/Menu.astro";
 ---
@@ -24,6 +25,9 @@ import Menu from "@molecules/Menu.astro";
 
     <div class="mobile-menu">
         <Menu />
+        <label for="mobile-menu-toggle" class="close-icon">
+            <CloseIcon />
+        </label>
     </div>
 </nav>
 
@@ -86,19 +90,38 @@ import Menu from "@molecules/Menu.astro";
         pointer-events: none;
     }
 
+    .close-icon {
+        display: flex;
+        margin-top: 24px;
+        margin-left: 4px;
+        background-color: #e4e6e6;
+        color: #4f5052;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
     .mobile-menu {
-        display: none;
+        /* display: none; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: fixed;
         top: 70px;
-        right: 25px;
+        right: -225px;
         background-color: var(--medium-color);
-        padding: 20px 5.5px;
+        padding: 33px 22px 22px;
         border-radius: 16px;
         z-index: 1000;
+        transition: right .2s ease-out;
+        /* transform: translateX(800px); */
     }
 
     .menu-toggle:checked ~ .small-menu + .mobile-menu {
-        display: block;
+        /* display: flex; */
+        right: 25px;
+        /* transform: translateX(0px); */
     }
 
     @media screen and (min-width: 813px) {
@@ -133,6 +156,10 @@ import Menu from "@molecules/Menu.astro";
             border-radius: 14px;
             top: 35px;
             right: 60px;
+        }
+
+        .close-icon {
+            display: none;
         }
     }
 
