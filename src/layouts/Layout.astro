@@ -55,7 +55,22 @@ const structuredDataString = JSON.stringify(
 			sizes="64x64"
 			href="/images/LogoBrixSmall.png"
 		/>
-	</head>
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-M0D50BVJZ9"
+		></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-M0D50BVJZ9");
+		</script></head
+	>
+	<!-- Google tag (gtag.js) -->
+
 	<body>
 		<BackgroundTexture />
 		<Cursor />
