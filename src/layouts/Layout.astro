@@ -30,7 +30,7 @@ const structuredDataString = JSON.stringify(
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-
+		
 		<!-- JSON-LD voor gestructureerde data -->
 		<script type="application/ld+json" set:html={structuredDataString} />
 
@@ -55,7 +55,13 @@ const structuredDataString = JSON.stringify(
 			sizes="64x64"
 			href="images/LogoBrixSmall.png"
 		/>
+		<link
+			rel="mask-icon"
+			href="{{ base_path }}/images/LogoBrixSmall.png"
+			color="#000000"
+		/>
 	</head>
+
 	<body>
 		<BackgroundTexture />
 		<Cursor />
