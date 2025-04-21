@@ -62,9 +62,9 @@ html.lenis body {
 }
 
 body {
-    opacity: 0;
+    /* opacity: 0; */
     line-height: 1;
-    animation: fade-in 0.3s 0.2s forwards;
+    /* animation: fade-in 0.2s forwards; */
     overflow: hidden;
     scrollbar-width: none;
     /* Verbergt de scrollbar */

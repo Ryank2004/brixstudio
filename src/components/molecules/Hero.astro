@@ -1,7 +1,7 @@
 <section class="hero">
     <div class="content">
         <h1 class="hero-title">
-            Wij maken<br />
+            <div class="hero-title-static">Wij maken</div><br />
             <span class="rotator-wrapper">
                 <span class="rotator-word">websites</span>
             </span>
@@ -49,6 +49,18 @@
         line-height: 1;
     }
 
+    /* .hero-title-static {
+        background: linear-gradient(
+            90deg,
+            var(--quarternary-color) 0%,
+            var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    } */
+
     :global(.line-wrapper-title) {
         position: relative;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -78,8 +90,8 @@
         margin: 24px auto 0;
         max-width: max-content;
         background-size: 300%;
-        transition: all 0.6s;
-        background-image: linear-gradient(90deg, #3a6caa 50%, #FACC15 50%);
+        transition: background-position 0.6s;
+        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
     }
 
     .contact-button:hover {
@@ -123,6 +135,15 @@
 
     .rotator-word {
         width: 100%;
+        /* background: linear-gradient(
+            90deg,
+            var(--quarternary-color),
+            var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent; */
     }
 
     @media screen and (min-width: 540px) {
@@ -234,6 +255,16 @@
                     });
                 }
             });
+        });
+
+        // Stagger the entrance of the other elements
+        gsap.from("p, .content .contact-button, small", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.3,
         });
     });
 </script>

@@ -88,6 +88,22 @@ const projectsStructuredData = {
             "--faq-clip": "2vw",
             "--faq-radius": "5rem",
         });
+
+        gsap.from(".projecten-text", {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from("p, .projects", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.3
+        });
     });
 </script>
 
