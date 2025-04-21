@@ -16,8 +16,16 @@
         "url": "coming-soon"
     },
     {
-        "name": "Bnb apartement",
-        "slug": "bnb-apartment",
+        "name": "Coming Soon",
+        "slug": "",
+        "image": "/images/ComingSoon.webp",
+        "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
+        "services": ["Web Application", "UI Design", "Frontend Development"],
+        "url": "coming-soon"
+    },
+    {
+        "name": "Coming Soon",
+        "slug": "",
         "image": "/images/ComingSoon.webp",
         "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
         "services": ["Web Application", "UI Design", "Frontend Development"],
