@@ -50,86 +50,39 @@ import ContentSvg from "@atoms/ContentSVG.astro";
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Functie om de schermgrootte te controleren
-        function isMobile() {
-            return window.innerWidth < 768;
-        }
+        let cards = gsap.utils.toArray(".stack-card");
 
-        // Alle ScrollTrigger instances opslaan om ze later te kunnen doden
-        let scrollTriggers = [];
-        
-        // Functie om de animatie te initialiseren
-        function initAnimation() {
-            // Eerst alle bestaande ScrollTrigger instances verwijderen
-            scrollTriggers.forEach(st => st.kill());
-            scrollTriggers = [];
-            
-            let cards = gsap.utils.toArray(".stack-card");
-            let stickDistance = 0;
+        let stickDistance = 0;
 
-            // De eerste en laatste kaart triggerpunten
-            let firstCardST = ScrollTrigger.create({
-                trigger: cards[0],
+        let firstCardST = ScrollTrigger.create({
+            trigger: cards[0],
+            start: "center center",
+        });
+
+        let lastCardST = ScrollTrigger.create({
+            trigger: cards[cards.length - 1],
+            start: "center center",
+        });
+
+        cards.forEach((card, index) => {
+            var scale = 1 - (cards.length - index) * 0.025;
+            let scaleDown = gsap.to(card, {
+                scale: scale,
+                transformOrigin: "50% " + lastCardST.start
+,
+            });
+
+            ScrollTrigger.create({
+                trigger: card,
                 start: "center center",
+                end: () => lastCardST.start + stickDistance,
+                pin: true,
+                markers: false,
+                pinSpacing: false,
+                ease: "none",
+                animation: scaleDown,
+                toggleActions: "play none none reverse",
             });
-            scrollTriggers.push(firstCardST);
-
-            let lastCardST = ScrollTrigger.create({
-                trigger: cards[cards.length - 1],
-                start: "center center",
-            });
-            scrollTriggers.push(lastCardST);
-
-            // Voor elke kaart een ScrollTrigger maken
-            cards.forEach((card, index) => {
-                if (!isMobile()) {
-                    // Desktop versie: met schaalanimatie
-                    var scale = 1 - (cards.length - index) * 0.025;
-                    let scaleDown = gsap.to(card, {
-                        scale: scale,
-                        transformOrigin: "50% " + lastCardST.start,
-                    });
-
-                    let st = ScrollTrigger.create({
-                        trigger: card,
-                        start: "center center",
-                        end: () => lastCardST.start + stickDistance,
-                        pin: true,
-                        markers: false,
-                        pinSpacing: false,
-                        ease: "none",
-                        animation: scaleDown,
-                        toggleActions: "play none none reverse",
-                    });
-                    scrollTriggers.push(st);
-                } else {
-                    // Mobiele versie: alleen pinnen, geen schaalanimatie
-                    let st = ScrollTrigger.create({
-                        trigger: card,
-                        start: "center center",
-                        end: () => lastCardST.start + stickDistance,
-                        pin: true,
-                        markers: false,
-                        pinSpacing: false,
-                        ease: "none",
-                        toggleActions: "play none none reverse",
-                    });
-                    scrollTriggers.push(st);
-                }
-            });
-        }
-
-        // Initialiseer animatie bij laden
-        initAnimation();
-
-        // Herinitialiseer animatie bij window resize
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-            // Debounce om te voorkomen dat de functie te vaak wordt aangeroepen tijdens resizen
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                initAnimation();
-            }, 250);
         });
     });
 </script>
@@ -199,6 +152,7 @@ import ContentSvg from "@atoms/ContentSVG.astro";
         }
 
         .card-text {
+            /* width: 90%; */
             margin-left: 96px;
         }
 
