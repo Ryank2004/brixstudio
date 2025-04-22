@@ -100,10 +100,11 @@ const homeStructuredData = {
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".projects",
-				start: "60% center",
-				end: "110% center",
-				scrub: true,
+				start: "bottom bottom",
+				end: "bottom 70%",
+				scrub: 0.5,
 				markers: false,
+				immediateRender: false,
 			},
 		})
 			.to(".wrapper", {
