@@ -36,50 +36,42 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
 }
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Selecteer de afbeeldingen
-    document.querySelectorAll(".project-image").forEach((img) => {
-        if (window.innerWidth > 1024) {
-            // Desktop versie met clip-path (origineel)
-            gsap.set(img, { "--clip": "40%" });
-            gsap.to(img, {
-                "--clip": "0%",
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: img,
-                    start: "-100% center",
-                    end: "100% center",
-                    scrub: 1.2,
-                    markers: false,
-                },
-            });
-        } else {
-            // Mobiele versie met transform en opacity
-            const container = img.closest('.image-container');
+        // Selecteer de afbeeldingen
+        document.querySelectorAll(".project-image").forEach((img) => {
+       
+                // Desktop versie met clip-path (origineel)
+                // gsap.set(img, { "--clip": "40%" });
+                // gsap.to(img, {
+                //     "--clip": "0%",
+                //     ease: "power3.out",
+                //     scrollTrigger: {
+                //         trigger: img,
+                //         start: "-100% center",
+                //         end: "100% center",
+                //         scrub: 1.2,
+                //         markers: false,
+                //     },
+                // });
+
+			gsap.from(img, {
+				scrollTrigger: {
+					trigger: img,
+					start: "top bottom",
+					end: "center center",
+					scrub: 1,
+					markers: false,
+				},
+				ease: "power3.out",
+				"--clip": "30%",
+			});
             
-            gsap.set(img, { 
-                // scale: .6,
-                opacity: 0,
-                borderRadius: '10px'
-            });
-            
-            gsap.to(img, {
-                // scale: 1,
-                opacity: 1,
-                duration: .5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: container,
-                    start: "-70% center",
-                    toggleActions: "play none none reverse",
-                }
-            });
-        }
+        });
     });
-});
 </script>
+
 <style>
     a {
         display: flex;
