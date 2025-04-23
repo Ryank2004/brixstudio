@@ -16,25 +16,6 @@ const lenis = new Lenis({
   infinite: false,
 })
 
-// Voeg een event listener toe om de scrollsnelheid aan te passen in specifieke secties
-document.addEventListener('DOMContentLoaded', () => {
-  const cardsSection = document.querySelector('.cards-wrapper');
-  
-  // Als we in de scrolltrigger-sectie zijn, pas dan de scrollsnelheid aan
-  lenis.on('scroll', ({ scroll, limit, velocity, direction, progress }) => {
-    // Check of we in het cards-gebied scrollen
-    const cardsSectionRect = cardsSection.getBoundingClientRect();
-    
-    if (cardsSectionRect.top < window.innerHeight && cardsSectionRect.bottom > 0) {
-      // In de cards sectie, pas de snelheid aan
-      lenis.options.multiplier = 0.5; // Vertraag de scrollsnelheid
-    } else {
-      // Buiten de cards sectie, gebruik normale snelheid
-      lenis.options.multiplier = 1.0;
-    }
-  });
-});
-
 // Integrate with GSAP - Keep your original structure since it's working
 function raf(time) {
   lenis.raf(time)
