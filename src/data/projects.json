@@ -8,26 +8,10 @@
         "url": "https://zensation.vercel.app/"
     },
     {
-        "name": "Bnb apartement",
-        "slug": "bnb-apartment",
-        "image": "/images/ComingSoon.webp",
-        "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
-        "services": ["Web Application", "UI Design", "Frontend Development"],
-        "url": "coming-soon"
-    },
-    {
-        "name": "Coming Soon",
-        "slug": "",
-        "image": "/images/ComingSoon.webp",
-        "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
-        "services": ["Web Application", "UI Design", "Frontend Development"],
-        "url": "coming-soon"
-    },
-    {
-        "name": "Coming Soon",
-        "slug": "",
-        "image": "/images/ComingSoon.webp",
-        "description": "Een innovatieve tool die social media beheer vereenvoudigt voor content creators en merken.",
+        "name": "Bed and breakfast",
+        "slug": "bed-and-breakfast",
+        "image": "/images/bnb-mockup-2.webp",
+        "description": "Een sfeervolle one-page website voor een charmant B&B in Amsterdam Noord. De site ademt vintage comfort, met een retro-geïnspireerd design dat de unieke uitstraling van het appartement perfect weerspiegelt.",
         "services": ["Web Application", "UI Design", "Frontend Development"],
         "url": "coming-soon"
     }

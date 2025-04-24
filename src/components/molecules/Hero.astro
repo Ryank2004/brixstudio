@@ -180,11 +180,27 @@
             margin-top: clamp(2rem, 10vh, 14rem);
         }
     }
+
+    @media screen and (min-width: 1224px) {
+        .hero {
+            height: 75vh;
+        }
+
+        h1 {
+            font-size: 128px;
+        }
+
+        p {
+            width: 70%;
+            font-size: 18px;
+            margin-top: clamp(2rem, 10vh, 14rem);
+        }
+    }
 </style>
 
 <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
-        const words = ["websites", "designs", " ai agents", "content"];
+        const words = ["websites", "ai agents", "designs", "content"];
         const rotatorWord = document.querySelector(".rotator-word");
 
         let index = 0;

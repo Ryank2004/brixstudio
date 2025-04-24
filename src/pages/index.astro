@@ -4,6 +4,7 @@ import Hero from "@molecules/Hero.astro";
 import ProjectsHome from "@organisms/ProjectsHome.astro";
 import Services from "@organisms/Services.astro";
 import Faq from "@organisms/Faq.astro";
+import CardsStack from "@molecules/CardsStack.astro";
 
 const homeStructuredData = {
 	"@context": "https://schema.org",
@@ -70,7 +71,8 @@ const homeStructuredData = {
 	<Hero />
 	<div class="wrapper">
 		<ProjectsHome />
-		<Services />
+		<CardsStack />
+		<!-- <Services /> -->
 		<Faq />
 	</div>
 </Layout>
@@ -111,7 +113,7 @@ const homeStructuredData = {
 				backgroundColor: gsap.getProperty("html", "--background-color"),
 			})
 			.to(
-				".project-text h3, .project-text .see-more",
+				".project-text h3, .project-text .see-more, .scroll-cards h1",
 				{
 					color: gsap.getProperty("html", "--light-color"),
 				},

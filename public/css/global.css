@@ -38,7 +38,7 @@
 }
 
 html {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     background-color: var(--light-color);
     color: var(--dark-color);
     scroll-behavior: smooth;
@@ -65,7 +65,7 @@ body {
     /* opacity: 0; */
     line-height: 1;
     /* animation: fade-in 0.2s forwards; */
-    overflow: hidden;
+    /* overflow: hidden; */
     scrollbar-width: none;
     /* Verbergt de scrollbar */
 }
