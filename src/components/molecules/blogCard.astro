@@ -1,0 +1,101 @@
+---
+import ArrowRight from "@atoms/ArrowRight.astro";
+
+const { title, slug, author, excerpt, publishDate, tags, heroImage } =
+    Astro.props.data;
+
+const imageUrl = heroImage?.fields?.file?.url;
+const altText = heroImage?.fields?.title ?? "Blog afbeelding";
+
+console.log({ heroImage });
+---
+
+<li class="blog-card">
+    <a href={`/blog/${slug}`} class="blog-card-link">
+        {
+            imageUrl && (
+                <img
+                    src={`https:${imageUrl}`}
+                    alt={altText}
+                    class="blog-card-image"
+                    loading="lazy"
+                    decoding="async"
+                />
+            )
+        }
+        <div class="blog-card-content">
+            {
+                tags && tags.length > 0 && (
+                    <ul class="blog-card-tags">
+                        {tags.map((tag: string) => (
+                            <li>{tag}</li>
+                        ))}
+                    </ul>
+                )
+            }
+            <h2 class="blog-card-title">{title}</h2>
+            <p class="blog-card-excerpt">{excerpt}</p>
+
+            <div class="see-more">
+                <span>Lees meer</span>
+                <ArrowRight />
+            </div>
+        </div>
+    </a>
+</li>
+
+<style>
+    .blog-card {
+        max-width: 400px;
+        border-radius: 15px;
+        box-shadow: 13px 10px 63px 0px rgba(102, 102, 102, 0.75);
+    }
+
+    .blog-card-content {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .blog-card-content p {
+        line-height: 1.5;
+    }
+
+    .blog-card-title {
+        padding-bottom: 16px;
+    }
+    .blog-card-image {
+        width: 100%;
+        height: auto;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .blog-card-tags {
+        display: inline-flex;
+        list-style: none;
+        color: #4f5052;
+        font-weight: 700;
+        font-size: 12px;
+        gap: 8px;
+        padding-bottom: 16px;
+    }
+
+    .blog-card-tags li {
+        padding: 5px 10px;
+        background-color: var(--medium-color);
+        border-radius: 8px;
+    }
+
+    .see-more {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+        padding-top: 16px;
+    }
+
+    .see-more:hover {
+        text-decoration: underline;
+    }
+</style>

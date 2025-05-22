@@ -1,6 +1,11 @@
 ---
 import Layout from "@layout/Layout.astro";
-// import BlogPosts from "@organisms/BlogPosts.astro";
+import BlogCard from "@molecules/blogCard.astro";
+import { getBlogPosts } from "../lib/contentful";
+
+const posts = await getBlogPosts();
+
+console.log(posts);
 
 const blogStructuredData = {
   "@context": "https://schema.org",
@@ -39,11 +44,11 @@ const blogStructuredData = {
 <Layout title="Blog | Brix Studio" description="Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen." structuredData={blogStructuredData}>
     <section class="blog">
         <h1>Blog</h1>
-        
-        <h2>Geen blogs gevonden</h2>
-        <!-- <ul>
-            <BlogPosts />
-        </ul> -->
+        <ul class="blog-list">
+            {posts.map(post => (
+              <BlogCard data={post.fields} />
+            ))}
+          </ul>
     </section>
 </Layout>
 
