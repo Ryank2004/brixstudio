@@ -4,18 +4,18 @@ export const prerender = true;
 
 import Layout from "@layout/Layout.astro";
 import { getBlogPosts } from "@lib/contentful.js";
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 export async function getStaticPaths() {
   try {
     const blogs = await getBlogPosts();
-    
-    return blogs.map((blog:any) => ({
+
+    return blogs.map((blog: any) => ({
       params: { slug: blog.fields.slug },
-      props: { blog }
+      props: { blog },
     }));
   } catch (error) {
-    console.error('Error in getStaticPaths:', error);
+    console.error("Error in getStaticPaths:", error);
     return [];
   }
 }
@@ -23,13 +23,13 @@ export async function getStaticPaths() {
 const { blog } = Astro.props;
 
 if (!blog || !blog.fields) {
-  return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 
 const fields = blog.fields;
 
 // Converteer Rich Text naar HTML
-const contentHtml = fields.content ? documentToHtmlString(fields.content) : '';
+const contentHtml = fields.content ? documentToHtmlString(fields.content) : "";
 
 // Rest van je code blijft hetzelfde...
 const imageUrl = fields.heroImage?.fields?.file?.url;
@@ -38,45 +38,85 @@ const altText = fields.heroImage?.fields?.title ?? "Blog afbeelding";
 const pageTitle = `${fields.title} | Blog | Brix Studio`;
 const blogDescription = fields.excerpt || "";
 
-// ... structured data ...
+// Structured data voor SEO
+const blogStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://www.brixstudio.nl/blogs/${fields.slug}`
+  },
+  "headline": fields.title,
+  "description": blogDescription,
+  "image": imageUrl ? `https:${imageUrl}` : null,
+  "author": {
+    "@type": "Person", 
+    "name": fields.author || "Brix Studio"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Brix Studio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.brixstudio.nl/images/BrixStudioIcon.svg"
+    }
+  },
+  "datePublished": fields.publishDate || blog.sys.createdAt,
+  "dateModified": blog.sys.updatedAt || fields.publishDate || blog.sys.createdAt
+};
 ---
 
-<Layout title={pageTitle} description={blogDescription}>
+<Layout title={pageTitle} description={blogDescription} structuredData={blogStructuredData}>
   <article>
-    <div class="image-container">
-      {imageUrl && (
-        <img
-          src={`https:${imageUrl}`}
-          alt={altText}
-          width="600"
-          height="500"
-          loading="lazy"
-          decoding="async"
-        />
-      )}
-    </div>
-    
-    <div class="blog-content">
+    <!-- Meta info bovenaan -->
+    <div class="blog-meta">
       <p class="date">
-        Geplaatst op <span>{new Date(fields.publishDate || blog.sys.createdAt).toLocaleDateString('nl-NL', {
-          day: 'numeric',
-          month: 'long', 
-          year: 'numeric'
-        })}</span>
+        Geplaatst op <span
+          >{
+            new Date(
+              fields.publishDate || blog.sys.createdAt,
+            ).toLocaleDateString("nl-NL", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          }</span
+        > door <span>{fields.author}</span>
       </p>
-      
-      <h1>{fields.title}</h1>
-      
-      {fields.tags && fields.tags.length > 0 && (
-        <ul class="blog-tags">
-          {fields.tags.map((tag: string) => (
-            <li>{tag}</li>
-          ))}
-        </ul>
-      )}
-      
-      <!-- Gebruik de geconverteerde HTML -->
-      <div class="blog-content-text" set:html={contentHtml} />
+      {
+        fields.tags && fields.tags.length > 0 && (
+          <ul class="blog-tags">
+            {fields.tags.map((tag: string) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <!-- Content wrapper voor flexbox layout -->
+    <div class="content-wrapper">
+      <!-- Afbeelding -->
+      <div class="image-container">
+        {
+          imageUrl && (
+            <img
+              src={`https:${imageUrl}`}
+              alt={altText}
+              width="600"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          )
+        }
+      </div>
+
+      <!-- Blog content -->
+      <div class="blog-content">
+        <h1>{fields.title}</h1>
+        <div class="blog-content-text" set:html={contentHtml} />
+      </div>
     </div>
   </article>
 </Layout>
@@ -86,80 +126,142 @@ const blogDescription = fields.excerpt || "";
     display: flex;
     flex-direction: column;
     padding: 40px 25px;
-    max-width: 1200px;
+    max-width: 550px;
     margin: 0 auto;
   }
-  
+
+  .blog-meta {
+    margin-bottom: 24px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   .image-container {
     width: 100%;
-    margin-bottom: 2rem;
+    flex-shrink: 0;
   }
-  
+
   .image-container img {
     width: 100%;
     height: auto;
     border-radius: 10px;
     object-fit: cover;
   }
-  
+
   .blog-content {
-    padding: 24px 4px;
+    flex: 1;
   }
 
   h1 {
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.4;
-    margin-bottom: 1rem;
+    margin: 0 0 16px 0;
   }
-  
+
   .blog-tags {
     display: flex;
     list-style: none;
     gap: 8px;
     padding: 0;
-    margin-bottom: 2rem;
+    margin: 0;
   }
-  
+
   .blog-tags li {
     padding: 5px 10px;
     background-color: var(--medium-color);
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
   }
-  
+
   .blog-content-text {
     line-height: 1.5;
   }
-  
+
   .blog-content-text :global(p) {
     margin-bottom: 1rem;
   }
-  
+
   .blog-content-text :global(h2) {
     font-size: 18px;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
-  
-  .date {
-    padding: 0 0 24px;
-    color: #666;
+
+  .blog-content-text :global(a) {
+    margin-bottom: 1rem;
+    color: #0000ee;
   }
-  
+
+  .date {
+    padding: 0 0 16px;
+    color: #666;
+    font-size: 14px;
+  }
+
   .date span {
     font-weight: bold;
   }
-  
+
+  /* Tablet */
   @media screen and (min-width: 813px) {
     article {
-      padding: 120px 60px 25px;
+      padding: 25px 60px 25px;
+      max-width: 700px;
     }
-    
+
     h1 {
       font-size: 2.5rem;
-      text-align: center;
+    }
+  }
+
+  /* Desktop - Side by side layout */
+  @media screen and (min-width: 1224px) {
+    article {
+      max-width: 1200px;
+      padding: 40px 60px;
+    }
+
+    .content-wrapper {
+      flex-direction: row;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .image-container {
+      width: 400px;
+      position: sticky;
+      top: 100px; /* Optioneel: maakt de afbeelding sticky tijdens scrollen */
+    }
+
+    .blog-content {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 24px;
+    }
+
+    .blog-content-text :global(h2) {
+      font-size: 24px;
+    }
+  }
+
+  /* Extra large screens */
+  @media screen and (min-width: 1440px) {
+    article {
+      max-width: 1300px;
+      padding: 40px 60px;
+    }
+
+    .image-container {
+      width: 500px;
     }
   }
 </style>
