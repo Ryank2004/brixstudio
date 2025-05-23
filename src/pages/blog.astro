@@ -1,11 +1,9 @@
 ---
 import Layout from "@layout/Layout.astro";
 import BlogCard from "@molecules/blogCard.astro";
-import { getBlogPosts } from "../lib/contentful";
+import { getBlogPosts } from "@lib/contentful.js";
 
 const posts = await getBlogPosts();
-
-console.log(posts);
 
 const blogStructuredData = {
   "@context": "https://schema.org",
@@ -44,8 +42,12 @@ const blogStructuredData = {
 <Layout title="Blog | Brix Studio" description="Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen." structuredData={blogStructuredData}>
     <section class="blog">
         <h1>Blog</h1>
+        <p>
+            Onze projecten weerspiegelen waar we voor staan: doordacht
+            design en technische optimalisatie. Bekijk hieronder ons meest recente werk.
+        </p>
         <ul class="blog-list">
-            {posts.map(post => (
+            {posts.map((post: { fields: any }) => (
               <BlogCard data={post.fields} />
             ))}
           </ul>
@@ -63,7 +65,7 @@ const blogStructuredData = {
             ease: "power3.out"
         });
 
-        gsap.from(".blog h2", {
+        gsap.from(".blog-card", {
             y: 30,
             opacity: 0,
             stagger: 0.2,
@@ -81,16 +83,23 @@ const blogStructuredData = {
 
     h1 {
         font-size: 48px;
-        padding-bottom: 80px;
     }
 
     h2 {
         font-family: "JetBrains", sans-serif;
     }
 
+    p {
+        padding-top: 24px;
+        line-height: 1.4;
+        font-family: "Jetbrains", sans-serif;
+        padding-bottom: 80px;
+    }
+
     ul {
         list-style: none;
         display: grid;
+        justify-content: center;
         grid-template-columns: 1;
         gap: 30px;
     }
@@ -104,6 +113,9 @@ const blogStructuredData = {
     @media screen and (min-width: 813px) {
         .blog {
             padding: 120px 60px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
@@ -114,6 +126,10 @@ const blogStructuredData = {
         h2 {
             font-size: 36px;
             text-align: center;
+        }
+
+        p {
+            width: 90%;
         }
     }
 
@@ -128,6 +144,11 @@ const blogStructuredData = {
 
         ul {
             grid-template-columns: repeat(2, 1fr);
+        }
+
+        p {
+            max-width: 1000px;
+            font-size: 18px;
         }
     }
 

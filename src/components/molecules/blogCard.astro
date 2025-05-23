@@ -1,17 +1,16 @@
 ---
 import ArrowRight from "@atoms/ArrowRight.astro";
 
-const { title, slug, author, excerpt, publishDate, tags, heroImage } =
-    Astro.props.data;
+const { title, slug, excerpt, tags, heroImage } = Astro.props.data;
 
 const imageUrl = heroImage?.fields?.file?.url;
 const altText = heroImage?.fields?.title ?? "Blog afbeelding";
 
-console.log({ heroImage });
+console.log({ slug });
 ---
 
 <li class="blog-card">
-    <a href={`/blog/${slug}`} class="blog-card-link">
+    <a href={`/blogs/${slug}`} class="blog-card-link">
         {
             imageUrl && (
                 <img

@@ -1,141 +1,165 @@
 ---
-import blogs from "@data/blogs.json";
+// src/pages/blogs/[slug].astro
+export const prerender = true;
+
 import Layout from "@layout/Layout.astro";
+import { getBlogPosts } from "@lib/contentful.js";
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-// Haal de slug parameter uit de URL
-const { slug } = Astro.params;
-
-// Zoek het blog dat overeenkomt met de slug
-const blog = blogs.find((p) => p.slug === slug);
-
-// Als er geen blog wordt gevonden, geef dan een foutmelding of implementeer een 404-pagina
-if (!blog) {
-    throw new Error(`Blog met slug '${slug}' niet gevonden.`);
+export async function getStaticPaths() {
+  try {
+    const blogs = await getBlogPosts();
+    
+    return blogs.map((blog:any) => ({
+      params: { slug: blog.fields.slug },
+      props: { blog }
+    }));
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+    return [];
+  }
 }
 
-const pageTitle = `${blog.title} | Blog | Brix Studio`;
-const projectDescription = `${blog.title}: lees meer over de nieuwste ontwikkelingen in web, design en AI. Brix Studio deelt kennis en inzichten voor digitale vooruitgang.`;
+const { blog } = Astro.props;
 
-const blogStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": `https://www.brixstudio.nl/blogs/${blog.slug}`
-  },
-  "headline": blog.title,
-  "description": blog.excerpt,
-  "image": `https://www.brixstudio.nl${blog.image}`,
-  "author": {
-    "@type": "Person",
-    "name": blog.author
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Brix Studio",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.brixstudio.nl/images/BrixIcon.jpg" // Pas dit aan naar je logo URL
-    }
-  },
-  "datePublished": blog.published,
-  "dateModified": blog.published, // Als je geen 'modified' veld hebt, gebruik dan published
-  "wordCount": blog.content.split(' ').length,
-  "articleBody": blog.content,
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.brixstudio.nl"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Blog",
-        "item": "https://www.brixstudio.nl/blog"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": blog.title,
-        "item": `https://www.brixstudio.nl/blogs/${blog.slug}`
-      }
-    ]
-  }
-};
+if (!blog || !blog.fields) {
+  return Astro.redirect('/404');
+}
+
+const fields = blog.fields;
+
+// Converteer Rich Text naar HTML
+const contentHtml = fields.content ? documentToHtmlString(fields.content) : '';
+
+// Rest van je code blijft hetzelfde...
+const imageUrl = fields.heroImage?.fields?.file?.url;
+const altText = fields.heroImage?.fields?.title ?? "Blog afbeelding";
+
+const pageTitle = `${fields.title} | Blog | Brix Studio`;
+const blogDescription = fields.excerpt || "";
+
+// ... structured data ...
 ---
 
-<Layout title={pageTitle} description={projectDescription} structuredData={blogStructuredData}>
-    <article>
-        <div class="image-container">
-            <img
-                src={blog.image}
-                alt={blog.title}
-                width="600"
-                height="500"
-                loading="lazy"
-            />
-        </div>
-        <div class="blog-content">
-            <p class="date">Geplaatst op <span>{blog.published}</span></p>
-            <h1>{blog.title}</h1>
-            <p class="blog-content-text">{blog.content}</p>
-        </div>
-    </article>
+<Layout title={pageTitle} description={blogDescription}>
+  <article>
+    <div class="image-container">
+      {imageUrl && (
+        <img
+          src={`https:${imageUrl}`}
+          alt={altText}
+          width="600"
+          height="500"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </div>
+    
+    <div class="blog-content">
+      <p class="date">
+        Geplaatst op <span>{new Date(fields.publishDate || blog.sys.createdAt).toLocaleDateString('nl-NL', {
+          day: 'numeric',
+          month: 'long', 
+          year: 'numeric'
+        })}</span>
+      </p>
+      
+      <h1>{fields.title}</h1>
+      
+      {fields.tags && fields.tags.length > 0 && (
+        <ul class="blog-tags">
+          {fields.tags.map((tag: string) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )}
+      
+      <!-- Gebruik de geconverteerde HTML -->
+      <div class="blog-content-text" set:html={contentHtml} />
+    </div>
+  </article>
 </Layout>
 
 <style>
+  article {
+    display: flex;
+    flex-direction: column;
+    padding: 80px 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .image-container {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .blog-content {
+    padding: 24px 4px;
+  }
+  
+  h1 {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-tags {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .blog-tags li {
+    padding: 5px 10px;
+    background-color: var(--medium-color);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .blog-content-text {
+    padding-top: 24px;
+    line-height: 1.6;
+  }
+  
+  .blog-content-text :global(p) {
+    margin-bottom: 1rem;
+  }
+  
+  .blog-content-text :global(h2) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .date {
+    padding: 0 0 24px;
+    color: #666;
+  }
+  
+  .date span {
+    font-weight: bold;
+  }
+  
+  @media screen and (min-width: 813px) {
     article {
-        display: flex;
-        flex-direction: column;
-        padding: 80px 25px;
+      padding: 120px 60px 25px;
     }
-
-    .image-container img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
-
-    .blog-content {
-        padding: 24px 4px;
-    }
-
+    
     h1 {
-        text-transform: uppercase;
-        font-size: 20px;
-        line-height: 1.4;
+      font-size: 2.5rem;
+      text-align: center;
     }
-
-    .blog-content-text {
-        padding-top: 24px;
-        line-height: 1.6;
-    }
-
-    .date {
-        padding: 0 0 24px;
-    }
-
-    .date span {
-        font-weight: bold;
-    }
-
-    @media screen and (min-width: 813px) {
-        article {
-            padding: 120px 60px 25px;
-            flex-direction: row;
-        }
-
-        .image-container {
-            /* max-width: 413px; */
-        }
-
-        h1 {
-            /* font-size: 72px; */
-            text-align: center;
-        }
-    }
+  }
 </style>
