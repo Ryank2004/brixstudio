@@ -42,7 +42,7 @@ const blogStructuredData = {
 <Layout title="Blog | Brix Studio" description="Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen." structuredData={blogStructuredData}>
     <section class="blog">
         <h1>Blog</h1>
-        <p>
+        <p class="blog-text">
             Onze projecten weerspiegelen waar we voor staan: doordacht
             design en technische optimalisatie. Bekijk hieronder ons meest recente werk.
         </p>
@@ -65,7 +65,7 @@ const blogStructuredData = {
             ease: "power3.out"
         });
 
-        gsap.from(".blog-card", {
+        gsap.from(".blog-card, .blog-text", {
             y: 30,
             opacity: 0,
             stagger: 0.2,
@@ -116,6 +116,7 @@ const blogStructuredData = {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
         h1 {
