@@ -6,51 +6,59 @@ import { getBlogPosts } from "@lib/contentful.js";
 const posts = await getBlogPosts();
 
 const blogStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "Blog | Brix Studio",
-  "description": "Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen.",
-  "url": "https://www.brixstudio.nl/blog",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Brix Studio",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.brixstudio.nl/images/BrixStudioIcon.svg" // Pas dit aan naar je logo URL
-    }
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.brixstudio.nl"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Blog",
-        "item": "https://www.brixstudio.nl/blog"
-      }
-    ]
-  }
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Blog | Brix Studio",
+    description:
+        "Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen.",
+    url: "https://www.brixstudio.nl/blog",
+    publisher: {
+        "@type": "Organization",
+        name: "Brix Studio",
+        logo: {
+            "@type": "ImageObject",
+            url: "https://www.brixstudio.nl/images/BrixStudioIcon.svg", // Pas dit aan naar je logo URL
+        },
+    },
+    breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.brixstudio.nl",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Blog",
+                item: "https://www.brixstudio.nl/blog",
+            },
+        ],
+    },
 };
 ---
 
-<Layout title="Blog | Brix Studio" description="Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen." structuredData={blogStructuredData}>
+<Layout
+    title="Blog | Brix Studio"
+    description="Blijf op de hoogte van de nieuwste trends in webontwikkeling, design en AI. Lees onze inzichtelijke blogs over digitale innovatie en creatieve oplossingen."
+    structuredData={blogStructuredData}
+>
     <section class="blog">
         <h1>Blog</h1>
         <p class="blog-text">
-            Onze projecten weerspiegelen waar we voor staan: doordacht
-            design en technische optimalisatie. Bekijk hieronder ons meest recente werk.
+            Blijf op de hoogte met de nieuwste trends in webdesign, frontend
+            development en AI-agents. Korte blogs vol praktische inzichten en
+            inspiratie.
         </p>
         <ul class="blog-list">
-            {posts.map((post: { fields: any }) => (
-              <BlogCard data={post.fields} />
-            ))}
-          </ul>
+            {
+                posts.map((post: { fields: any }) => (
+                    <BlogCard data={post.fields} />
+                ))
+            }
+        </ul>
     </section>
 </Layout>
 
@@ -62,7 +70,7 @@ const blogStructuredData = {
             y: -50,
             opacity: 0,
             duration: 1,
-            ease: "power3.out"
+            ease: "power3.out",
         });
 
         gsap.from(".blog-card, .blog-text", {
@@ -71,7 +79,7 @@ const blogStructuredData = {
             stagger: 0.2,
             duration: 0.8,
             ease: "power2.out",
-            delay: 0.3
+            delay: 0.3,
         });
     });
 </script>
