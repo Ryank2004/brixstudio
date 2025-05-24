@@ -1,0 +1,221 @@
+---
+import Layout from "@layout/Layout.astro";
+import ArrowRight from "@atoms/ArrowRight.astro";
+
+const notFoundStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Pagina niet gevonden | Brix Studio",
+  "description": "De pagina die je zoekt bestaat niet meer of is verplaatst. Ontdek onze andere diensten op gebied van websites, designs, AI-agents en content.",
+  "url": "https://www.brixstudio.nl/404",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Brix Studio",
+    "url": "https://www.brixstudio.nl"
+  }
+};
+---
+
+<Layout title="Pagina niet gevonden | Brix Studio" description="De pagina die je zoekt bestaat niet meer of is verplaatst. Ontdek onze andere diensten op gebied van websites, designs, AI-agents en content." structuredData={notFoundStructuredData}>
+    <section class="not-found">
+        <div class="content">
+            <h1 class="error-title">404</h1>
+            <h2>Pagina niet gevonden</h2>
+            <p>
+                De pagina die je probeert te bereiken bestaat niet of is verplaatst.
+                Geen zorgen, je kunt altijd terug naar de homepage of een van onze andere pagina's bezoeken.
+            </p>
+            
+            <div class="actions">
+                <a href="/" class="home-button">
+                    Terug naar homepagina
+                    <ArrowRight />
+                </a>
+                
+                <a href="/contact" class="contact-button">
+                    Contact opnemen
+                </a>
+            </div>
+            
+            <div class="suggestions">
+                <h3>Misschien ben je op zoek naar:</h3>
+                <ul>
+                    <li><a href="/projecten">Onze projecten</a></li>
+                    <li><a href="/ai-agents">AI-agents</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 25px 120px;
+        text-align: center;
+        min-height: 70vh;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+    }
+
+    .error-title {
+        font-size: 120px;
+        margin: 0;
+        line-height: 1;
+        /* background: linear-gradient(90deg, #1E426D, #FACC15);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent; */
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-top: 0;
+        margin-bottom: 24px;
+    }
+
+    p {
+        font-family: "Jetbrains", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 48px;
+    }
+
+    .home-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    }
+
+    .home-button:hover {
+        background-color: #3a3a3a;
+    }
+
+    .contact-button {
+        color: var(--dark-color);
+        padding: 12px 24px;
+        border: 2px solid var(--dark-color);
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-button:hover {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+    }
+
+    .suggestions {
+        margin-top: 20px;
+    }
+
+    .suggestions h3 {
+        font-size: 18px;
+        margin-bottom: 16px;
+        font-family: "Jetbrains", sans-serif;
+    }
+
+    .suggestions ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .suggestions ul li a {
+        color: var(--dark-color);
+        text-decoration: underline;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .suggestions ul li a:hover {
+        color: var(--hover);
+    }
+
+    @media screen and (min-width: 640px) {
+        .error-title {
+            font-size: 180px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .actions {
+            flex-direction: row;
+        }
+
+        .suggestions ul {
+            flex-direction: row;
+            justify-content: center;
+            gap: 24px;
+        }
+    }
+
+    @media screen and (min-width: 813px) {
+        .not-found {
+            padding: 120px 60px;
+        }
+
+        .error-title {
+            font-size: 240px;
+        }
+
+        h2 {
+            font-size: 48px;
+        }
+    }
+</style>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate the 404 number with a subtle entrance
+        gsap.from(".error-title", {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Stagger the entrance of the other elements
+        gsap.from("h2, p, .actions, .suggestions", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    });
+</script>

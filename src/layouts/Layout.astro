@@ -3,6 +3,24 @@ import Navigation from "@organisms/Navigation.astro";
 import BackgroundTexture from "@atoms/BackgroundTexture.astro";
 import Footer from "@organisms/Footer.astro";
 import Cursor from "@atoms/Cursor.astro";
+
+const {
+	title = "Brix Studio",
+	description = "Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk.",
+	structuredData = {
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Brix Studio",
+		url: "https://www.brixstudio.nl",
+		description:
+			"Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken.",
+	},
+} = Astro.props;
+
+// Converteer structuredData naar een string
+const structuredDataString = JSON.stringify(
+	typeof structuredData === "function" ? structuredData() : structuredData,
+);
 ---
 
 <!doctype html>
@@ -10,10 +28,41 @@ import Cursor from "@atoms/Cursor.astro";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Brix Studio</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		
+		<!-- JSON-LD voor gestructureerde data -->
+		<script type="application/ld+json" set:html={structuredDataString} />
+
 		<link rel="stylesheet" href="/css/global.css" />
+		<link
+			rel="preload"
+			href="/fonts/Midnight.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/JetBrainsMono.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			sizes="64x64"
+			href="images/LogoBrixSmall.png"
+		/>
+		<link
+			rel="mask-icon"
+			href="/images/LogoBrixSmall.png"
+			color="#000000"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/LogoBrixSmall.png">
 	</head>
+
 	<body>
 		<BackgroundTexture />
 		<Cursor />
@@ -23,17 +72,14 @@ import Cursor from "@atoms/Cursor.astro";
 	</body>
 
 	<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-	defer></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-	defer></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/split-type@latest"></script>
-
+		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+		defer></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+		defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/split-type@latest" defer></script>
+	
 	<script>
 		import "../scripts/smooth-scroll";
-	  </script>
+	</script>
 </html>
-
-

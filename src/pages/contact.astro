@@ -1,43 +1,95 @@
 ---
 import Layout from "@layout/Layout.astro";
+
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Brix Studio",
+  "description": "Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen.",
+  "url": "https://www.brixstudio.nl/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Brix Studio",
+    "email": "info@brixstudio.nl",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Amsterdam",
+      "addressCountry": "NL"
+    }
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.brixstudio.nl"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://www.brixstudio.nl/contact"
+      }
+    ]
+  }
+};
 ---
 
-<Layout>
+<Layout title="Contact | Brix Studio" description="Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen." structuredData={contactStructuredData}>
     <section class="contact">
         <!-- <div class="gradient-container" aria-hidden="true">
             <div class="gradient-element"></div>
         </div> -->
 
         <h1>Contact</h1>
+        <p>Heb je een vraag, wil je sparren of wil je weten hoe we jouw bedrijf kunnen helpen met AI-agents of een nieuwe website? Vul het formulier in en we nemen snel contact met je op. Een gratis analyse aanvragen mag natuurlijk ook.</p>
 
         <form id="contactForm" class="form">
-            <div>
+            <div class="form-item">
                 <label> Naam* </label>
                 <input type="text" name="name" required />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label> E-mail* </label>
                 <input type="email" name="email" required />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label> Bericht* </label>
                 <textarea name="message" required></textarea>
-            </div>
-
-            <div>
-                <label class="privacy"
-                    >Door dit te versturen, ga je akkoord met ons <span
-                        >privacybeleid.</span
-                    ></label
-                >
             </div>
 
             <button class="send-button" type="submit">Verstuur</button>
         </form>
     </section>
 </Layout>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate the 404 number with a subtle entrance
+        gsap.from(".contact h1", {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        // Stagger the entrance of the other elements
+        gsap.from("p, .form-item, .send-button", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    });
+</script>
 
 <style>
     .contact {
@@ -46,8 +98,13 @@ import Layout from "@layout/Layout.astro";
 
     h1 {
         font-size: 48px;
-        text-transform: uppercase;
-        padding-bottom: 80px;
+    }
+
+    p {
+        padding-top: 24px;
+        line-height: 1.4;
+        padding-bottom: 40px;
+        font-family: "Jetbrains", sans-serif;
     }
 
     form {
@@ -68,14 +125,6 @@ import Layout from "@layout/Layout.astro";
         font-size: 14px;
         line-height: 24px;
         padding-left: 4px;
-    }
-
-    .privacy {
-        font-weight: 500;
-    }
-
-    .privacy span {
-        font-weight: 600;
     }
 
     input,
@@ -177,6 +226,13 @@ import Layout from "@layout/Layout.astro";
             font-size: 72px;
             text-align: center;
         }
+
+        p {
+            width: 90%;
+            text-align: center;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
     }
 
     @media screen and (min-width: 1024px) {
@@ -186,6 +242,11 @@ import Layout from "@layout/Layout.astro";
 
         h1 {
             font-size: 128px;
+        }
+
+        p {
+            max-width: 1000px;
+            font-size: 18px;
         }
     }
 </style>

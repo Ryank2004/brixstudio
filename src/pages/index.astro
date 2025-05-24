@@ -2,15 +2,75 @@
 import Layout from "@layout/Layout.astro";
 import Hero from "@molecules/Hero.astro";
 import ProjectsHome from "@organisms/ProjectsHome.astro";
-import Services from "@organisms/Services.astro";
 import Faq from "@organisms/Faq.astro";
+import CardsStack from "@molecules/CardsStack.astro";
+
+const homeStructuredData = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: "Brix Studio",
+	url: "https://www.brixstudio.nl",
+	description:
+		"Brix Studio maakt creatieve websites, AI-agents, designs en content die converteren en verkopen. Neem contact op voor een gratis consult.",
+	potentialAction: {
+		"@type": "SearchAction",
+		target: "https://www.brixstudio.nl/search?q={search_term_string}",
+		"query-input": "required name=search_term_string",
+	},
+	publisher: {
+		"@type": "Organization",
+		name: "Brix Studio",
+		url: "https://www.brixstudio.nl",
+		logo: {
+			"@type": "ImageObject",
+			url: "https://www.brixstudio.nl/images/BrixIconlogoBig.png",
+			width: "800",
+			height: "800",
+		},
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "Amsterdam",
+			addressCountry: "NL",
+		},
+		contactPoint: {
+			"@type": "ContactPoint",
+			telephone: "+31642333495",
+			contactType: "customer service",
+			email: "info@brixstudio.nl",
+			availableLanguage: ["Dutch", "English"],
+		},
+		sameAs: [
+			"https://www.instagram.com/brixstudio.nl",
+			"https://www.linkedin.com/company/brixstudio",
+		],
+		knowsAbout: ["Webdesign", "AI-agents", "Content Creation", "Websites"],
+		openingHoursSpecification: [
+			{
+				"@type": "OpeningHoursSpecification",
+				dayOfWeek: [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday",
+				],
+				opens: "09:00",
+				closes: "17:00",
+			},
+		],
+	},
+};
 ---
 
-<Layout>
+<Layout
+	title="BrixStudio | Websites, Designs, AI-agents & Content"
+	description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk."
+	structuredData={homeStructuredData}
+>
 	<Hero />
 	<div class="wrapper">
 		<ProjectsHome />
-		<Services />
+		<CardsStack />
 		<Faq />
 	</div>
 </Layout>
@@ -40,17 +100,18 @@ import Faq from "@organisms/Faq.astro";
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".projects",
-				start: "90% center",
-				end: "110% center",
-				scrub: true,
+				start: "bottom bottom",
+				end: "bottom 70%",
+				scrub: 0.5,
 				markers: false,
+				immediateRender: false,
 			},
 		})
 			.to(".wrapper", {
 				backgroundColor: gsap.getProperty("html", "--background-color"),
 			})
 			.to(
-				".project-text h3, .project-text a",
+				".project-text h3, .project-text .see-more, .scroll-cards h1",
 				{
 					color: gsap.getProperty("html", "--light-color"),
 				},
@@ -67,13 +128,14 @@ import Faq from "@organisms/Faq.astro";
 			},
 		}).to(".wrapper", {
 			"--faq-clip": "2vw",
-            "--faq-radius": "5rem",
+			"--faq-radius": "5rem",
 		});
 
 		// Tell ScrollTrigger to update when Lenis scroll happens
 		window.lenis.on("scroll", ScrollTrigger.update);
 	});
 </script>
+
 <style>
 	.wrapper {
 		width: 100%;

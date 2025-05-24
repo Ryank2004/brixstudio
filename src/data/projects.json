@@ -1,26 +1,18 @@
 [
     {
         "name": "Zensation",
-        "image": "/images/Zensation-mock-up.webp"
+        "slug": "zensation",
+        "image": "/images/Zensation-mock-up.webp",
+        "description": "Een premium wellness platform met een moderne, minimalistische uitstraling die rust en luxe uitstraalt.",
+        "services": ["Website Design", "UI/UX", "Development"],
+        "url": "https://zensation.vercel.app/"
     },
     {
-        "name": "Social tool",
-        "image": "/images/coming-soon.webp"
-    },
-    {
-        "name": "Coming soon",
-        "image": "/images/coming-soon.webp" 
-    },
-    {
-        "name": "Coming soon",
-        "image": "/images/coming-soon.webp" 
-    },
-    {
-        "name": "Coming soon",
-        "image": "/images/coming-soon.webp" 
-    },
-    {
-        "name": "Coming soon",
-        "image": "/images/coming-soon.webp" 
+        "name": "Bed and breakfast",
+        "slug": "bed-and-breakfast",
+        "image": "/images/bnb-mockup-2.webp",
+        "description": "Een sfeervolle one-page website voor een charmant B&B in Amsterdam Noord. De site ademt vintage comfort, met een retro-geïnspireerd design dat de unieke uitstraling van het appartement perfect weerspiegelt.",
+        "services": ["Web Application", "UI Design", "Frontend Development"],
+        "url": "coming-soon"
     }
 ]

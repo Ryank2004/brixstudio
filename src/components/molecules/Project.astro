@@ -1,5 +1,5 @@
 ---
-import ArrowRight from "../atoms/arrow-right.astro";
+import ArrowRight from "@atoms/ArrowRight.astro";
 import projects from "@data/projects.json";
 
 // Ontvang de limit als een prop, standaard geen limiet
@@ -9,13 +9,14 @@ const { limit } = Astro.props;
 const displayedProjects = limit ? projects.slice(0, limit) : projects;
 ---
 
-    {
-        displayedProjects.map(({ name, image }) => (
-            <li>
+{
+    displayedProjects.map(({ name, image, slug }) => (
+        <li>
+            <a aria-label={`See project ${name}`} href={`/projecten/${slug}`}>
                 <div class="image-container">
                     <img
                         class="project-image"
-                        alt="project"
+                        alt={name}
                         src={image}
                         width="600"
                         height="500"
@@ -24,41 +25,57 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
                 </div>
                 <div class="project-text">
                     <h3>{name}</h3>
-                    <a aria-label="See project" href="/">
-                        <>
-                            <span>Bekijk project </span>
-                            <ArrowRight />
-                        </>
-                    </a>
+                    <div class="see-more">
+                        <span>Bekijk project </span>
+                        <ArrowRight />
+                    </div>
                 </div>
-            </li>
-        ))
-    }
+            </a>
+        </li>
+    ))
+}
 
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
-        // Selecteer de afbeeldingen in plaats van de container
+
+        // Selecteer de afbeeldingen
         document.querySelectorAll(".project-image").forEach((img) => {
-            gsap.set(img, { "--clip": "40%" });
-            gsap.to(img, {
-                "--clip": "0%",
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: img,
-                    start: "-100% center",
-                    end: "100% center",
-                    scrub: true,
-                    markers: false,
-                },
-            });
+       
+                // Desktop versie met clip-path (origineel)
+                // gsap.set(img, { "--clip": "40%" });
+                // gsap.to(img, {
+                //     "--clip": "0%",
+                //     ease: "power3.out",
+                //     scrollTrigger: {
+                //         trigger: img,
+                //         start: "-100% center",
+                //         end: "100% center",
+                //         scrub: 1.2,
+                //         markers: false,
+                //     },
+                // });
+
+			gsap.from(img, {
+				scrollTrigger: {
+					trigger: img,
+					start: "top bottom",
+					end: "center center",
+					scrub: 1,
+					markers: false,
+				},
+				ease: "power3.out",
+				"--clip": "30%",
+			});
+            
         });
     });
 </script>
+
 <style>
-    section {
-        width: 100%;
-        padding-bottom: 90px;
+    a {
+        display: flex;
+        flex-direction: column;
     }
 
     .image-container {
@@ -73,7 +90,6 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        --clip: 30%;
         clip-path: inset(var(--clip) round 10px);
         will-change: auto;
     }
@@ -81,7 +97,6 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     .project-text {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
         padding: 32px 8px;
     }
@@ -94,18 +109,22 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
         text-transform: uppercase;
     }
 
-    a {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
     a span {
         display: none;
     }
 
-    @media screen and (min-width: 764px) {
+    .see-more {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
 
+    .see-more:hover {
+        text-decoration: underline;
+    }
+
+    @media screen and (min-width: 764px) {
         /* Eerste en derde item in de eerste kolom */
         li:nth-child(1) {
             grid-column: 1;
