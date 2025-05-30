@@ -200,6 +200,8 @@
 
 <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         const words = ["websites", "ai agents", "designs", "content"];
         const rotatorWord = document.querySelector(".rotator-word");
 
@@ -229,41 +231,50 @@
             });
         };
 
-        setInterval(animateWords, 2000);
+        if (!prefersReducedMotion) {
+            setInterval(animateWords, 2000);
 
-        const animatingTitle = new window.SplitType(".hero-title", {
-            types: "lines, words",
-            lineClass: "line",
-        });
+            const animatingTitle = new window.SplitType(".hero-title", {
+                types: "lines, words",
+                lineClass: "line",
+            });
 
-        animatingTitle.lines.forEach((line) => {
-            const wrapper = document.createElement("div");
-            wrapper.classList.add("line-wrapper-title");
+            animatingTitle.lines.forEach((line) => {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add("line-wrapper-title");
+                line.parentNode.insertBefore(wrapper, line);
+                wrapper.appendChild(line);
+            });
 
-            line.parentNode.insertBefore(wrapper, line);
-            wrapper.appendChild(line);
-        });
+            gsap.fromTo(
+                ".line",
+                { y: 115 },
+                {
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.3,
+                    ease: "power4.out",
+                }
+            );
 
-        gsap.fromTo(
-            ".line",
-            { y: 115 },
-            {
-                y: 0,
-                stagger: 0.1,
-                // delay: 0.1,
-                duration: 0.3,
-                ease: "power4.out",
-            },
-        );
+            gsap.from("p, .content .contact-button, small", {
+                y: 30,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: "power2.out",
+                delay: 0.3,
+            });
+        } else {
+            // Geen animatie: toon gewoon eerste woord direct
+            rotatorWord.textContent = words[0];
+        }
 
-        // Voeg smooth scroll functionaliteit toe voor anker-links
+        // Smooth scroll is UI enhancement, laat gerust aan
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", function (e) {
                 e.preventDefault();
-
-                const targetId = this.getAttribute("href");
-                const targetElement = document.querySelector(targetId);
-
+                const targetElement = document.querySelector(this.getAttribute("href"));
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop,
@@ -271,16 +282,6 @@
                     });
                 }
             });
-        });
-
-        // Stagger the entrance of the other elements
-        gsap.from("p, .content .contact-button, small", {
-            y: 30,
-            opacity: 0,
-            stagger: 0.2,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 0.3,
         });
     });
 </script>
