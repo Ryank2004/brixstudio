@@ -1,5 +1,4 @@
 ---
-// src/pages/blogs/[slug].astro
 export const prerender = true;
 
 import Layout from "@layout/Layout.astro";
@@ -28,10 +27,8 @@ if (!blog || !blog.fields) {
 
 const fields = blog.fields;
 
-// Converteer Rich Text naar HTML
 const contentHtml = fields.content ? documentToHtmlString(fields.content) : "";
 
-// Rest van je code blijft hetzelfde...
 const imageUrl = fields.heroImage?.fields?.file?.url;
 const altText = fields.heroImage?.fields?.title ?? "Blog afbeelding";
 
@@ -42,33 +39,36 @@ const blogDescription = fields.excerpt || "";
 const blogStructuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "mainEntityOfPage": {
+  mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://www.brixstudio.nl/blogs/${fields.slug}`
+    "@id": `https://www.brixstudio.nl/blogs/${fields.slug}`,
   },
-  "headline": fields.title,
-  "description": blogDescription,
-  "image": imageUrl ? `https:${imageUrl}` : null,
-  "author": {
-    "@type": "Person", 
-    "name": fields.author || "Brix Studio"
+  headline: fields.title,
+  description: blogDescription,
+  image: imageUrl ? `https:${imageUrl}` : null,
+  author: {
+    "@type": "Person",
+    name: fields.author || "Brix Studio",
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "name": "Brix Studio",
-    "logo": {
+    name: "Brix Studio",
+    logo: {
       "@type": "ImageObject",
-      "url": "https://www.brixstudio.nl/images/BrixStudioIcon.svg"
-    }
+      url: "https://www.brixstudio.nl/images/BrixStudioIcon.svg",
+    },
   },
-  "datePublished": fields.publishDate || blog.sys.createdAt,
-  "dateModified": blog.sys.updatedAt || fields.publishDate || blog.sys.createdAt
+  datePublished: fields.publishDate || blog.sys.createdAt,
+  dateModified: blog.sys.updatedAt || fields.publishDate || blog.sys.createdAt,
 };
 ---
 
-<Layout title={pageTitle} description={blogDescription} structuredData={blogStructuredData}>
+<Layout
+  title={pageTitle}
+  description={blogDescription}
+  structuredData={blogStructuredData}
+>
   <article>
-    <!-- Meta info bovenaan -->
     <div class="blog-meta">
       <p class="date">
         Geplaatst op <span
@@ -94,9 +94,7 @@ const blogStructuredData = {
       }
     </div>
 
-    <!-- Content wrapper voor flexbox layout -->
     <div class="content-wrapper">
-      <!-- Afbeelding -->
       <div class="image-container">
         {
           imageUrl && (
@@ -112,7 +110,6 @@ const blogStructuredData = {
         }
       </div>
 
-      <!-- Blog content -->
       <div class="blog-content">
         <h1>{fields.title}</h1>
         <div class="blog-content-text" set:html={contentHtml} />
@@ -236,7 +233,7 @@ const blogStructuredData = {
     .image-container {
       width: 400px;
       position: sticky;
-      top: 100px; /* Optioneel: maakt de afbeelding sticky tijdens scrollen */
+      top: 100px;
     }
 
     .blog-content {

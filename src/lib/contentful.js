@@ -8,7 +8,7 @@ const client = createClient({
 export async function getBlogPosts() {
   const response = await client.getEntries({
     content_type: 'brixBlog',
-    order: '-fields.publishDate', // optioneel: sorteer nieuwste eerst
+    order: '-fields.publishDate',
   });
 
   return response.items;
