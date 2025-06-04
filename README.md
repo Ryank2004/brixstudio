@@ -2,7 +2,8 @@
 
 A modern and responsive website for Brix Studio, a digital agency specializing in creating websites, designs, AI-agents, and content that convert and sell.
 
-<img width="1012" alt="Screenshot 2025-04-03 at 13 36 52" src="https://github.com/user-attachments/assets/51fc3e93-8d97-4f5e-972a-f08c19ebf6ef" />
+![ScreenRecording2025-06-04at16 37 14-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/e06bf592-8c65-4ba5-8761-e8c6c5c9f696)
+
 
 ## 📋 Overview
 
