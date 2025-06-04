@@ -1,29 +1,31 @@
 # Brix Studio Website
 
-A modern and responsive website for Brix Studio, a digital agency specializing in creating websites, designs, tools, and content that convert and sell.
+A modern and responsive website for Brix Studio, a digital agency specializing in creating websites, designs, AI-agents, and content that convert and sell.
 
 <img width="1012" alt="Screenshot 2025-04-03 at 13 36 52" src="https://github.com/user-attachments/assets/51fc3e93-8d97-4f5e-972a-f08c19ebf6ef" />
-
 
 ## 📋 Overview
 
 This project is built with Astro, a modern static site generator that offers exceptional performance and developer experience. It uses a component-based architecture, following atomic design principles with atoms, molecules, and organisms.
 
-The website features smooth animations using GSAP and Lenis for scroll interactions, has a fully responsive design, and implements modern UI/UX practices.
+The website features smooth animations using GSAP and Lenis for scroll interactions, has a fully responsive design, implements modern UI/UX practices, and includes comprehensive SEO optimization with structured data.
 
 ## 🚀 Features
 
 - **Component-based architecture** following atomic design principles
 - **Smooth scroll animations** using Lenis and GSAP
 - **Responsive design** that works on all devices
+- **Content Management** with Contentful CMS integration
+- **SEO Optimized** with structured data and meta tags
 - **Modern UI components** including:
   - Animated hero section with text rotation
   - Card stack with scroll-driven animations
-  - Dynamic project portfolio
+  - Dynamic project portfolio with clip-path animations
   - FAQ section with expandable details
   - Contact form with email integration
+  - Blog system with dynamic routing
 - **Performance optimized** static site generation with Astro
-- **Netlify deployment** ready with serverless functions for contact form
+- **Netlify deployment** ready with serverless functions
 
 ## 🛠️ Tech Stack
 
@@ -31,6 +33,7 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 - [GSAP](https://greensock.com/gsap/) - Animation library
 - [Lenis](https://lenis.studiofreight.com/) - Smooth scroll library
 - [SplitType](https://github.com/lukePeavey/SplitType) - Text splitting for animations
+- [Contentful](https://www.contentful.com/) - Headless CMS for blog content
 - [Nodemailer](https://nodemailer.com/) - Email sending for the contact form
 - [Netlify](https://www.netlify.com/) - Deployment and serverless functions
 
@@ -40,6 +43,7 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 
 - Node.js (v18+)
 - npm or pnpm
+- Contentful account (for blog functionality)
 
 ### Installation
 
@@ -61,6 +65,8 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
    ```
    EMAIL_USER=your-email@gmail.com
    EMAIL_PASS=your-email-app-password
+   CONTENTFUL_SPACE_ID=your-contentful-space-id
+   CONTENTFUL_ACCESS_TOKEN=your-contentful-access-token
    ```
 
 4. Start the development server:
@@ -77,18 +83,22 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 ```
 /
 ├── public/             # Static assets
-│   ├── css/
-│   ├── fonts/
-│   └── images/
+│   ├── css/            # Global styles
+│   ├── fonts/          # Custom fonts (Midnight, JetBrains Mono)
+│   └── images/         # Images and graphics
 ├── src/
 │   ├── components/     # UI components following atomic design
-│   │   ├── atoms/      # Basic components like Logo, SVG icons
-│   │   ├── molecules/  # Composite components like Menu, Hero
-│   │   └── organisms/  # Complex components like Navigation, Footer
+│   │   ├── atoms/      # Basic components (Logo, Icons, etc.)
+│   │   ├── molecules/  # Composite components (Hero, Menu, Cards)
+│   │   └── organisms/  # Complex components (Navigation, Footer, FAQ)
 │   ├── data/           # JSON data for projects, FAQs
-│   ├── layouts/        # Page layouts
-│   ├── pages/          # Astro pages
-│   └── scripts/        # JavaScript utilities
+│   ├── layouts/        # Page layouts with SEO optimization
+│   ├── lib/            # Utility functions (Contentful client)
+│   ├── pages/          # Astro pages with dynamic routing
+│   │   ├── api/        # API endpoints (contact form)
+│   │   ├── blogs/      # Dynamic blog pages
+│   │   └── projecten/  # Dynamic project pages
+│   └── scripts/        # JavaScript utilities (smooth scroll)
 └── package.json        # Dependencies and scripts
 ```
 
@@ -96,17 +106,47 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 
 - **Home** (`/`) - Main landing page showcasing the agency's services and projects
 - **Projects** (`/projecten`) - Portfolio of the studio's work
-- **Team** (`/team`) - Team introduction page (coming soon)
-- **Blog** (`/blog`) - Blog section (coming soon)
+- **AI agents** (`/ai-agents`) - Dedicated page for AI agent services 
+- **Blog** (`/blog`) - Blog section
+- **Individual Blogs** (`/blogs/[slug]`) - Dynamic blog post pages
 - **Contact** (`/contact`) - Contact form
+- **Success** (`/succes`) - Thank you page after form submission
 
 ## 📱 Responsive Design
 
 The website is fully responsive with breakpoints at:
-- Mobile: Default
+- Mobile: Default(320px+)
 - Tablet: 768px
 - Desktop small: 813px 
 - Desktop: 1024px
+- Large desktop: 1224px+
+
+## 🎨 Design System
+
+### Color Palette
+```
+--light-color: #F8FAFC;
+--medium-color: #E4E6E6;
+--dark-color: #1C1918;
+--background-color: #18181B;
+--primary-color: #FACC15;
+--secondary-color: #60A5FA;
+--tertiary-color: #3A6CAA;
+--quaternary-color: #1E426D;
+```
+
+### Typography
+- **Headings**: Midnight (custom font)
+- **Body**: Inter (variable font)
+- **Code/Technical**: JetBrains Mono
+
+### SEO & Performance
+
+- **Structured Data**: Schema.org implementation for all pages
+- **Meta Tags**: Comprehensive meta descriptions and titles
+- **Breadcrumbs**: Structured navigation for SEO
+- **Image Optimization**: WebP format with lazy loading
+- **Performance**: Optimized bundle sizes and loading strategies
 
 ## 🚢 Deployment
 
@@ -140,6 +180,10 @@ The stacked cards component in the home page uses GSAP ScrollTrigger to create a
 
 The projects are displayed in a staggered grid layout with clip-path animations on scroll.
 
+### Blog System
+
+Dynamic blog pages are generated from Contentful CMS, with rich text rendering and SEO optimization for each post.
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -157,5 +201,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [GSAP by GreenSock](https://greensock.com/gsap/)
 - [Lenis by Studio Freight](https://lenis.studiofreight.com/)
 - [Astro](https://astro.build/)
+- [Contentful](https://contentful.com/)
 - [Netlify](https://www.netlify.com/)
 - [FontSource](https://fontsource.org/) for Inter fonts
