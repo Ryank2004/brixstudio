@@ -166,25 +166,6 @@ The built files in the `dist/` directory can be deployed to any static hosting s
 The contact form uses Astro's server-side capabilities along with Nodemailer to send emails. 
 Make sure to configure the environment variables for the email service.
 
-## 🧩 Custom Components
-
-### Animations
-
-Most animations in the project use GSAP and are triggered by scroll events using ScrollTrigger.
-The `smooth-scroll.js` file integrates Lenis smooth scrolling with GSAP for a seamless experience.
-
-### Card Stack Component
-
-The stacked cards component in the home page uses GSAP ScrollTrigger to create a parallax-like effect as users scroll through the page.
-
-### Project Grid
-
-The projects are displayed in a staggered grid layout with clip-path animations on scroll.
-
-### Blog System
-
-Dynamic blog pages are generated from Contentful CMS, with rich text rendering and SEO optimization for each post.
-
 ## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
