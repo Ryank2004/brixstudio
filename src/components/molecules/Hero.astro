@@ -200,6 +200,9 @@
 
 <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
+
+        gsap.set("body", { autoAlpha: 1 });
+        
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const words = ["websites", "ai agents", "designs", "content"];
