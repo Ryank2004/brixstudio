@@ -71,6 +71,13 @@ const structuredDataString = JSON.stringify(
 		<Footer />
 	</body>
 
+	<script is:inline>
+		window.addEventListener("DOMContentLoaded", () => {
+	
+			gsap.set("body", { autoAlpha: 1 });
+		});
+	</script>
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
 		defer></script>
