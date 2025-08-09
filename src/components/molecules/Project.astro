@@ -15,7 +15,7 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
             <a aria-label={`See project ${name}`} href={`/projecten/${slug}`}>
                 <div class="image-container">
                     <img
-                        class="project-image clip-animate"
+                        class="project-image"
                         alt={name}
                         src={image}
                         width="600"
@@ -35,29 +35,31 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
     ))
 }
 
-<!-- <script is:inline>
+<script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
 
+        // Selecteer de afbeeldingen
         document.querySelectorAll(".project-image").forEach((img) => {
-            gsap.fromTo(
-                img,
-                { "--clip": "30%" }, // startwaarde in lijn met CSS
-                {
-                    "--clip": "0%",
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: img,
-                        start: "top bottom",
-                        end: "center center",
-                        scrub: 1,
-                        markers: false,
-                    },
-                },
-            );
+
+            img.style.animation = "none"; 
+
+			gsap.from(img, {
+				scrollTrigger: {
+					trigger: img,
+					start: "top bottom",
+					end: "center center",
+					scrub: 1,
+					markers: false,
+				},
+				ease: "power3.out",
+				"--clip": "30%",
+			});
+            
         });
     });
-</script> -->
+</script>
+
 
 <style>
    /* =========================================
@@ -87,6 +89,8 @@ a {
   height: 100%;
   border-radius: 10px;
   object-fit: cover;
+  clip-path: inset(var(--clip) round 10px);
+  will-change: auto;
 }
 
 @keyframes reveal {
