@@ -37,147 +37,146 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
         gsap.registerPlugin(ScrollTrigger);
 
         // Selecteer de afbeeldingen
         document.querySelectorAll(".project-image").forEach((img) => {
+            img.style.animation = "none";
 
-            img.style.animation = "none"; 
-
-			gsap.from(img, {
-				scrollTrigger: {
-					trigger: img,
-					start: "top bottom",
-					end: "center center",
-					scrub: 1,
-					markers: false,
-				},
-				ease: "power3.out",
-				"--clip": "30%",
-			});
-            
+            gsap.from(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "center center",
+                    scrub: 1,
+                    markers: false,
+                },
+                ease: "power3.out",
+                "--clip": "30%",
+            });
         });
     });
 </script>
 
-
 <style>
-   /* =========================================
-   Project Cards – Progressive Clip Reveal
-   CSS-only baseline (view-timeline) + GSAP upgrade
-   Animate clip-path directly (no custom properties)
-   ========================================= */
+    a {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+    }
 
-/* ---------- Base layout ---------- */
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        /* overflow: hidden; This kept the animation timeline from working properly */
+    }
 
-a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-}
+    .project-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        clip-path: inset(var(--clip) round 10px);
+        will-change: clip-path;
+    }
 
-.image-container {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  /* overflow: hidden; */
-}
+    @supports (animation-timeline: view()) {
+        .project-image{
+            animation: reveal linear forwards;
+            animation-timeline: view();
+            animation-range: 0% 50%;
+        }
+    }
 
-.project-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-  clip-path: inset(var(--clip) round 10px);
-  will-change: auto;
-}
+    @keyframes reveal {
+        from {
+            clip-path: inset(50% round 10px);
+        }
+        to {
+            clip-path: inset(0% round 10px);
+        }
+    }
 
-@keyframes reveal {
-  from { clip-path: inset(50% round 10px) ; }
-  to   { clip-path: inset(0% round 10px);  }
-}
+    .project-text {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 32px 8px;
+    }
 
-.clip-animate {
-  animation: reveal cubic-bezier(0.25, 1, 0.5, 1) forwards;;
-  animation-timeline: view();
-  animation-range: 0% 50%;
-}
+    h3 {
+        font-family: "JetBrains", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
 
-/* ---------- Text / meta ---------- */
+    a span {
+        display: none;
+    }
 
-.project-text {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 32px 8px;
-}
+    .see-more {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
 
-h3 {
-  font-family: "JetBrains", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
+    .see-more:hover {
+        text-decoration: underline;
+    }
 
-a span { display: none; }
+    /* A11LY reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .project-image {
+            animation: none;
+            clip-path: inset(0% round 10px);
+        }
+    }
 
-.see-more {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
+    /* Responsive grid placement */
 
-.see-more:hover { text-decoration: underline; }
+    @media screen and (min-width: 764px) {
+        /* Eerste en derde item in de eerste kolom */
+        li:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        li:nth-child(3) {
+            grid-column: 1;
+            grid-row: 3;
+        }
+        li:nth-child(5) {
+            grid-column: 1;
+            grid-row: 5;
+        }
 
-/* ---------- CSS-only scroll-driven animation (no JS) ---------- */
+        /* Tweede en vierde item in de tweede kolom, verschoven */
+        li:nth-child(2) {
+            grid-column: 2;
+            grid-row: 2 / span 2;
+        }
+        li:nth-child(4) {
+            grid-column: 2;
+            grid-row: 4 / span 2;
+        }
+        li:nth-child(6) {
+            grid-column: 2;
+            grid-row: 6 / span 2;
+        }
+    }
 
-/* Keyframes animeren direct de clip-path */
-/* @keyframes reveal-clip {
-  from { clip-path: inset(30% round 10px); }
-  to   { clip-path: inset(0% round 10px);  }
-} */
-
-/* Fallback zonder view-timeline: toon eindstaat, geen animatie */
-/* @supports not (animation-timeline: view()) {
-  :root:not(.js) .project-image {
-    clip-path: inset(0% round 10px);
-    animation: none;
-  }
-} */
-
-/* Als JS AAN staat (GSAP upgrade): zet CSS-animatie uit om double-animate te voorkomen */
-/* .js .project-image {
-  animation: none !important;
-} */
-
-/* Toegankelijkheid: respecteer reduced motion */
-/* @media (prefers-reduced-motion: reduce) {
-  :root:not(.js) .project-image {
-    animation: none !important;
-    clip-path: inset(0% round 10px);
-  }
-} */
-
-/* ---------- Responsive grid placement (uit je originele code) ---------- */
-
-@media screen and (min-width: 764px) {
-  /* Eerste en derde item in de eerste kolom */
-  li:nth-child(1) { grid-column: 1; grid-row: 1; }
-  li:nth-child(3) { grid-column: 1; grid-row: 3; }
-  li:nth-child(5) { grid-column: 1; grid-row: 5; }
-
-  /* Tweede en vierde item in de tweede kolom, verschoven */
-  li:nth-child(2) { grid-column: 2; grid-row: 2 / span 2; }
-  li:nth-child(4) { grid-column: 2; grid-row: 4 / span 2; }
-  li:nth-child(6) { grid-column: 2; grid-row: 6 / span 2; }
-}
-
-@media screen and (min-width: 1024px) {
-  a span { display: block; }
-  h3 { font-size: 20px; }
-}
-
+    @media screen and (min-width: 1024px) {
+        a span {
+            display: block;
+        }
+        h3 {
+            font-size: 20px;
+        }
+    }
 </style>
