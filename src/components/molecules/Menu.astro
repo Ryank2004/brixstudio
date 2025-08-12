@@ -19,22 +19,33 @@ const isActive = (basePath: string): boolean => {
 
 <nav class="large-menu-nav">
   <ul class="large-menu">
-    <li><a href="/" class={isActive("/") ? "active" : ""}>home</a></li>
     <li>
-      <a href="/projecten" class={isActive("/projecten") ? "active" : ""}
-        >Projecten</a
+      <a href="/" class={isActive("/") ? "active" : ""} tabindex="0">home</a>
+    </li>
+    <li>
+      <a
+        href="/projecten"
+        class={isActive("/projecten") ? "active" : ""}
+        tabindex="0">Projecten</a
       >
     </li>
     <li>
-      <a href="/ai-agents" class={isActive("/ai-agents") ? "active" : ""}
-        >AI agents</a
+      <a
+        href="/ai-agents"
+        class={isActive("/ai-agents") ? "active" : ""}
+        tabindex="0">AI agents</a
       >
     </li>
     <li>
-      <a href="/blog" class={isActive("/blog") ? "active" : ""}>blog</a>
+      <a href="/blog" class={isActive("/blog") ? "active" : ""} tabindex="0"
+        >blog</a
+      >
     </li>
     <li>
-      <a href="/contact" class={isActive("/contact") ? "active" : ""}>contact</a
+      <a
+        href="/contact"
+        class={isActive("/contact") ? "active" : ""}
+        tabindex="0">contact</a
       >
     </li>
   </ul>

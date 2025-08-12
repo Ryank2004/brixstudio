@@ -1,13 +1,11 @@
 ---
-import MenuButton from "@molecules/MenuButton.astro";
 import ContactButton from "@molecules/ContactButton.astro";
-import CloseIcon from "@atoms/CloseIcon.astro";
 import Logo from "@atoms/Logo.astro";
 import Menu from "@molecules/Menu.astro";
 ---
 
-<nav>
-    <a href="/" aria-label="Go to homepage" tabindex="0">
+<nav class="site-nav">
+    <a href="/" aria-label="Go to homepage" tabindex="0" class="logo-link">
         <Logo />
     </a>
 
@@ -24,40 +22,39 @@ import Menu from "@molecules/Menu.astro";
         <input
             type="checkbox"
             id="mobile-menu-toggle"
-            class="menu-toggle"
+            class="sr-only"
             tabindex="0"
+            aria-controls="mobile-menu"
+            aria-label="Toggle menu"
         />
 
-        <label
-            for="mobile-menu-toggle"
-            aria-label="Open the menu"
-            class="menu-button"
-        >
-            <MenuButton />
+        <label for="mobile-menu-toggle" class="menu-button" aria-hidden="true">
+            <span class="burger" aria-hidden="true">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </span>
         </label>
     </div>
 
-    <div class="mobile-menu">
+    <div id="mobile-menu" class="mobile-menu" aria-label="Hoofdmenu">
         <Menu />
-        <label
-            for="mobile-menu-toggle"
-            aria-label="Close the menu"
-            class="close-icon"
-        >
-            <CloseIcon />
-        </label>
     </div>
 </nav>
 
 <style>
-    nav {
+    .site-nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 16px 25px;
     }
 
-    .menu-toggle {
+    .logo-link:focus {
+        outline-offset: 10px;
+    }
+
+    .sr-only {
         position: absolute;
         inline-size: 1px;
         block-size: 1px;
@@ -75,78 +72,97 @@ import Menu from "@molecules/Menu.astro";
         right: 25px;
         display: flex;
         align-items: center;
+        gap: 24px;
         background-color: var(--medium-color);
         padding: 4.4px 16px;
-        gap: 24px;
         border-radius: 12px;
         z-index: 100;
     }
 
-    .contact-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #e4e6e6;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .contact-button svg {
-        width: 60%;
-        height: 60%;
-        pointer-events: none;
-    }
-
+    .contact-button,
     .menu-button {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #e4e6e6;
-        width: 32px;
-        height: 32px;
         border-radius: 50%;
         cursor: pointer;
     }
-
-    .menu-button svg {
-        width: 60%;
-        height: 60%;
-        pointer-events: none;
-    }
-
-    .close-icon {
-        display: flex;
-        margin-top: 18px;
-        margin-left: 4px;
-        background-color: #e4e6e6;
-        color: #4f5052;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    .mobile-menu {
-        /* display: none; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: fixed;
-        top: 70px;
-        right: -225px;
-        background-color: var(--medium-color);
-        padding: 33px 22px 22px;
-        border-radius: 16px;
-        z-index: 1000;
-        transition: right 0.2s ease-out;
+    .contact-button {
+        inline-size: 20px;
+        block-size: 20px;
     }
     
+    .menu-button {
+        inline-size: 32px;
+        block-size: 32px;
+        color: var(--icon-color);
+    }
+
     .small-menu:has(#mobile-menu-toggle:focus-visible) .menu-button {
         outline: 2px solid #facc15;
         outline-offset: 3px;
+        transition: outline-offset 0.2s ease;
+    }
+
+    .burger {
+        position: relative;
+        inline-size: 20px;
+        block-size: 20px;
+        display: block;
+    }
+
+    .burger .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--dark-color);
+        border-radius: 1px;
+        transform-origin: 50% 50%;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease,
+            top 0.2s ease;
+    }
+
+    .burger .bar:nth-child(1) {
+        top: 2px;
+    }
+    .burger .bar:nth-child(2) {
+        top: 9px;
+    }
+    .burger .bar:nth-child(3) {
+        top: 16px;
+    }
+
+    .small-menu:has(#mobile-menu-toggle:checked) .burger .bar:nth-child(1) {
+        top: 10px;
+        transform: rotate(45deg);
+    }
+    .small-menu:has(#mobile-menu-toggle:checked) .burger .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .small-menu:has(#mobile-menu-toggle:checked) .burger .bar:nth-child(3) {
+        top: 10px;
+        transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 70px;
+        right: -225px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--medium-color);
+        padding: 33px 22px 22px;
+        border-radius: 16px;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+            right 0.2s ease-out,
+            visibility 0s linear 0.2s;
     }
 
     .small-menu:has(#mobile-menu-toggle:checked) + .mobile-menu {
@@ -156,47 +172,52 @@ import Menu from "@molecules/Menu.astro";
         transition: right 0.2s ease-out;
     }
 
-    @media screen and (min-width: 813px) {
-        nav {
+    @media (prefers-reduced-motion: reduce) {
+        .mobile-menu {
+            transition: none;
+        }
+        .burger .bar {
+            transition: none;
+        }
+    }
+
+    @media (min-width: 813px) {
+        .site-nav {
             padding: 32.5px 60px;
         }
-
-         .small-menu:has(#mobile-menu-toggle:checked) + .mobile-menu  {
+        .small-menu {
             right: 60px;
         }
 
         .mobile-menu {
+            top: 60px;
+            right: -260px;
             padding: 10px 12px;
             border-radius: 16px;
-            top: 90px;
-            right: -260px;
         }
     }
 
-    @media screen and (min-width: 928px) {
-        nav {
+    @media (min-width: 928px) {
+        .site-nav {
             padding: 32.5px 60px;
         }
-
         .small-menu {
             display: none;
         }
-
         .mobile-menu {
             display: block;
-            padding: 11px 7px 10px;
-            border-radius: 14px;
             top: 35px;
             right: 60px;
-        }
-
-        .close-icon {
-            display: none;
+            padding: 11px 7px 10px;
+            border-radius: 14px;
+            visibility: visible;
+            pointer-events: auto;
+            transition: none;
         }
     }
 
-    @media screen and (min-width: 1624px) {
-        nav {
+    @media (min-width: 1624px) {
+        .site-nav {
             padding: 40px 120px;
         }
 

@@ -77,13 +77,10 @@ body {
     }
 }
 
-/* Voor WebKit (Safari, Chrome) */
 body::-webkit-scrollbar {
     display: none;
 }
 
-
-/* Optional: For Safari support */
 @supports (-webkit-overflow-scrolling: touch) {
     body {
         -webkit-overflow-scrolling: touch;
@@ -110,18 +107,16 @@ button {
 
 :focus {
     outline: 2px solid #FACC15;
-    /* Using your yellow brand color */
+    border-radius: 20px;
     outline-offset: 3px;
     transition: outline-offset 0.2s ease;
 }
 
-/* Remove default focus outline for mouse users, but keep it for keyboard */
 :focus:not(:focus-visible) {
     outline: none;
 }
 
 :focus-visible {
     outline: 2px solid #FACC15;
-    outline-offset: 3px;
     transition: outline-offset 0.2s ease;
 }
