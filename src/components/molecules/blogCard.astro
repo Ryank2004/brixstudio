@@ -10,7 +10,7 @@ console.log({ slug });
 ---
 
 <li class="blog-card">
-    <a href={`/blogs/${slug}`} class="blog-card-link">
+    <a href={`/blogs/${slug}`} class="blog-card-link" tabindex="0">
         {
             imageUrl && (
                 <img
@@ -51,6 +51,16 @@ console.log({ slug });
         text-align: left;
     }
 
+    .blog-card:has(.blog-card-link:focus-visible) {
+        outline: 2px solid #facc15;
+        outline-offset: 8px;
+        transition: outline-offset 0.2s ease;
+    }
+
+    .blog-card-link:focus {
+       outline: none;
+    }
+
     .blog-card-content {
         display: flex;
         flex-direction: column;
@@ -64,6 +74,7 @@ console.log({ slug });
     .blog-card-title {
         padding-bottom: 16px;
     }
+
     .blog-card-image {
         width: 100%;
         height: auto;
