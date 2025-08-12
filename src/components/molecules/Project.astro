@@ -12,7 +12,7 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
 {
     displayedProjects.map(({ name, image, slug }) => (
         <li>
-            <a aria-label={`See project ${name}`} href={`/projecten/${slug}`}>
+            <a aria-label={`See project ${name}`} href={`/projecten/${slug}`} tabindex="0">
                 <div class="image-container">
                     <img
                         class="project-image"
@@ -66,6 +66,11 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
         flex-direction: column;
         text-decoration: none;
         color: inherit;
+    }
+
+    a:focus {
+        outline-offset: 8px;
+        border-radius: 10px;
     }
 
     .image-container {
