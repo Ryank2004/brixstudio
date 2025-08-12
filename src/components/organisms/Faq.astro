@@ -9,7 +9,7 @@ import faqs from "@data/faqs.json";
         {
             faqs.map(({ question, answer }) => (
                 <details class="faq-item">
-                    <summary class="faq-question">
+                    <summary class="faq-question" tabindex="0"  >
                         {question}{" "}
                         <svg
                             class="faq-arrow"
@@ -54,7 +54,7 @@ import faqs from "@data/faqs.json";
         color: var(--light-color);
         border-radius: 8px;
         margin-bottom: 1rem;
-        overflow: hidden;
+        /* overflow: hidden; */
         transition: all 0.3s ease;
     }
 
@@ -67,6 +67,11 @@ import faqs from "@data/faqs.json";
         align-items: center;
         justify-content: space-between;
         gap: 20px;
+    }
+
+    .faq-question:focus {
+        outline-offset: 0px;
+        border-radius: 8px;
     }
 
     .faq-answer {
@@ -156,7 +161,7 @@ import faqs from "@data/faqs.json";
         }
 
         .faq-answer {
-            padding: 0 48px 48px;
+            padding: 24px 48px 48px;
             font-size: 20px;
             line-height: 1.5;
         }
