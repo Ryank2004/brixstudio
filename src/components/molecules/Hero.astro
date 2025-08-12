@@ -15,11 +15,13 @@
         <a
             class="contact-button"
             href="/contact"
-            aria-label="go to contact form">Gratis analyse</a
+            aria-label="go to contact form"
+            tabindex="0">Gratis analyse</a
         >
 
         <small
-            >of <a href="#projects">scroll naar beneden om meer te ontdekken</a
+            >of <a href="#projects" tabindex="0"
+                >scroll naar beneden om meer te ontdekken</a
             ></small
         >
     </div>
@@ -200,8 +202,9 @@
 
 <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
-        
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
 
         const words = ["websites", "ai agents", "designs", "content"];
         const rotatorWord = document.querySelector(".rotator-word");
@@ -255,7 +258,7 @@
                     stagger: 0.1,
                     duration: 0.3,
                     ease: "power4.out",
-                }
+                },
             );
 
             gsap.from("p, .content .contact-button, small", {
@@ -275,7 +278,9 @@
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", function (e) {
                 e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute("href"));
+                const targetElement = document.querySelector(
+                    this.getAttribute("href"),
+                );
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop,
