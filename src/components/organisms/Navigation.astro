@@ -1,31 +1,49 @@
 ---
 import MenuButton from "@molecules/MenuButton.astro";
 import ContactButton from "@molecules/ContactButton.astro";
-import CloseIcon from "@atoms/CloseIcon.astro"
+import CloseIcon from "@atoms/CloseIcon.astro";
 import Logo from "@atoms/Logo.astro";
 import Menu from "@molecules/Menu.astro";
 ---
 
 <nav>
-    <a href="/" aria-label="Go to homepage">
+    <a href="/" aria-label="Go to homepage" tabindex="0">
         <Logo />
     </a>
 
-    <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle" />
-
     <div class="small-menu">
-        <a href="/contact" class="contact-button" aria-label="Go to contact form">
+        <a
+            href="/contact"
+            class="contact-button"
+            aria-label="Go to contact form"
+            tabindex="0"
+        >
             <ContactButton />
         </a>
 
-        <label for="mobile-menu-toggle" class="menu-button">
+        <input
+            type="checkbox"
+            id="mobile-menu-toggle"
+            class="menu-toggle"
+            tabindex="0"
+        />
+
+        <label
+            for="mobile-menu-toggle"
+            aria-label="Open the menu"
+            class="menu-button"
+        >
             <MenuButton />
         </label>
     </div>
 
     <div class="mobile-menu">
         <Menu />
-        <label for="mobile-menu-toggle" class="close-icon">
+        <label
+            for="mobile-menu-toggle"
+            aria-label="Close the menu"
+            class="close-icon"
+        >
             <CloseIcon />
         </label>
     </div>
@@ -40,7 +58,16 @@ import Menu from "@molecules/Menu.astro";
     }
 
     .menu-toggle {
-        display: none;
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .small-menu {
@@ -114,11 +141,19 @@ import Menu from "@molecules/Menu.astro";
         padding: 33px 22px 22px;
         border-radius: 16px;
         z-index: 1000;
-        transition: right .2s ease-out;
+        transition: right 0.2s ease-out;
+    }
+    
+    .small-menu:has(#mobile-menu-toggle:focus-visible) .menu-button {
+        outline: 2px solid #facc15;
+        outline-offset: 3px;
     }
 
-    .menu-toggle:checked ~ .small-menu + .mobile-menu {
+    .small-menu:has(#mobile-menu-toggle:checked) + .mobile-menu {
         right: 25px;
+        visibility: visible;
+        pointer-events: auto;
+        transition: right 0.2s ease-out;
     }
 
     @media screen and (min-width: 813px) {
@@ -126,7 +161,7 @@ import Menu from "@molecules/Menu.astro";
             padding: 32.5px 60px;
         }
 
-        .small-menu {
+         .small-menu:has(#mobile-menu-toggle:checked) + .mobile-menu  {
             right: 60px;
         }
 
@@ -137,7 +172,7 @@ import Menu from "@molecules/Menu.astro";
             right: -260px;
         }
     }
-    
+
     @media screen and (min-width: 928px) {
         nav {
             padding: 32.5px 60px;
