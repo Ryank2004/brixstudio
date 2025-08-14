@@ -2,49 +2,59 @@
 import Layout from "@layout/Layout.astro";
 
 const contactStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Contact Brix Studio",
-  "description": "Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen.",
-  "url": "https://www.brixstudio.nl/contact",
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "Brix Studio",
-    "email": "info@brixstudio.nl",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Amsterdam",
-      "addressCountry": "NL"
-    }
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.brixstudio.nl"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Contact",
-        "item": "https://www.brixstudio.nl/contact"
-      }
-    ]
-  }
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Brix Studio",
+    description:
+        "Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen.",
+    url: "https://www.brixstudio.nl/contact",
+    mainEntity: {
+        "@type": "Organization",
+        name: "Brix Studio",
+        email: "info@brixstudio.nl",
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: "Amsterdam",
+            addressCountry: "NL",
+        },
+    },
+    breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.brixstudio.nl",
+            },
+            {
+                "@type": "ListItem",
+                position: 2,
+                name: "Contact",
+                item: "https://www.brixstudio.nl/contact",
+            },
+        ],
+    },
 };
 ---
 
-<Layout title="Contact | Brix Studio" description="Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen." structuredData={contactStructuredData}>
+<Layout
+    title="Contact | Brix Studio"
+    description="Neem contact op met Brix Studio voor een creatieve website, design of AI-oplossing. Plan een gratis consult en laat ons je helpen met je digitale uitdagingen."
+    structuredData={contactStructuredData}
+>
     <section class="contact">
         <!-- <div class="gradient-container" aria-hidden="true">
             <div class="gradient-element"></div>
         </div> -->
 
         <h1>Contact</h1>
-        <p>Heb je een vraag, wil je sparren of wil je weten hoe we jouw bedrijf kunnen helpen met AI-agents of een nieuwe website? Vul het formulier in en we nemen snel contact met je op. Een gratis analyse aanvragen mag natuurlijk ook.</p>
+        <p>
+            Heb je een vraag, wil je sparren of wil je weten hoe we jouw bedrijf
+            kunnen helpen met AI-agents of een nieuwe website? Vul het formulier
+            in en we nemen snel contact met je op. Een gratis analyse aanvragen
+            mag natuurlijk ook.
+        </p>
 
         <form id="contactForm" class="form">
             <div class="form-item">
@@ -62,7 +72,21 @@ const contactStructuredData = {
                 <textarea name="message" required></textarea>
             </div>
 
-            <button class="send-button" type="submit" tabindex="0">Verstuur</button>
+            <button class="send-button" type="submit" tabindex="0"
+                >Verstuur <svg
+                    class="arrow-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="3"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                </svg></button
+            >
         </form>
     </section>
 </Layout>
@@ -76,7 +100,7 @@ const contactStructuredData = {
             y: -50,
             opacity: 0,
             duration: 1,
-            ease: "power3.out"
+            ease: "power3.out",
         });
 
         // Stagger the entrance of the other elements
@@ -86,7 +110,7 @@ const contactStructuredData = {
             stagger: 0.2,
             duration: 0.8,
             ease: "power2.out",
-            delay: 0.3
+            delay: 0.3,
         });
     });
 </script>
@@ -144,19 +168,32 @@ const contactStructuredData = {
     }
 
     .send-button {
-        background-color: var(--dark-color);
-        color: var(--light-color);
-        padding: 10px 20px;
+        display: flex;
         font-size: 20px;
+        max-width: max-content;
+        align-items: center;
+        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
         font-weight: 700;
+        color: var(--light-color);
+        padding: 12px 20px;
         border-radius: 8px;
-        width: auto;
-        margin: 24px 0 0 4px;
-        width: max-content;
+        width: 70%;
+        margin: 24px 0 0;
+        justify-content: space-between;
+        background-size: 300%;
+        transition: background-position 0.6s;
+        text-decoration: none;
     }
 
     .send-button:hover {
-        cursor: pointer;
+        color: #fff;
+        background-position: 100%;
+    }
+
+    .arrow-icon {
+        width: 24px;
+        height: auto;
+        margin-left: 14px;
     }
 
     @media screen and (min-width: 540px) {
