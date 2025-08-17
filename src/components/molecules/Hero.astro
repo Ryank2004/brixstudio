@@ -1,3 +1,7 @@
+---
+import Button from "@atoms/Button.astro"
+---
+
 <section class="hero">
     <div class="content">
         <h1 class="hero-title">
@@ -12,12 +16,7 @@
             gratis consult en ontdek wat wij voor jouw bedrijf kunnen betekenen.
         </p>
 
-        <a
-            class="contact-button"
-            href="/contact"
-            aria-label="go to contact form"
-            tabindex="0">Gratis analyse</a
-        >
+       <Button text="Gratis analyse" href="/contact" animateTag="hero-cta"/>
 
         <small
             >of <a href="#projects" tabindex="0"
@@ -51,18 +50,6 @@
         line-height: 1;
     }
 
-    /* .hero-title-static {
-        background: linear-gradient(
-            90deg,
-            var(--quarternary-color) 0%,
-            var(--primary-color)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-    } */
-
     :global(.line-wrapper-title) {
         position: relative;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -82,23 +69,31 @@
     }
 
     .contact-button {
-        /* background-color: var(--tertiary-color); */
-        color: var(--light-color);
-        padding: 10px 20px;
+        display: flex;
         font-size: 20px;
-        font-weight: 700;
-        border-radius: 8px;
-        width: auto;
-        margin: 24px auto 0;
         max-width: max-content;
+        align-items: center;
+        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
+        font-weight: 700;
+        color: var(--light-color);
+        padding: 12px 20px;
+        border-radius: 8px;
+        width: 70%;
+        margin: 24px 0 0;
+        justify-content: space-between;
         background-size: 300%;
         transition: background-position 0.6s;
-        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
     }
 
     .contact-button:hover {
         color: #fff;
         background-position: 100%;
+    }
+
+    .faq-arrow {
+        width: 24px;
+        height: auto;
+        margin-left: 14px;
     }
 
     small {
@@ -126,26 +121,16 @@
         transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     }
 
-    /* Rotator styles */
     .rotator-wrapper {
         position: relative;
         display: flex;
-        height: 1em; /* Houdt dezelfde hoogte als de tekst */
+        height: 1em;
         overflow: hidden;
         vertical-align: middle;
     }
 
     .rotator-word {
         width: 100%;
-        /* background: linear-gradient(
-            90deg,
-            var(--quarternary-color),
-            var(--primary-color)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent; */
     }
 
     @media screen and (min-width: 540px) {
@@ -261,7 +246,7 @@
                 },
             );
 
-            gsap.from("p, .content .contact-button, small", {
+            gsap.from("p, .content [data-animate='hero-cta'], small", {
                 y: 30,
                 opacity: 0,
                 stagger: 0.2,
