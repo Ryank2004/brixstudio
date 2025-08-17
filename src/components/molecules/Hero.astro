@@ -82,7 +82,7 @@
     @keyframes heroIntro {
         0% {
             opacity: 0;
-            transform: translateY(1em);
+            transform: translateY(50px);
         }
         100% {
             opacity: 1;
@@ -95,26 +95,26 @@
         position: absolute;
         font-weight: bold;
         top: -0px;
-        animation: rotateWord 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+        animation: rotateWord 10.26s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
             both;
         animation-delay: 0.26s;
         will-change: transform, opacity;
     }
 
     .rotator-word:nth-child(2) {
-        animation-delay: 2.5s;
+        animation-delay: 2.76s;
     }
     .rotator-word:nth-child(3) {
-        animation-delay: 5s;
+        animation-delay: 5.26s;
     }
     .rotator-word:nth-child(4) {
-        animation-delay: 7.5s;
+        animation-delay: 7.76s;
     }
 
     @keyframes rotateWord {
         0% {
             opacity: 0;
-            transform: translateY(1em);
+            transform: translateY(50px);
         }
         6% {
             opacity: 1;
@@ -128,12 +128,12 @@
 
         27% {
             opacity: 0;
-            transform: translateY(-1em);
+            transform: translateY(-50px);
         }
 
         100% {
             opacity: 0;
-            transform: translateY(-1em);
+            transform: translateY(-50px);
         }
     }
 
@@ -142,6 +142,9 @@
         font-size: 16px;
         margin-top: clamp(2rem, 16vh, 14rem);
         line-height: 1.4;
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: .32s;
     }
 
     .contact-button {
@@ -156,6 +159,9 @@
         background-size: 300%;
         transition: background-position 0.6s;
         background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: .38s;
     }
 
     .contact-button:hover {
@@ -165,6 +171,9 @@
 
     small {
         margin-top: 12px;
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: .44s;
     }
 
     small a {
@@ -190,7 +199,7 @@
 
     @media (prefers-reduced-motion: reduce) {
         .hero-title-static,
-        .rotator-word {
+        .rotator-word, p, .contact-button, small {
             animation: none;
             opacity: 1;
             transform: none;
