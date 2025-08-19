@@ -39,7 +39,7 @@
 - User test on tabbing through the site and if users see FOUC
 ---
 
-## 2025-08-14
+## 2025-08-15
 
 **What I did:**
 - I did a User Test: Flash of Unstyled Content & Keyboard Navigation #43
@@ -47,4 +47,17 @@
 
 **What needs to happen first:**
 - Fix flash of unstyled content #44
+---
+
+## 2025-08-17
+
+**What I did:**
+- Fixed flash of unstyled content by replacing the GSAP animation with CSS in the hero component #44
+
+**What needs to happen first:**
+- Remove button hover styling for devices that don't have hover #60
+- Reduce ai-agents image size for performance #62
+- Standard tabbing not working on Safari #64
+- Screenreader test
+
 ---
