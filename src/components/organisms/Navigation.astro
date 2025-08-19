@@ -37,7 +37,7 @@ import Menu from "@molecules/Menu.astro";
         </label>
     </div>
 
-    <div id="mobile-menu" class="mobile-menu" aria-label="Hoofdmenu">
+    <div class="squircle mobile-menu" aria-label="Hoofdmenu">
         <Menu />
     </div>
 </nav>
@@ -157,7 +157,7 @@ import Menu from "@molecules/Menu.astro";
         align-items: center;
         background: var(--medium-color);
         padding: 33px 22px 22px;
-        border-radius: 16px;
+        /* border-radius: 16px; */
         visibility: hidden;
         pointer-events: none;
         transition:
@@ -176,6 +176,7 @@ import Menu from "@molecules/Menu.astro";
         .mobile-menu {
             transition: none;
         }
+        
         .burger .bar {
             transition: none;
         }
@@ -185,6 +186,7 @@ import Menu from "@molecules/Menu.astro";
         .site-nav {
             padding: 32.5px 60px;
         }
+
         .small-menu {
             right: 60px;
         }
@@ -193,7 +195,7 @@ import Menu from "@molecules/Menu.astro";
             top: 60px;
             right: -260px;
             padding: 10px 12px;
-            border-radius: 16px;
+            /* border-radius: 16px; */
         }
     }
 
@@ -201,15 +203,17 @@ import Menu from "@molecules/Menu.astro";
         .site-nav {
             padding: 32.5px 60px;
         }
+
         .small-menu {
             display: none;
         }
+
         .mobile-menu {
             display: block;
             top: 35px;
             right: 60px;
             padding: 11px 7px 10px;
-            border-radius: 14px;
+            /* border-radius: 14px; */
             visibility: visible;
             pointer-events: auto;
             transition: none;
