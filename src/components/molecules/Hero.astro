@@ -1,3 +1,7 @@
+---
+import Button from "@atoms/Button.astro"
+---
+
 <section class="hero">
     <div class="content">
         <h1 class="hero-title" aria-label="Wij maken websites, designs, ai-agents en content">
@@ -17,12 +21,7 @@
             gratis consult en ontdek wat wij voor jouw bedrijf kunnen betekenen.
         </p>
 
-        <a
-            class="contact-button"
-            href="/contact"
-            aria-label="go to contact form"
-            tabindex="0">Gratis analyse</a
-        >
+       <Button text="Gratis analyse" href="/contact" animateTag="hero-cta"/>
 
         <small
             >of <a href="#projects" tabindex="0"
@@ -147,7 +146,7 @@
         animation-delay: .32s;
     }
 
-    .contact-button {
+     .contact-button {
         color: var(--light-color);
         padding: 10px 20px;
         font-size: 20px;
@@ -167,6 +166,12 @@
     .contact-button:hover {
         color: #fff;
         background-position: 100%;
+    }
+
+    .faq-arrow {
+        width: 24px;
+        height: auto;
+        margin-left: 14px;
     }
 
     small {
