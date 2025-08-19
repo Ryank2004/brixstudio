@@ -62,13 +62,8 @@ html.lenis body {
 }
 
 body {
-    /* opacity: 0; */
-    line-height: 1;
-    /* visibility: hidden; */
-    /* animation: fade-in .4s forwards; */
-    /* overflow: hidden; */
+    /* line-height: 1; */
     scrollbar-width: none;
-    /* Verbergt de scrollbar */
 }
 
 @keyframes fade-in {

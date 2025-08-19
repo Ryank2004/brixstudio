@@ -30,8 +30,10 @@ const structuredDataString = JSON.stringify(
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		
-		<!-- JSON-LD voor gestructureerde data -->
+		<script>
+			document.documentElement.classList.add("js");
+		</script>
+
 		<script type="application/ld+json" set:html={structuredDataString} />
 
 		<link rel="stylesheet" href="/css/global.css" />
