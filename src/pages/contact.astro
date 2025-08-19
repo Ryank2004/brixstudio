@@ -72,21 +72,21 @@ const contactStructuredData = {
                 <textarea name="message" required></textarea>
             </div>
 
-            <button class="send-button" type="submit" tabindex="0"
-                >Verstuur <svg
-                    class="arrow-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="3"
-                    stroke="currentColor"
+                <button class="send-button squircle" type="submit" tabindex="0"
+                    >Verstuur <svg
+                        class="arrow-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="3"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg></button
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
-                </svg></button
-            >
         </form>
     </section>
 </Layout>
@@ -176,9 +176,7 @@ const contactStructuredData = {
         font-weight: 700;
         color: var(--light-color);
         padding: 12px 20px;
-        border-radius: 8px;
-        width: 70%;
-        margin: 24px 0 0;
+        margin: 24px 0 0 auto;
         justify-content: space-between;
         background-size: 300%;
         transition: background-position 0.6s;

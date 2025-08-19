@@ -100,6 +100,18 @@ button {
     color: inherit;
 }
 
+  .squircle {
+    border-radius: 16px;
+  }
+
+  .has-squircle .squircle {
+      -webkit-mask-image: paint(squircle);
+      mask-image: paint(squircle);
+      border-radius: 0;
+      --squircle-radius: 14px;
+      --squircle-smooth: 1;
+    }
+
 :focus {
     outline: 2px solid #FACC15;
     border-radius: 20px;
