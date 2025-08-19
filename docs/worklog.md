@@ -61,3 +61,16 @@
 - Screenreader test
 
 ---
+
+## 2025-08-19
+
+**What I did:**
+- Removed button hover styling for devices that don't have hover #60
+- Added a module to create a squircle radius on buttons instead of a regular border radius #60
+
+**What needs to happen first:**
+- Reduce ai-agents image size for performance #62
+- Standard tabbing not working on Safari #64
+- Screenreader test
+
+---
