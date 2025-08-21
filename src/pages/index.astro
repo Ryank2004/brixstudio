@@ -2,8 +2,8 @@
 import Layout from "@layout/Layout.astro";
 import Hero from "@molecules/Hero.astro";
 import ProjectsHome from "@organisms/ProjectsHome.astro";
-import Services from "@organisms/Services.astro";
 import Faq from "@organisms/Faq.astro";
+import CardsStack from "@molecules/CardsStack.astro";
 
 const homeStructuredData = {
 	"@context": "https://schema.org",
@@ -23,7 +23,7 @@ const homeStructuredData = {
 		url: "https://www.brixstudio.nl",
 		logo: {
 			"@type": "ImageObject",
-			url: "https://www.brixstudio.nl/images/BrixIconlogoBig.png",
+			url: "https://www.brixstudio.nl/images/BrixStudioIcon.svg",
 			width: "800",
 			height: "800",
 		},
@@ -63,14 +63,14 @@ const homeStructuredData = {
 ---
 
 <Layout
-	title="BrixStudio | Websites, Designs, AI-agents & Content"
+	title="Brix Studio | Websites, Designs, AI-agents & Content"
 	description="Brix Studio creëert websites, designs en AI-oplossingen die voldoen aan de nieuwste standaarden. Wij maken digitale producten die converteren en impact maken. Bekijk ons werk."
 	structuredData={homeStructuredData}
 >
 	<Hero />
 	<div class="wrapper">
 		<ProjectsHome />
-		<Services />
+		<CardsStack />
 		<Faq />
 	</div>
 </Layout>
@@ -111,7 +111,7 @@ const homeStructuredData = {
 				backgroundColor: gsap.getProperty("html", "--background-color"),
 			})
 			.to(
-				".project-text h3, .project-text .see-more",
+				".project-text h3, .project-text .see-more, .scroll-cards h1",
 				{
 					color: gsap.getProperty("html", "--light-color"),
 				},

@@ -4,7 +4,7 @@ import Project from "@molecules/Project.astro";
 
 <div class="projects" id="projects">
     <ol class="project">
-        <Project limit={2}/>
+        <Project limit={2} />
     </ol>
 </div>
 
@@ -44,4 +44,9 @@ import Project from "@molecules/Project.astro";
         }
     }
 
+    @media screen and (min-width: 1624px) {
+        .projects {
+            padding: 80px 120px 25px;
+        }
+    }
 </style>

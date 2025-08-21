@@ -38,7 +38,7 @@
 }
 
 html {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     background-color: var(--light-color);
     color: var(--dark-color);
     scroll-behavior: smooth;
@@ -62,12 +62,8 @@ html.lenis body {
 }
 
 body {
-    /* opacity: 0; */
-    line-height: 1;
-    /* animation: fade-in 0.2s forwards; */
-    overflow: hidden;
+    /* line-height: 1; */
     scrollbar-width: none;
-    /* Verbergt de scrollbar */
 }
 
 @keyframes fade-in {
@@ -76,13 +72,10 @@ body {
     }
 }
 
-/* Voor WebKit (Safari, Chrome) */
 body::-webkit-scrollbar {
     display: none;
 }
 
-
-/* Optional: For Safari support */
 @supports (-webkit-overflow-scrolling: touch) {
     body {
         -webkit-overflow-scrolling: touch;
@@ -107,20 +100,30 @@ button {
     color: inherit;
 }
 
+  .squircle {
+    border-radius: 16px;
+  }
+
+  .has-squircle .squircle {
+      -webkit-mask-image: paint(squircle);
+      mask-image: paint(squircle);
+      border-radius: 0;
+      --squircle-radius: 14px;
+      --squircle-smooth: 1;
+    }
+
 :focus {
     outline: 2px solid #FACC15;
-    /* Using your yellow brand color */
+    border-radius: 20px;
     outline-offset: 3px;
     transition: outline-offset 0.2s ease;
 }
 
-/* Remove default focus outline for mouse users, but keep it for keyboard */
 :focus:not(:focus-visible) {
     outline: none;
 }
 
 :focus-visible {
     outline: 2px solid #FACC15;
-    outline-offset: 3px;
     transition: outline-offset 0.2s ease;
 }
