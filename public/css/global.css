@@ -38,7 +38,6 @@
 }
 
 html {
-    /* overflow-x: hidden; */
     background-color: var(--light-color);
     color: var(--dark-color);
     scroll-behavior: smooth;
@@ -62,7 +61,6 @@ html.lenis body {
 }
 
 body {
-    /* line-height: 1; */
     scrollbar-width: none;
 }
 
@@ -83,9 +81,38 @@ body::-webkit-scrollbar {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
     font-family: "Midnight", sans-serif;
     text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 8.5vw + 1rem, 10rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 5.5vw + 1rem, 8rem);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw + 1rem, 5rem);
+}
+
+h4 {
+    font-size: clamp(2rem, 4vw + 1rem, 3rem);
+}
+
+h5 {
+    font-size: clamp(1.5rem, 2.5vw + 1rem, 1.875rem);
+}
+
+p {
+    font-size: clamp(1rem, .8vw + 0.875rem, 1.375rem);
+    line-height: 1.4;
+    font-family: "JetBrains", sans-serif;
+    max-width: 1000px;
 }
 
 a {
@@ -100,17 +127,17 @@ button {
     color: inherit;
 }
 
-  .squircle {
+.squircle {
     border-radius: 16px;
-  }
+}
 
-  .has-squircle .squircle {
-      -webkit-mask-image: paint(squircle);
-      mask-image: paint(squircle);
-      border-radius: 0;
-      --squircle-radius: 14px;
-      --squircle-smooth: 1;
-    }
+.has-squircle .squircle {
+    -webkit-mask-image: paint(squircle);
+    mask-image: paint(squircle);
+    border-radius: 0;
+    --squircle-radius: 14px;
+    --squircle-smooth: 1;
+}
 
 :focus {
     outline: 2px solid #FACC15;

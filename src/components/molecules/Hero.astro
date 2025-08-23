@@ -56,10 +56,10 @@ import Button from "@atoms/Button.astro";
         align-items: center;
         width: 100%;
         text-align: center;
+        container-type: inline-size;
     }
 
     h1 {
-        font-size: 48px;
         margin-top: clamp(4rem, 16vh, 10rem);
         line-height: 1;
     }
@@ -67,12 +67,9 @@ import Button from "@atoms/Button.astro";
     .hero-title-static-wrapper {
         display: flex;
         position: relative;
-        height: 1em;
-        overflow: hidden;
     }
 
     .hero-title-static {
-        width: 100%;
         animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         animation-delay: 0.2s;
         opacity: 0;
@@ -101,15 +98,13 @@ import Button from "@atoms/Button.astro";
     .rotator-word {
         width: 100%;
         position: absolute;
-        font-weight: bold;
-        top: -0px;
-        animation: rotateWord 10s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-            infinite both;
+        animation: rotateWord 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+            both;
         will-change: transform, opacity;
     }
 
     .rotator-word:nth-child(1) {
-        animation-delay: .26s;
+        animation-delay: 0.26s;
     }
     .rotator-word:nth-child(2) {
         animation-delay: 2.76s;
@@ -148,13 +143,11 @@ import Button from "@atoms/Button.astro";
     }
 
     p {
-        font-family: "Jetbrains", sans-serif;
-        font-size: 16px;
         margin-top: clamp(2rem, 16vh, 14rem);
-        line-height: 1.4;
         opacity: 0;
         animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         animation-delay: 0.32s;
+        width: 95%;
     }
 
     .button-animation {
@@ -224,17 +217,7 @@ import Button from "@atoms/Button.astro";
         }
     }
 
-    @media screen and (min-width: 540px) {
-        h1 {
-            font-size: 72px;
-        }
-    }
-
     @media screen and (min-width: 768px) {
-        h1 {
-            font-size: 96px;
-        }
-
         .contact-button {
             font-weight: 700;
             margin: 36px auto 0;
@@ -248,29 +231,8 @@ import Button from "@atoms/Button.astro";
     }
 
     @media screen and (min-width: 1024px) {
-        h1 {
-            font-size: 128px;
-        }
-
         p {
             width: 70%;
-            font-size: 18px;
-            margin-top: clamp(2rem, 10vh, 14rem);
-        }
-    }
-
-    @media screen and (min-width: 1224px) {
-        .hero {
-            height: 75vh;
-        }
-
-        h1 {
-            font-size: 128px;
-        }
-
-        p {
-            width: 70%;
-            font-size: 18px;
             margin-top: clamp(2rem, 10vh, 14rem);
         }
     }
