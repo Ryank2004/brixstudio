@@ -5,7 +5,7 @@ import Button from "@atoms/Button.astro"
 <section class="footer">
     <div class="footer-content">
         <div class="consult">
-            <h4>Plan een gratis consult</h4>
+            <h3>Plan een gratis consult</h3>
            <Button text="Contact" href="/contact"/>
         </div>
         <div class="footer-links">
@@ -59,9 +59,11 @@ import Button from "@atoms/Button.astro"
         text-decoration: underline;
     }
 
-    h4 {
-        font-size: 48px;
+    h3 {
+        font-family: 'Inter', sans-serif;
+        text-transform: none;
         font-weight: 400;
+        font-size: clamp(3rem, 3vw + 1rem, 5rem);
     }
 
     .contact-button {
@@ -123,10 +125,6 @@ import Button from "@atoms/Button.astro"
     @media screen and (min-width: 813px) {
         .footer {
             padding: 150px 60px 25px;
-        }
-
-        h4 {
-            font-size: 60px;
         }
 
         .footer-content {

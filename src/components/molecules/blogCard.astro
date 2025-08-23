@@ -32,7 +32,7 @@ console.log({ slug });
                     </ul>
                 )
             }
-            <h2 class="blog-card-title">{title}</h2>
+            <h5 class="blog-card-title">{title}</h5>
             <p class="blog-card-excerpt">{excerpt}</p>
 
             <div class="see-more">
@@ -57,18 +57,25 @@ console.log({ slug });
         transition: outline-offset 0.2s ease;
     }
 
+    h5 {
+        font-family: "Midnight", sans-serif;
+        text-transform: uppercase;
+    }
+    
+    p {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
     .blog-card-link:focus {
-       outline: none;
+        outline: none;
     }
 
     .blog-card-content {
         display: flex;
         flex-direction: column;
         padding: 25px;
-    }
-
-    .blog-card-content p {
-        line-height: 1.5;
     }
 
     .blog-card-title {
