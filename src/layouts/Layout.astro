@@ -31,19 +31,11 @@ const structuredDataString = JSON.stringify(
 		<meta name="description" content={description} />
 		<title>{title}</title>
 		<script is:inline>
-			(async () => {
-				try {
-					if (!("paintWorklet" in CSS)) {
-						await import("https://unpkg.com/css-paint-polyfill");
-					}
-					await CSS.paintWorklet.addModule(
-						"/worklets/squircle.min.js",
-					); // zet squircle.min.js in /public/worklets/
-					document.documentElement.classList.add("has-squircle");
-				} catch (e) {
-					console.warn("Houdini failed", e);
-				}
-			})();
+			if ("paintWorklet" in CSS) {
+				CSS.paintWorklet.addModule(
+					"https://www.unpkg.com/css-houdini-squircle@0.3.0/squircle.min.js",
+				);
+			}
 		</script>
 		<script type="application/ld+json" set:html={structuredDataString} />
 

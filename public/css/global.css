@@ -127,17 +127,20 @@ button {
     color: inherit;
 }
 
+/* use mask */
 .squircle {
-    border-radius: 16px;
+  --squircle-smooth: 1;
+  --squircle-radius: 14px;
+  mask-image: paint(squircle);
 }
-
+/* 
 .has-squircle .squircle {
     -webkit-mask-image: paint(squircle);
     mask-image: paint(squircle);
     border-radius: 0;
     --squircle-radius: 14px;
     --squircle-smooth: 1;
-}
+} */
 
 :focus {
     outline: 2px solid #FACC15;
