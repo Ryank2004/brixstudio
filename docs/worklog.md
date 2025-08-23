@@ -74,3 +74,16 @@
 - Screenreader test
 
 ---
+
+## 2025-08-21
+
+**What I did:**
+- Reduced ai-agents image size for performance #62
+- Reduced SVG sizes #63
+
+**What needs to happen first:**
+- Standard tabbing not working on Safari #64
+- Fix squircle bug for Safari #71
+- Screenreader test
+
+---
