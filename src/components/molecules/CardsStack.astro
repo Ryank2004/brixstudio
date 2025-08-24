@@ -3,72 +3,55 @@ import WebsiteSvg from "@atoms/WebsiteSVG.astro";
 import ToolsSvg from "@atoms/ToolsSVG.astro";
 import DesignSvg from "@atoms/DesignSVG.astro";
 import ContentSvg from "@atoms/ContentSVG.astro";
+
+const props = Astro.props;
+const title = props.title ?? "Onze diensten";
+const services = props.services ?? [
+  {
+    title: "Websites",
+    description: "Wij ontwikkelen razendsnelle, moderne websites die perfect aansluiten op jouw merkidentiteit. Altijd responsive, gebruiksvriendelijk én voorbereid op slimme contentintegraties. Een slimme, visueel sterke website die vertrouwen wekt én aanzet tot actie.",
+    iconType: "website"
+  },
+  {
+    title: "AI agents", 
+    description: "Bespaar tijd op contentcreatie zonder in te leveren op kwaliteit. Onze AI Agents leren jouw unieke toon en stijl, en passen deze toe op social media, e-mails en SEO‑blogs. Zo focust jouw team zich op groei en kwaliteit, niet op repetitieve taken.",
+    iconType: "tools"
+  },
+  {
+    title: "Designs",
+    description: "We ontwerpen sterke, mobile-first designs die werken op elk schermformaat. Elk ontwerp is helder, functioneel en zorgt online voor impact, of het nu gaat om branding of gebruiksgemak. Goed design valt op, blijft hangen én werkt voor iedereen.",
+    iconType: "design"
+  },
+  {
+    title: "Content",
+    description: "Goede content valt op én voelt vertrouwd. We sturen een ervaren fotograaf langs om foto- en videocontent te maken wat past bij jouw merk en website. Daarnaast schrijven we heldere, overtuigende teksten die je verhaal versterken en de bezoeker meenemen met jouw bedrijf.",
+    iconType: "content"
+  }
+];
 ---
 
 <div class="cards-container">
-    <div class="scroll-cards">
-        <h2>Onze diensten</h2>
-        <article class="scroll-cards__item" tabindex="0">
-            <div class="scroll-card-image">
-                <WebsiteSvg />
-            </div>
-            <div class="scroll-card-text">
-                <h3>Websites</h3>
-                <p>
-                    Wij ontwikkelen razendsnelle, moderne websites die perfect
-                    aansluiten op jouw merkidentiteit. Altijd responsive,
-                    gebruiksvriendelijk én voorbereid op slimme contentintegraties.
-                    Een slimme, visueel sterke website die vertrouwen wekt én aanzet
-                    tot actie.
-                </p>
-            </div>
-        </article>
-        <article class="scroll-cards__item" tabindex="0">
-            <div class="scroll-card-image">
-                <ToolsSvg />
-            </div>
-            <div class="scroll-card-text">
-                <h3>AI agents</h3>
-                <p>
-                    Bespaar tijd op contentcreatie zonder in te leveren op kwaliteit. Onze AI Agents leren jouw unieke toon en stijl, en passen deze toe op social media, e-mails en SEO‑blogs. Zo focust jouw team zich op groei en kwaliteit, niet op repetitieve taken.
-                </p>   
-            </div>
-        </article>
-        <article class="scroll-cards__item" tabindex="0">
-            <div class="scroll-card-image">
-                <DesignSvg />
-            </div>
-            <div class="scroll-card-text">
-                <h3>Designs</h3>
-                <p>
-                    We ontwerpen sterke, mobile-first designs die werken op elk
-                    schermformaat. Elk ontwerp is helder, functioneel en zorgt
-                    online voor impact, of het nu gaat om branding of gebruiksgemak.
-                    Goed design valt op, blijft hangen én werkt voor iedereen.
-                </p>
-            </div>
-        </article>
-        <article class="scroll-cards__item" tabindex="0">
-            <div class="scroll-card-image">
-                <ContentSvg />
-            </div>
-            <div class="scroll-card-text">
-                <h3>Content</h3>
-            <p>
-                Goede content valt op én voelt vertrouwd. We sturen een ervaren
-                fotograaf langs om foto- en videocontent te maken wat
-                past bij jouw merk en website. Daarnaast schrijven we heldere,
-                overtuigende teksten die je verhaal versterken en de bezoeker
-                meenemen met jouw bedrijf.
-            </p>
-            </div>
-        </article>
-    </div>
+  <div class="scroll-cards">
+    <h2>{title}</h2>
+    {services.map((service: { title: string; description: string; iconType: string }) => (
+      <article class="scroll-cards__item" tabindex="0">
+        <div class="scroll-card-image">
+          {service.iconType === "website" && <WebsiteSvg />}
+          {service.iconType === "tools" && <ToolsSvg />}
+          {service.iconType === "design" && <DesignSvg />}
+          {service.iconType === "content" && <ContentSvg />}
+        </div>
+        <div class="scroll-card-text">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      </article>
+    ))}
+  </div>
 </div>
 
 <style>
     .cards-container {
-        /* max-width: 60em; */
         display: flex;
         justify-content: center;
         margin: 0 auto;
@@ -79,7 +62,6 @@ import ContentSvg from "@atoms/ContentSVG.astro";
         position: relative;
         display: block;
         padding: 200px 25px;
-        /* width: 80vw; */
     }
 
     .scroll-card-image {
