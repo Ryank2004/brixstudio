@@ -2,6 +2,7 @@
 import Layout from "@layout/Layout.astro";
 import ArrowRight from "@atoms/ArrowRight.astro";
 import Button from "@atoms/Button.astro";
+import { Image } from "astro:assets";
 
 const aiAgentsStructuredData = {
     "@context": "https://schema.org",
@@ -49,13 +50,17 @@ const aiAgentsStructuredData = {
                 zonder je merkidentiteit te verliezen met AI-agents die jouw
                 bedrijf écht begrijpen.
             </p>
-            <Button text="Gratis analyse"
-                href="/contact"
-                animateTag="agents-cta"/>
+            <div class="hero-btn">
+                <Button
+                    text="Gratis analyse"
+                    href="/contact"
+                    animateTag="agents-cta"
+                />
+            </div>
         </div>
         <small
-            >of <a href="#how-it-works"
-                tabindex="0">scroll naar beneden om meer te ontdekken</a
+            >of <a href="#how-it-works" tabindex="0"
+                >scroll naar beneden om meer te ontdekken</a
             ></small
         >
     </section>
@@ -817,9 +822,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/social-agent.webp"
                             alt="Social Content Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -866,9 +873,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/mail-agent.webp"
                             alt="Email Automation Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -914,9 +923,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/seo-agent.webp"
                             alt="SEO Blog Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -931,8 +942,8 @@ const aiAgentsStructuredData = {
                 Plan nu een gratis consult en ontdek wat AI-agents voor jouw
                 bedrijf kunnen betekenen.
             </p>
-            <a href="/contact" class="cta-button"
-                tabindex="0">Gratis consult plannen <ArrowRight /></a
+            <a href="/contact" class="cta-button" tabindex="0"
+                >Gratis consult plannen <ArrowRight /></a
             >
         </div>
     </section>
@@ -1089,7 +1100,7 @@ const aiAgentsStructuredData = {
     .step-content h5 {
         margin-bottom: 12px;
     }
-    
+
     .how-it-works svg {
         max-width: 600px;
         min-width: 330px;
@@ -1287,24 +1298,20 @@ const aiAgentsStructuredData = {
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate hero section
-        gsap.from(".ai-agents-hero h1", {
+         gsap.from(".ai-agents-hero h1", {
             y: -50,
             opacity: 0,
             duration: 1,
-            ease: "power3.out",
+            ease: "power3.out"
         });
 
-        gsap.from(
-            ".ai-agents-hero h4, .hero-subtitle, .ai-agents-hero [animateTag='agents-cta'], .ai-agents-hero small",
-            {
-                y: 30,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power2.out",
-                delay: 0.3,
-            },
-        );
+        gsap.from(".hero-subtitle, .hero-btn, .ai-agents-hero small", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+        });
 
         // Animate feature cards
         gsap.from(".feature-card", {
