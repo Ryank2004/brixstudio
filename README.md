@@ -19,9 +19,9 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 - **Content Management** with Contentful CMS integration
 - **SEO Optimized** with structured data and meta tags
 - **Modern UI components** including:
-  - Animated hero section with text rotation
-  - Card stack with scroll-driven animations
-  - Dynamic project portfolio with clip-path animations
+  - CSS Animated hero section with text rotation
+  - CSS Card stack animation
+  - Dynamic project portfolio with clip-path scroll animations
   - FAQ section with expandable details
   - Contact form with email integration
   - Blog system with dynamic routing
@@ -115,13 +115,11 @@ The website features smooth animations using GSAP and Lenis for scroll interacti
 
 ## 📱 Responsive Design
 
-The website is fully responsive with breakpoints at:
-- Mobile: Default(320px+)
-- Tablet: 768px
-- Desktop small: 813px 
-- Desktop: 1024px
-- Large desktop: 1224px+
-
+The website is fully responsive with the use of:
+- media queries
+- responsive font sizes
+- hover detection
+  
 ## 🎨 Design System
 
 ### Color Palette
@@ -178,3 +176,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Contentful](https://contentful.com/)
 - [Netlify](https://www.netlify.com/)
 - [FontSource](https://fontsource.org/) for Inter fonts
+
