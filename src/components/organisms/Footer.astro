@@ -1,46 +1,37 @@
+---
+import Button from "@atoms/Button.astro"
+---
+
 <section class="footer">
     <div class="footer-content">
         <div class="consult">
-            <h4>Plan een gratis consult</h4>
-            <a
-                class="contact-button"
-                href="/contact"
-                aria-label="go to contact form"
-                >Contact <svg
-                    class="faq-arrow"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    class="size-6"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
-                </svg></a
-            >
+            <h3>Plan een gratis consult</h3>
+           <Button text="Contact" href="/contact"/>
         </div>
         <div class="footer-links">
             <ul class="pages">
-                <li><a href="/">Home</a></li>
-                <li><a href="/projecten">Projecten</a></li>
-                <li><a href="/ai-agents">AI-agents</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/" tabindex="0">Home</a></li>
+                <li><a href="/projecten" tabindex="0">Projecten</a></li>
+                <li><a href="/ai-agents" tabindex="0">AI-agents</a></li>
+                <li><a href="/blog" tabindex="0">Blog</a></li>
+                <li><a href="/contact" tabindex="0">Contact</a></li>
             </ul>
             <ul class="social-media">
                 <li>
                     <a
                         href="https://www.instagram.com/brixstudio.nl?igsh=bDBmc2JnOTlvNnhs&utm_source=qr"
-                        >Instagram</a
+                        tabindex="0">Instagram</a
                     >
                 </li>
                 <li>
-                    <a href="https://www.linkedin.com/brixstudio">Linkedin</a>
+                    <a href="https://www.linkedin.com/brixstudio" tabindex="0"
+                        >Linkedin</a
+                    >
                 </li>
-                <li><a href="https://x.com/BrixStudioNL">X/Twitter</a></li>
+                <li>
+                    <a href="https://x.com/BrixStudioNL" tabindex="0"
+                        >X / Twitter</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -68,19 +59,22 @@
         text-decoration: underline;
     }
 
-    h4 {
-        font-size: 48px;
+    h3 {
+        font-family: 'Inter', sans-serif;
+        text-transform: none;
         font-weight: 400;
+        font-size: clamp(3rem, 3vw + 1rem, 5rem);
     }
 
     .contact-button {
         display: flex;
         font-size: 20px;
+        max-width: max-content;
         align-items: center;
         background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
         font-weight: 700;
         color: var(--light-color);
-        padding: 20px 16px;
+        padding: 12px 20px;
         border-radius: 8px;
         width: 70%;
         margin: 24px 0 0;
@@ -98,6 +92,7 @@
         transition: transform 0.15s ease;
         width: 24px;
         height: auto;
+        margin-left: 14px;
     }
 
     .footer-links {
@@ -130,10 +125,6 @@
     @media screen and (min-width: 813px) {
         .footer {
             padding: 150px 60px 25px;
-        }
-
-        h4 {
-            font-size: 60px;
         }
 
         .footer-content {

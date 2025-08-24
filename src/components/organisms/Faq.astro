@@ -9,7 +9,7 @@ import faqs from "@data/faqs.json";
         {
             faqs.map(({ question, answer }) => (
                 <details class="faq-item">
-                    <summary class="faq-question">
+                    <summary class="faq-question" tabindex="0"  >
                         {question}{" "}
                         <svg
                             class="faq-arrow"
@@ -44,7 +44,6 @@ import faqs from "@data/faqs.json";
     }
 
     .faq-title {
-        font-size: 48px;
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -54,7 +53,7 @@ import faqs from "@data/faqs.json";
         color: var(--light-color);
         border-radius: 8px;
         margin-bottom: 1rem;
-        overflow: hidden;
+        /* overflow: hidden; */
         transition: all 0.3s ease;
     }
 
@@ -67,6 +66,11 @@ import faqs from "@data/faqs.json";
         align-items: center;
         justify-content: space-between;
         gap: 20px;
+    }
+
+    .faq-question:focus {
+        outline-offset: 0px;
+        border-radius: 8px;
     }
 
     .faq-answer {
@@ -105,12 +109,6 @@ import faqs from "@data/faqs.json";
             justify-content: space-between;
         }
 
-        .faq-title {
-            font-size: 60px;
-            height: 100%;
-            line-height: 0.9;
-        }
-
         .faq-question {
             font-size: 20px;
             padding: 40px;
@@ -142,10 +140,6 @@ import faqs from "@data/faqs.json";
             padding: 400px 60px;
         }
 
-        .faq-title {
-            font-size: 96px;
-        }
-
         .faq-list {
             width: 60%;
         }
@@ -156,7 +150,7 @@ import faqs from "@data/faqs.json";
         }
 
         .faq-answer {
-            padding: 0 48px 48px;
+            padding: 24px 48px 48px;
             font-size: 20px;
             line-height: 1.5;
         }

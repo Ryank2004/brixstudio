@@ -1,6 +1,8 @@
 ---
 import Layout from "@layout/Layout.astro";
 import ArrowRight from "@atoms/ArrowRight.astro";
+import Button from "@atoms/Button.astro";
+import { Image } from "astro:assets";
 
 const aiAgentsStructuredData = {
     "@context": "https://schema.org",
@@ -43,18 +45,21 @@ const aiAgentsStructuredData = {
     <section class="ai-agents-hero">
         <div class="hero-content">
             <h1>AI-agents</h1>
-            <h2>Jouw bedrijf op autopiloot met AI.</h2>
             <p class="hero-subtitle">
                 Automatiseer content, SEO en communicatie processen met AI,
                 zonder je merkidentiteit te verliezen met AI-agents die jouw
                 bedrijf écht begrijpen.
             </p>
-            <a href="/contact" class="cta-button"
-                >Gratis adviesgesprek <ArrowRight /></a
-            >
+            <div class="hero-btn">
+                <Button
+                    text="Gratis analyse"
+                    href="/contact"
+                    animateTag="agents-cta"
+                />
+            </div>
         </div>
         <small
-            >of <a href="#how-it-works"
+            >of <a href="#how-it-works" tabindex="0"
                 >scroll naar beneden om meer te ontdekken</a
             ></small
         >
@@ -62,7 +67,7 @@ const aiAgentsStructuredData = {
 
     <section class="how-it-works" id="how-it-works">
         <div class="section-container">
-            <h2>Hoe het werkt</h2>
+            <h4>Hoe het werkt</h4>
             <p class="section-intro">
                 Onze tools sluiten aan op je bestaande systemen en processen.
                 Geen gedoe. Geen leercurve. Gewoon een slimme uitbreiding van je
@@ -73,7 +78,7 @@ const aiAgentsStructuredData = {
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Intake & analyse</h3>
+                        <h5>Intake & analyse</h5>
                         <p>
                             Gratis eerste gesprek en analyse van je huidige
                             content en bedrijfsprocessen.
@@ -83,7 +88,7 @@ const aiAgentsStructuredData = {
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Maatwerk AI-workflow</h3>
+                        <h5>Maatwerk AI-workflow</h5>
                         <p>
                             We ontwikkelen een op maat gemaakte AI-workflow
                             specifiek voor jouw behoeften.
@@ -93,7 +98,7 @@ const aiAgentsStructuredData = {
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Test & optimalisatie</h3>
+                        <h5>Test & optimalisatie</h5>
                         <p>
                             We testen de AI-agent grondig en optimaliseren deze
                             op basis van feedback.
@@ -103,7 +108,7 @@ const aiAgentsStructuredData = {
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Live inzet & groei</h3>
+                        <h5>Live inzet & groei</h5>
                         <p>
                             De AI-agent gaat live en blijft zich ontwikkelen
                             naarmate je bedrijf groeit.
@@ -113,8 +118,6 @@ const aiAgentsStructuredData = {
             </div>
         </div>
         <svg
-            width="1077"
-            height="734"
             viewBox="0 0 1077 734"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -711,7 +714,7 @@ const aiAgentsStructuredData = {
                         <path d="M7 17h10"></path>
                     </svg>
                 </div>
-                <h3>AI-agents die jouw bedrijf écht begrijpen</h3>
+                <h5>AI-agents die jouw bedrijf écht begrijpen</h5>
                 <p>
                     Onze agents bootsen jouw bestaande contentstijl na en
                     optimaliseren deze, zodat jouw team sneller en consistenter
@@ -741,7 +744,7 @@ const aiAgentsStructuredData = {
                         <path d="m13.95 12.97 2.61 2.61"></path>
                     </svg>
                 </div>
-                <h3>Op maat gemaakte implementatie</h3>
+                <h5>Op maat gemaakte implementatie</h5>
                 <p>
                     We bouwen de agent in nauwe samenwerking, volledig afgestemd
                     op jouw wensen en bestaande bedrijfsprocessen.
@@ -770,7 +773,7 @@ const aiAgentsStructuredData = {
                         <path d="m12 12 7 7-7-7z"></path>
                     </svg>
                 </div>
-                <h3>Gratis eerste setup voor pilotklanten</h3>
+                <h5>Gratis eerste setup voor pilotklanten</h5>
                 <p>
                     De eerste setup is gratis voor pilotklanten, waardoor je
                     zonder risico kunt ervaren wat onze agents kunnen betekenen.
@@ -781,7 +784,7 @@ const aiAgentsStructuredData = {
 
     <section class="use-cases">
         <div class="section-container">
-            <h2 class="section-title">Onze AI-agents in actie</h2>
+            <h4 class="section-title">Onze AI-agents in act</h4>
 
             <div class="case-grid">
                 <!-- Use Case 1 -->
@@ -804,7 +807,7 @@ const aiAgentsStructuredData = {
                                 ></path>
                             </svg>
                         </div>
-                        <h3>Social Content Agent</h3>
+                        <h5>Social Content Agent</h5>
                         <div class="case-tagline">
                             Jouw merkstem. Dagelijks zichtbaar. Volledig
                             geautomatiseerd.
@@ -819,9 +822,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/social-agent.webp"
                             alt="Social Content Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -848,7 +853,7 @@ const aiAgentsStructuredData = {
                                 ></path>
                             </svg>
                         </div>
-                        <h3>E-mail Automation Agent</h3>
+                        <h5>E-mail Automation Agent</h5>
                         <div class="case-tagline">
                             Reageert sneller dan je team, mét jouw toon.
                         </div>
@@ -868,9 +873,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/mail-agent.webp"
                             alt="Email Automation Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -898,7 +905,7 @@ const aiAgentsStructuredData = {
                                 ></path>
                             </svg>
                         </div>
-                        <h3>SEO Blog Agent</h3>
+                        <h5>SEO Blog Agent</h5>
                         <div class="case-tagline">
                             Blogposts die scoren in Google én klinken zoals jij.
                         </div>
@@ -916,9 +923,11 @@ const aiAgentsStructuredData = {
                         </p>
                     </div>
                     <div class="case-image">
-                        <img
+                        <Image
                             src="/images/seo-agent.webp"
                             alt="SEO Blog Agent illustration"
+                            width={400}
+                            height={300}
                         />
                     </div>
                 </div>
@@ -928,12 +937,12 @@ const aiAgentsStructuredData = {
 
     <section class="cta-section">
         <div class="section-container">
-            <h2>Klaar voor de toekomst van content?</h2>
+            <h4>Klaar voor de toekomst van content?</h4>
             <p>
                 Plan nu een gratis consult en ontdek wat AI-agents voor jouw
                 bedrijf kunnen betekenen.
             </p>
-            <a href="/contact" class="cta-button"
+            <a href="/contact" class="cta-button" tabindex="0"
                 >Gratis consult plannen <ArrowRight /></a
             >
         </div>
@@ -951,25 +960,18 @@ const aiAgentsStructuredData = {
     }
 
     .hero-content {
-        max-width: 900px;
+        /* max-width: 900px; */
         margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .ai-agents-hero h1 {
-        font-size: 48px;
         margin-bottom: 24px;
     }
 
-    .ai-agents-hero h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: var(--dark-color);
-    }
-
     .hero-subtitle {
-        font-family: "Jetbrains", sans-serif;
-        font-size: 18px;
-        line-height: 1.6;
         margin-bottom: 40px;
         margin-top: clamp(2rem, 8vh, 14rem);
     }
@@ -1006,16 +1008,12 @@ const aiAgentsStructuredData = {
         margin: 0 auto;
     }
 
-    section h2 {
-        font-size: 32px;
+    section h4 {
         margin-bottom: 24px;
     }
 
     .section-intro {
-        font-size: 18px;
-        line-height: 1.6;
         margin-bottom: 40px;
-        font-family: "Jetbrains", sans-serif;
     }
 
     /* Features section */
@@ -1059,15 +1057,8 @@ const aiAgentsStructuredData = {
         color: var(--dark-color);
     }
 
-    .feature-card h3 {
-        font-size: 20px;
+    .feature-card h5 {
         margin-bottom: 16px;
-        color: var(--dark-color);
-    }
-
-    .feature-card p {
-        font-family: "Jetbrains", sans-serif;
-        line-height: 1.6;
     }
 
     /* How it works section */
@@ -1106,14 +1097,8 @@ const aiAgentsStructuredData = {
         flex-shrink: 0;
     }
 
-    .step-content h3 {
-        font-size: 20px;
+    .step-content h5 {
         margin-bottom: 12px;
-    }
-
-    .step-content p {
-        font-family: "Jetbrains", sans-serif;
-        line-height: 1.6;
     }
 
     .how-it-works svg {
@@ -1131,10 +1116,8 @@ const aiAgentsStructuredData = {
     }
 
     .section-title {
-        font-size: 2.5rem;
         text-align: center;
         margin-bottom: 64px;
-        font-weight: 700;
     }
 
     .case-grid {
@@ -1173,11 +1156,8 @@ const aiAgentsStructuredData = {
         height: 32px;
     }
 
-    h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
+    h5 {
         margin-bottom: 16px;
-        color: #111827;
     }
 
     .case-tagline {
@@ -1189,7 +1169,6 @@ const aiAgentsStructuredData = {
     }
 
     .case-content p {
-        color: #4b5563;
         line-height: 1.6;
         margin-bottom: 16px;
     }
@@ -1227,49 +1206,17 @@ const aiAgentsStructuredData = {
         text-align: center;
     }
 
-    .cta-section h2 {
-        font-size: 36px;
+    .cta-section h4 {
         margin-bottom: 20px;
     }
 
     .cta-section p {
-        font-size: 18px;
         max-width: 600px;
         margin: 0 auto 40px;
-        font-family: "Jetbrains", sans-serif;
-    }
-
-    /* CTA button */
-    .cta-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background-color: var(--dark-color);
-        color: var(--light-color);
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 16px;
-        transition: background-position 0.6s;
-        background-size: 300%;
-        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
-    }
-
-    .cta-button:hover {
-        color: #fff;
-        background-position: 100%;
     }
 
     /* Media queries */
     @media screen and (min-width: 640px) {
-        .ai-agents-hero h1 {
-            font-size: 60px;
-        }
-
-        .ai-agents-hero h2 {
-            font-size: 32px;
-        }
-
         .features-container {
             grid-template-columns: 1fr 1fr;
         }
@@ -1304,10 +1251,6 @@ const aiAgentsStructuredData = {
             padding: 0 60px;
         }
 
-        .ai-agents-hero h1 {
-            font-size: 72px;
-        }
-
         .steps {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -1323,18 +1266,6 @@ const aiAgentsStructuredData = {
     }
 
     @media screen and (min-width: 1024px) {
-        .ai-agents-hero h1 {
-            font-size: 128px;
-        }
-
-        .ai-agents-hero h2 {
-            font-size: 40px;
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-        }
-
         .how-it-works {
             display: flex;
             flex-direction: row;
@@ -1342,18 +1273,6 @@ const aiAgentsStructuredData = {
 
         .features-container {
             grid-template-columns: repeat(3, 1fr);
-        }
-
-        section h2 {
-            font-size: 48px;
-        }
-
-        .section-title {
-            font-size: 3rem;
-        }
-
-        h3 {
-            font-size: 1.875rem;
         }
 
         .use-cases {
@@ -1379,24 +1298,20 @@ const aiAgentsStructuredData = {
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate hero section
-        gsap.from(".ai-agents-hero h1", {
+         gsap.from(".ai-agents-hero h1", {
             y: -50,
             opacity: 0,
             duration: 1,
-            ease: "power3.out",
+            ease: "power3.out"
         });
 
-        gsap.from(
-            ".ai-agents-hero h2, .hero-subtitle, .ai-agents-hero .cta-button, .ai-agents-hero small",
-            {
-                y: 30,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power2.out",
-                delay: 0.3,
-            },
-        );
+        gsap.from(".hero-subtitle, .hero-btn, .ai-agents-hero small", {
+            y: 30,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: "power2.out",
+        });
 
         // Animate feature cards
         gsap.from(".feature-card", {

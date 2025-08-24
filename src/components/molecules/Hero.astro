@@ -1,9 +1,21 @@
+---
+import Button from "@atoms/Button.astro";
+---
+
 <section class="hero">
     <div class="content">
-        <h1 class="hero-title">
-            <div class="hero-title-static">Wij maken</div><br />
+        <h1
+            class="hero-title"
+            aria-label="Wij maken websites, designs, ai-agents en content"
+        >
+            <span class="hero-title-static-wrapper">
+                <div class="hero-title-static">Wij maken</div>
+            </span>
             <span class="rotator-wrapper">
                 <span class="rotator-word">websites</span>
+                <span class="rotator-word">designs</span>
+                <span class="rotator-word">ai-agents</span>
+                <span class="rotator-word">content</span>
             </span>
         </h1>
 
@@ -12,14 +24,17 @@
             gratis consult en ontdek wat wij voor jouw bedrijf kunnen betekenen.
         </p>
 
-        <a
-            class="contact-button"
-            href="/contact"
-            aria-label="go to contact form">Gratis analyse</a
-        >
+        <div class="button-animation">
+            <Button
+                text="Gratis analyse"
+                href="/contact"
+                animateTag="hero-cta"
+            />
+        </div>
 
         <small
-            >of <a href="#projects">scroll naar beneden om meer te ontdekken</a
+            >of <a href="#projects" tabindex="0"
+                >scroll naar beneden om meer te ontdekken</a
             ></small
         >
     </div>
@@ -41,57 +56,104 @@
         align-items: center;
         width: 100%;
         text-align: center;
+        container-type: inline-size;
     }
 
     h1 {
-        font-size: 48px;
         margin-top: clamp(4rem, 16vh, 10rem);
         line-height: 1;
     }
 
-    /* .hero-title-static {
-        background: linear-gradient(
-            90deg,
-            var(--quarternary-color) 0%,
-            var(--primary-color)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-    } */
-
-    :global(.line-wrapper-title) {
+    .hero-title-static-wrapper {
+        display: flex;
         position: relative;
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    :global(.line) {
-        display: inline-block;
-        transform: translateY(115px);
-        transition: transform 0.5s ease-out;
+    .hero-title-static {
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    .rotator-wrapper {
+        position: relative;
+        display: flex;
+        height: 1em;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+    @keyframes heroIntro {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .rotator-word {
+        width: 100%;
+        position: absolute;
+        animation: rotateWord 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+            both;
+        will-change: transform, opacity;
+    }
+
+    .rotator-word:nth-child(1) {
+        animation-delay: 0.26s;
+    }
+    .rotator-word:nth-child(2) {
+        animation-delay: 2.76s;
+    }
+    .rotator-word:nth-child(3) {
+        animation-delay: 5.26s;
+    }
+    .rotator-word:nth-child(4) {
+        animation-delay: 7.76s;
+    }
+
+    @keyframes rotateWord {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        6% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        22% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        27% {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
     }
 
     p {
-        font-family: "Jetbrains", sans-serif;
-        font-size: 16px;
         margin-top: clamp(2rem, 16vh, 14rem);
-        line-height: 1.4;
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: 0.32s;
+        width: 95%;
     }
 
-    .contact-button {
-        /* background-color: var(--tertiary-color); */
-        color: var(--light-color);
-        padding: 10px 20px;
-        font-size: 20px;
-        font-weight: 700;
-        border-radius: 8px;
-        width: auto;
-        margin: 24px auto 0;
-        max-width: max-content;
-        background-size: 300%;
-        transition: background-position 0.6s;
-        background-image: linear-gradient(90deg, #3a6caa 50%, #facc15 50%);
+    .button-animation {
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: 0.38s;
     }
 
     .contact-button:hover {
@@ -99,8 +161,17 @@
         background-position: 100%;
     }
 
+    .faq-arrow {
+        width: 24px;
+        height: auto;
+        margin-left: 14px;
+    }
+
     small {
         margin-top: 12px;
+        opacity: 0;
+        animation: heroIntro 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation-delay: 0.44s;
     }
 
     small a {
@@ -124,39 +195,29 @@
         transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     }
 
-    /* Rotator styles */
-    .rotator-wrapper {
-        position: relative;
-        display: flex;
-        height: 1em; /* Houdt dezelfde hoogte als de tekst */
-        overflow: hidden;
-        vertical-align: middle;
-    }
+    @media (prefers-reduced-motion: reduce) {
+        .hero-title-static,
+        .rotator-word,
+        p,
+        .contact-button,
+        small {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
 
-    .rotator-word {
-        width: 100%;
-        /* background: linear-gradient(
-            90deg,
-            var(--quarternary-color),
-            var(--primary-color)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent; */
-    }
-
-    @media screen and (min-width: 540px) {
-        h1 {
-            font-size: 72px;
+        .rotator-word:nth-child(2) {
+            display: none;
+        }
+        .rotator-word:nth-child(3) {
+            display: none;
+        }
+        .rotator-word:nth-child(4) {
+            display: none;
         }
     }
 
     @media screen and (min-width: 768px) {
-        h1 {
-            font-size: 96px;
-        }
-
         .contact-button {
             font-weight: 700;
             margin: 36px auto 0;
@@ -170,119 +231,9 @@
     }
 
     @media screen and (min-width: 1024px) {
-        h1 {
-            font-size: 128px;
-        }
-
         p {
             width: 70%;
-            font-size: 18px;
-            margin-top: clamp(2rem, 10vh, 14rem);
-        }
-    }
-
-    @media screen and (min-width: 1224px) {
-        .hero {
-            height: 75vh;
-        }
-
-        h1 {
-            font-size: 128px;
-        }
-
-        p {
-            width: 70%;
-            font-size: 18px;
             margin-top: clamp(2rem, 10vh, 14rem);
         }
     }
 </style>
-
-<script is:inline>
-    window.addEventListener("DOMContentLoaded", () => {
-        
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        const words = ["websites", "ai agents", "designs", "content"];
-        const rotatorWord = document.querySelector(".rotator-word");
-
-        let index = 0;
-
-        const animateWords = () => {
-            const nextIndex = (index + 1) % words.length;
-
-            gsap.to(rotatorWord, {
-                y: "-100%",
-                opacity: 0,
-                duration: 0.5,
-                ease: "power2.in",
-                onComplete: () => {
-                    rotatorWord.textContent = words[nextIndex];
-                    gsap.set(rotatorWord, { y: "100%" });
-
-                    gsap.to(rotatorWord, {
-                        y: "0%",
-                        opacity: 1,
-                        duration: 0.5,
-                        ease: "power2.out",
-                    });
-
-                    index = nextIndex;
-                },
-            });
-        };
-
-        if (!prefersReducedMotion) {
-            setInterval(animateWords, 2000);
-
-            const animatingTitle = new window.SplitType(".hero-title", {
-                types: "lines, words",
-                lineClass: "line",
-            });
-
-            animatingTitle.lines.forEach((line) => {
-                const wrapper = document.createElement("div");
-                wrapper.classList.add("line-wrapper-title");
-                line.parentNode.insertBefore(wrapper, line);
-                wrapper.appendChild(line);
-            });
-
-            gsap.fromTo(
-                ".line",
-                { y: 115 },
-                {
-                    y: 0,
-                    stagger: 0.1,
-                    duration: 0.3,
-                    ease: "power4.out",
-                }
-            );
-
-            gsap.from("p, .content .contact-button, small", {
-                y: 30,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power2.out",
-                delay: 0.3,
-            });
-        } else {
-            // Geen animatie: toon gewoon eerste woord direct
-            rotatorWord.textContent = words[0];
-        }
-
-        // Smooth scroll is UI enhancement, laat gerust aan
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute("href"));
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop,
-                        behavior: "smooth",
-                    });
-                }
-            });
-        });
-    });
-</script>
