@@ -87,3 +87,16 @@
 - Screenreader test
 
 ---
+
+## 2025-08-21
+
+**What I did:**
+- Made font sizes responsive #73
+- Started on fixing the squircle bug #71
+
+**What needs to happen first:**
+- Standard tabbing not working on Safari #64
+- Finish fixing squircle bug for Safari #71
+- Screenreader test
+
+---
