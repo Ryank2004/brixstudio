@@ -79,7 +79,6 @@ const homeStructuredData = {
 	document.addEventListener("DOMContentLoaded", () => {
 		gsap.registerPlugin(ScrollTrigger);
 
-		// Give ScrollTrigger access to Lenis scroll position
 		ScrollTrigger.scrollerProxy(document.documentElement, {
 			scrollTop(value) {
 				return arguments.length
@@ -96,7 +95,6 @@ const homeStructuredData = {
 			},
 		});
 
-		// Rest of your existing ScrollTrigger animations
 		gsap.timeline({
 			scrollTrigger: {
 				trigger: ".projects",
@@ -131,7 +129,6 @@ const homeStructuredData = {
 			"--faq-radius": "5rem",
 		});
 
-		// Tell ScrollTrigger to update when Lenis scroll happens
 		window.lenis.on("scroll", ScrollTrigger.update);
 	});
 </script>
@@ -139,16 +136,13 @@ const homeStructuredData = {
 <style>
 	.wrapper {
 		width: 100%;
-		/* max-width: 1200px; */
 		margin: 0 auto;
 	}
-</style>
 
-<style is:global>
-	.wrapper {
+	:global(.wrapper) {
 		--faq-clip: 0;
 		--faq-radius: 0;
 		clip-path: inset(var(--faq-clip) round var(--faq-radius));
-		margin-top: -1px; /* Fix weird clip path behavior */
+		margin-top: -1px;
 	}
 </style>

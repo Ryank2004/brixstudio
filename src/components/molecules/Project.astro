@@ -1,6 +1,7 @@
 ---
 import ArrowRight from "@atoms/ArrowRight.astro";
 import projects from "@data/projects.json";
+import Image from "astro/components/Image.astro";
 
 // Ontvang de limit als een prop, standaard geen limiet
 const { limit } = Astro.props;
@@ -14,13 +15,12 @@ const displayedProjects = limit ? projects.slice(0, limit) : projects;
         <li>
             <a aria-label={`See project ${name}`} href={`/projecten/${slug}`} tabindex="0">
                 <div class="image-container">
-                    <img
+                    <Image
                         class="project-image"
                         alt={name}
                         src={image}
-                        width="600"
-                        height="500"
-                        loading="lazy"
+                        width={600}
+                        height={500}
                     />
                 </div>
                 <div class="project-text">
