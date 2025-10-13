@@ -1,11 +1,11 @@
 [
     {
-        "name": "Zensation",
-        "slug": "zensation",
-        "image": "/images/Zensation-mock-up.webp",
-        "description": "Een premium wellness platform met een moderne, minimalistische uitstraling die rust en luxe uitstraalt.",
+        "name": "Stadsmarkt de Pijp",
+        "slug": "stadsmarkt-de-pijp",
+        "image": "/images/Stadsmarkt.webp",
+        "description": "Een levendige en kleurrijke website voor Stadsmarkt de Pijp, een biologische supermarkt in Amsterdam. De site combineert een frisse, moderne uitstraling met gebruiksvriendelijkheid, waardoor bezoekers gemakkelijk door de afdelingen kunnen navigeren en geïnspireerd raken door de duurzame producten.",
         "services": ["Website Design", "UI/UX", "Development"],
-        "url": "https://zensation.vercel.app/"
+        "url": "coming-soon"
     },
     {
         "name": "Bed and breakfast",
